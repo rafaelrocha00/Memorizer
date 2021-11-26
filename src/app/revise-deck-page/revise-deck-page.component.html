@@ -1,0 +1,15 @@
+<div class="MainInfo">
+    <div class="MainText">    
+        <p class="FrontText">{{textoDaFrenteAtual}}</p>
+        <p class="BackText" [hidden]="!cartaEstaVirada">{{textoDeTrazAtual}}</p>
+
+    </div>
+    <div class="BotoesDeCartas">
+        <button class="BotaoDeOpcoes" [hidden]="cartaEstaVirada" [hidden]="finalizouDeRevisar" (click)="VirarCarta()">Virar</button>
+        <button class="BotaoDeOpcoes" [hidden]="!cartaEstaVirada" (click)="MudarCarta()">Acertou</button>
+        <button class="BotaoDeOpcoes" [hidden]="!cartaEstaVirada" (click)="MudarCarta()">Errou</button>
+    </div>
+
+</div>
+
+<li><a routerLink="" routerLinkActive="active">Voltar</a></li>
