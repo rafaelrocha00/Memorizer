@@ -1,0 +1,12 @@
+// UI Site
+// UI cartao
+// Escrever resposta
+// Verificar resposta
+// Criar deck
+// Pesquisar deck
+// Importar deck
+// Usar Deck
+// Deletar Deck
+// Mostrar cartas novas
+// Sistema de caixas de memoria
+// Animação

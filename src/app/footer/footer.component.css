@@ -1,0 +1,13 @@
+.Container{
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+p{
+    color: rgb(158, 158, 158);
+    font-size: small;
+    margin: 0px;
+}

@@ -9,6 +9,8 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { CreateCardPageComponent } from './create-card-page/create-card-page.component';
 import { CardFormComponent } from './card-form/card-form.component';
 import { ReviseDeckPageComponent } from './revise-deck-page/revise-deck-page.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ReviseDeckPageComponent } from './revise-deck-page/revise-deck-page.com
     MainPageComponent,
     CreateCardPageComponent,
     CardFormComponent,
-    ReviseDeckPageComponent
+    ReviseDeckPageComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
