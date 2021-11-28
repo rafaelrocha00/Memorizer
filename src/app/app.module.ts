@@ -11,6 +11,8 @@ import { CardFormComponent } from './card-form/card-form.component';
 import { ReviseDeckPageComponent } from './revise-deck-page/revise-deck-page.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { DeckComponent } from './deck/deck.component';
+import { BotaoAdicionarDeckComponent } from './botao-adicionar-deck/botao-adicionar-deck.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { FooterComponent } from './footer/footer.component';
     CardFormComponent,
     ReviseDeckPageComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    DeckComponent,
+    BotaoAdicionarDeckComponent
   ],
   imports: [
     BrowserModule,

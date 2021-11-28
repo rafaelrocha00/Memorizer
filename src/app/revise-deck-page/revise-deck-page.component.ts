@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CardServiceService } from '../card-service.service';
+import { Router, RoutesRecognized } from '@angular/router';
 import { Card } from '../DataClass/Card';
+import { Deck } from '../DataClass/Deck';
+import { DeckService } from '../deck.service';
 
 
 @Component({
@@ -14,43 +16,66 @@ export class ReviseDeckPageComponent implements OnInit {
   finalizouDeRevisar: boolean = false
   textoDaFrenteAtual: string = "";
   textoDeTrazAtual: string = "";
+  corBackCard : string = "#243955";
+  inputDeTexto : string = "";
 
-  cartasDisponiveis: Card[] = [];
-  cartaAtual: Card | undefined
+  currentDeck : Deck;
+  cartaAtual: Card | undefined;
   idDeCartaAtual: number = 0
 
-  constructor(private cardService : CardServiceService) {}
+  constructor(private deckService : DeckService, private routeService : Router) {
+    this.currentDeck = this.deckService.GetCurrentDeck();
+  }
 
   ngOnInit(): void {
-      this.cartasDisponiveis = this.cardService.GetCards();
-      this.cartaAtual = this.cartasDisponiveis[0];
-      this.textoDaFrenteAtual = this.cartaAtual.frontText;
-      this.textoDeTrazAtual = this.cartaAtual.backText;
+    if(this.currentDeck.GetLenght() == 0) return;
 
-      this.finalizouDeRevisar = false;
+    this.finalizouDeRevisar = false;
+    this.MudarCartaPorIndex(0);
+    let textInput = document.getElementById('backCardInput');
+    if(textInput != null) textInput.focus();
   }
 
   MudarCarta(){
+      this.inputDeTexto = "";
       this.cartaEstaVirada = false;
       this.idDeCartaAtual++;
+      this.corBackCard = "#243955";
 
-      if(this.idDeCartaAtual >= this.cartasDisponiveis.length){
-        this.FinalizarCartas();
+      if(this.idDeCartaAtual >= this.currentDeck.GetLenght()){
+        this.finalizouDeRevisar = true;
+        this.textoDaFrenteAtual = "Nenhuma carta nova!";
         return;
       }
 
-      this.cartaAtual = this.cartasDisponiveis[this.idDeCartaAtual];
-      this.textoDaFrenteAtual = this.cartaAtual.frontText;
-      this.textoDeTrazAtual = this.cartaAtual.backText;      
+      this.MudarCartaPorIndex(this.idDeCartaAtual);
+      console.log("Carta mudou");
   }
 
-  FinalizarCartas(){
-    this.textoDaFrenteAtual = "Essas foram todas as cartas!";
-    this.finalizouDeRevisar = true;
+  MudarCartaPorIndex(index : number){
+    this.cartaAtual = this.currentDeck.GetCard(index);
+    this.textoDaFrenteAtual = this.cartaAtual.frontText;
+    this.textoDeTrazAtual = this.cartaAtual.backText;
   }
 
   VirarCarta(){
     this.cartaEstaVirada = true;
+    this.inputDeTexto = this.textoDeTrazAtual;
+    this.corBackCard = "#6B1E1E";
   }
 
+  checkInput(){
+      let inputCorrigida : string = this.inputDeTexto.toLowerCase().trim();
+      let inputrequerida : string = this.textoDeTrazAtual.toLowerCase().trim();
+      console.log(inputrequerida);
+      if(inputCorrigida == inputrequerida)
+      {
+        this.corBackCard = "#257419";
+        this.cartaEstaVirada = true;
+      }
+  }
+
+  Sair(){
+    this.routeService.navigate([""]);
+  }
 }

@@ -1,12 +1,8 @@
-// UI Site
-// UI cartao
-// Escrever resposta
-// Verificar resposta
-// Criar deck
-// Pesquisar deck
-// Importar deck
-// Usar Deck
-// Deletar Deck
-// Mostrar cartas novas
-// Sistema de caixas de memoria
-// Animação
+//Criar Deck
+//Adicionar cartas
+//Editar cartas
+//Deletar cartas
+//Pegar cartas da API
+// Cache de cartas
+// Mostrar pagina atual no header
+// Escrever em hiragana

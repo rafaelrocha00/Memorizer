@@ -1,10 +1,61 @@
-.MainText{
+.currentDeck{
+    margin-top: 40px;
+}
+
+.frontCard{
+    width: 40%;
+    height: 250px;
+    margin: auto;
+    background-color: #285563;
+    border-radius: 40px;
+    position: relative;
+}
+
+.backCard{
+    width: 40%;
+    height: 250px;
+    margin: auto;
+    margin-top: 25px;
+    background-color: #243955;
+    border-radius: 40px;
+    position: relative;
+}
+
+.textBox{
+    width: 65%;
+    height: 30%;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-color: #030a1036;
+}
+
+.inputTextBox{
+    width: 65%;
+    height: 30%;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-color: #030a1036;
+    color: whitesmoke;
+    border: none;
+    font-size: 2rem;
     text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: larger;
+}
+
+
+.textCard{
+    color: #EAF9FF;
+    font-size: 3rem;
+    text-align: center;
 }
 
 .FrontText{
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: larger;
     font-weight: bold;
     margin-top: 25px;
 }
@@ -22,4 +73,25 @@
 li{
     list-style-type: none;
     margin-left: 20px;
+}
+
+.botoesDeCartas{
+    height: 3rem;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.botaoVirarCarta{
+    border: none;
+    border-radius: 3px;
+    color: whitesmoke;
+    background-color: cadetblue;
+    height: 50px;
+    width: 150px;
+}
+
+.botaoVirarCarta:hover{
+    background-color: rgb(201, 99, 26);
 }

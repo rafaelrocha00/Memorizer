@@ -20,7 +20,6 @@ export class Card{
      }
 
      public CanShow(dayToShow : Date){
-
           const diffTime = Math.abs(dayToShow.valueOf() - this.dayItWasSeen.valueOf());
           const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
           return diffDays >= this.daysUntilItsShowedAgain;

@@ -1,16 +1,24 @@
 <app-header></app-header>
-<div class="MainInfo">
-    <div class="MainText">    
-        <p class="FrontText">{{textoDaFrenteAtual}}</p>
-        <p class="BackText" [hidden]="!cartaEstaVirada">{{textoDeTrazAtual}}</p>
+<div class="containter">
+    <div class="currentDeck">    
+
+        <div class="frontCard">
+            <div class="textBox">
+                <p class="textCard">{{textoDaFrenteAtual}}</p>
+            </div>
+        </div>
+
+        <div [style.backgroundColor]="corBackCard"  class="backCard">
+            <input type="text" #thisinput class="inputTextBox" id="backCardInput" name="backCardInput" [(ngModel)]="inputDeTexto" (input)="checkInput()"> 
+        </div>
 
     </div>
-    <div class="BotoesDeCartas">
-        <button class="BotaoDeOpcoes" [hidden]="cartaEstaVirada" [hidden]="finalizouDeRevisar" (click)="VirarCarta()">Virar</button>
-        <button class="BotaoDeOpcoes" [hidden]="!cartaEstaVirada" (click)="MudarCarta()">Acertou</button>
-        <button class="BotaoDeOpcoes" [hidden]="!cartaEstaVirada" (click)="MudarCarta()">Errou</button>
-    </div>
+    <div class="botoesDeCartas">
+        <button class="botaoVirarCarta" [hidden]="cartaEstaVirada" [hidden]="finalizouDeRevisar" (click)="VirarCarta()">Virar</button>
+        <button class="botaoVirarCarta" [hidden]="!cartaEstaVirada" (click)="MudarCarta()">Proxima</button>
+        <button class="botaoVirarCarta" [hidden]="!finalizouDeRevisar" (click)="Sair()">Sair</button>
 
+    </div>
 </div>
 
-<li><a routerLink="" routerLinkActive="active">Voltar</a></li>
+<app-footer></app-footer>

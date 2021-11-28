@@ -4,6 +4,7 @@
     left: 0px;
     width: 100%;
     text-align: center;
+    border-top: rgb(112, 119, 119) dashed 2px;
 }
 
 p{
