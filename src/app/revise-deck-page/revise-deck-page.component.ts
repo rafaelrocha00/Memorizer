@@ -3,6 +3,7 @@ import { Router, RoutesRecognized } from '@angular/router';
 import { Card } from '../DataClass/Card';
 import { Deck } from '../DataClass/Deck';
 import { DeckService } from '../deck.service';
+import { toKana, isRomaji } from 'wanakana';
 
 
 @Component({
@@ -32,8 +33,12 @@ export class ReviseDeckPageComponent implements OnInit {
 
     this.finalizouDeRevisar = false;
     this.MudarCartaPorIndex(0);
-    let textInput = document.getElementById('backCardInput');
-    if(textInput != null) textInput.focus();
+    let textInput = document.getElementById('wanakana-input');
+    if(textInput != null){
+      wanakana.bind(domElement [, options]);
+      textInput.focus();
+      textInput.bind(textInput);
+    }
   }
 
   MudarCarta(){

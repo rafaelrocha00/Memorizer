@@ -30,7 +30,12 @@ a{
     font-family: 'Archivo', sans-serif;
     font-size: large;
     color: whitesmoke;
+    padding: 15px;
     text-decoration: none;
+}
+
+.activeLink{
+    background-color: rgb(61, 94, 165);
 }
 
 a:hover{
