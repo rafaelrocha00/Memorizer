@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateCardPageComponent } from '../create-card-page/create-card-page.component';
 import { MainPageComponent } from '../main-page/main-page.component';
+import { ManageDeckPageComponent } from '../manage-deck-page/manage-deck-page.component';
 import { ReviseDeckPageComponent } from '../revise-deck-page/revise-deck-page.component';
 
 
@@ -11,8 +12,12 @@ const routes: Routes = [
   component: MainPageComponent
 },
 {
-path: 'reviseDeck',
-component: ReviseDeckPageComponent
+  path: 'manageDeck',
+  component: ManageDeckPageComponent
+},
+{
+  path: 'reviseDeck',
+  component: ReviseDeckPageComponent
 },
 {
   path: 'createNewCard',

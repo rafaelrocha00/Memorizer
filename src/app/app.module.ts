@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { DeckComponent } from './deck/deck.component';
 import { BotaoAdicionarDeckComponent } from './botao-adicionar-deck/botao-adicionar-deck.component';
+import { ManageDeckPageComponent } from './manage-deck-page/manage-deck-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BotaoAdicionarDeckComponent } from './botao-adicionar-deck/botao-adicio
     HeaderComponent,
     FooterComponent,
     DeckComponent,
-    BotaoAdicionarDeckComponent
+    BotaoAdicionarDeckComponent,
+    ManageDeckPageComponent
   ],
   imports: [
     BrowserModule,

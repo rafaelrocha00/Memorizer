@@ -26,7 +26,7 @@ export class MainPageComponent implements OnInit {
 
   public selectDeck(deck: Deck){
     this.deckService.SetCurrentDeck(deck);
-    this.router.navigate(['reviseDeck']);
+    this.router.navigate(['manageDeck']);
   }
 
 }

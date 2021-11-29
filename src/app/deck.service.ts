@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Card } from './DataClass/Card';
 import { Deck } from './DataClass/Deck';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,7 +10,6 @@ export class DeckService {
 
   decks : Deck[] = [];
   currentDeck : number = 0;
-
   constructor() { }
 
   public CreateDecks(){
@@ -39,7 +39,7 @@ export class DeckService {
   }
 
   CreateMockUpDeck(){
-    let deck = new Deck("MockUp");
+    let deck = new Deck("Kanji G1-Kun");
     deck.AddCard(new Card(new Date(), "漢字", "yesterday"));
     deck.AddCard(new Card(new Date(), "日", "day"));
     deck.AddCard(new Card(new Date(), "日時", "date"));

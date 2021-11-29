@@ -1,0 +1,39 @@
+<app-header></app-header>
+
+<div class="Container">
+    <div class="deckName">Deck Kanji - 1Grade Kun readings</div>
+    <div class="searchBarContainer">
+        <div class="iconContainer">
+            <i class="fa fa-search"></i>
+        </div>
+        <input type="text" placeholder="Procurar carta">    
+    </div>
+    <div class="cardsContainer">
+        <p *ngFor="let card of cards;">
+            <button class="card">
+                <div class="porcentagem">11%</div>
+                <div class="frontName">{{card.frontText}}</div>
+                <div class="backName">{{card.backText}}</div>
+            </button>
+        </p>
+        <button class="cardAdd" type="button" (click)="abrirMenuAdicionarCarta()">
+            <i class="fa fa-plus-circle"></i>
+        </button>
+        <button class="cardAdd green" type="button" (click)="abrirRouteRevisarDeck()">
+            <i class="fa fa-play"></i>
+        </button>
+    </div>
+</div>
+
+<div class="createCard" *ngIf="addingNewCard">
+    <label for="frontText" class="cardAddLabel">Frente:</label>
+    <input type="text" name="frontText" class="cardAddText">
+    <label for="backText" class="cardAddLabel">Atrás:</label>
+    <input type="text" name="backText" class="cardAddText">
+    <div class="buttonsMenu">
+        <button class="buttonAddCardMenu">Adicionar carta</button>
+        <button class="buttonAddCardMenu" (click)="fecharMenuAdicionarCarta()">Cancelar</button>
+    </div>
+</div>
+
+<app-footer></app-footer>

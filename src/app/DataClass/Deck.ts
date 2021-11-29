@@ -20,4 +20,8 @@ export class Deck{
     public GetLenght(){
         return this.cards.length;
     }
+
+    public GetAllCards() : Card[]{
+        return this.cards;
+    }
 }
