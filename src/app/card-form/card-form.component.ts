@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { CardServiceService } from '../card-service.service';
 import { Card } from '../DataClass/Card';
+import { DeckService } from '../deck.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class CardFormComponent implements OnInit {
   formCard : FormGroup | any;
   backText: string = "";
   
-  constructor(private formBuider: FormBuilder, private cardService : CardServiceService) { }
+  constructor(private formBuider: FormBuilder, private deckService : DeckService) { }
 
   ngOnInit(): void {
     this.formCard = this.formBuider.group({
@@ -25,7 +26,7 @@ export class CardFormComponent implements OnInit {
 
   onSubmit(){
     let card = new Card(new Date(), this.formCard.controls['frontText'].value, this.formCard.controls['backText'].value);
-    this.cardService.AddNewCard(card);    
+    this.deckService.GetCurrentDeck().AddCard(card);
     this.formCard.reset()
   }
 

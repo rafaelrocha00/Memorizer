@@ -30,8 +30,8 @@ export class CardServiceService {
     if(this.cartasDisponiveis.length == 0){
       this.CreateCards();
     }
-    card.ChangeDaysUntilCanShowAgain(this.diasParaAdicionarSeAcertarCarta);
     this.cartasDisponiveis.push(card);
+    console.log(card.frontText + " was added.");
   }
 
 }

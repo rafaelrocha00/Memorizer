@@ -26,14 +26,8 @@
 </div>
 
 <div class="createCard" *ngIf="addingNewCard">
-    <label for="frontText" class="cardAddLabel">Frente:</label>
-    <input type="text" name="frontText" class="cardAddText">
-    <label for="backText" class="cardAddLabel">Atrás:</label>
-    <input type="text" name="backText" class="cardAddText">
-    <div class="buttonsMenu">
-        <button class="buttonAddCardMenu">Adicionar carta</button>
-        <button class="buttonAddCardMenu" (click)="fecharMenuAdicionarCarta()">Cancelar</button>
-    </div>
+    <app-card-form></app-card-form>
+    <button class="buttonAddCardMenu" (click)="fecharMenuAdicionarCarta()">Cancelar</button>
 </div>
 
 <app-footer></app-footer>
