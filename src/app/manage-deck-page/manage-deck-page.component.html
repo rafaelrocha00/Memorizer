@@ -13,7 +13,7 @@
             <button class="card">
                 <div class="porcentagem">11%</div>
                 <div class="frontName">{{card.frontText}}</div>
-                <div class="backName">{{card.backText}}</div>
+                <button class="fa fa-trash" (click)="deletarCarta(card)"></button>
             </button>
         </p>
         <button class="cardAdd" type="button" (click)="abrirMenuAdicionarCarta()">

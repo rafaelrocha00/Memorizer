@@ -24,4 +24,8 @@ export class Deck{
     public GetAllCards() : Card[]{
         return this.cards;
     }
+
+    public DeleteCard(cardToDelete : Card){
+        this.cards.splice(this.cards.indexOf(cardToDelete), 1);
+    }
 }

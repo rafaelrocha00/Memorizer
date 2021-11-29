@@ -40,4 +40,8 @@ export class ManageDeckPageComponent implements OnInit {
   abrirRouteRevisarDeck(){
     this.routeService.navigate(["reviseDeck"])
   }
+
+  deletarCarta(cardToRemove : Card){
+    this.currentDeck?.DeleteCard(cardToRemove);
+  }
 }

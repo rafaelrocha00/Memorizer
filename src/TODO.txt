@@ -1,4 +1,3 @@
-//Criar Deck
 //Adicionar cartas
 //Editar cartas
 //Deletar cartas
@@ -6,3 +5,4 @@
 // Cache de cartas
 // Mostrar pagina atual no header
 // Escrever em hiragana
+//Concertar bugs de ui
