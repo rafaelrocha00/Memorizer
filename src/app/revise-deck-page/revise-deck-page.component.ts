@@ -3,7 +3,8 @@ import { Router, RoutesRecognized } from '@angular/router';
 import { Card } from '../DataClass/Card';
 import { Deck } from '../DataClass/Deck';
 import { DeckService } from '../deck.service';
-import { toKana, isRomaji } from 'wanakana';
+import * as wanakana from 'wanakana';
+import { KanjiService } from '../kanji.service';
 
 
 @Component({
@@ -24,20 +25,25 @@ export class ReviseDeckPageComponent implements OnInit {
   cartaAtual: Card | undefined;
   idDeCartaAtual: number = 0
 
-  constructor(private deckService : DeckService, private routeService : Router) {
+  input : HTMLInputElement | undefined
+  inputIsUsingKatakana : boolean = false;
+
+  constructor(private deckService : DeckService, private kanjiService : KanjiService, private routeService : Router) {
     this.currentDeck = this.deckService.GetCurrentDeck();
   }
 
   ngOnInit(): void {
     if(this.currentDeck.GetLenght() == 0) return;
+    this.input = document.getElementById('wanakana-input') as HTMLInputElement;
 
     this.finalizouDeRevisar = false;
     this.MudarCartaPorIndex(0);
-    let textInput = document.getElementById('wanakana-input');
-    if(textInput != null){
-      wanakana.bind(domElement [, options]);
-      textInput.focus();
-      textInput.bind(textInput);
+    if(this.input != null){
+      if(this.kanjiService.isUsingKatakana()){
+        wanakana.bind(this.input);
+      }
+      this.input.focus();
+      this.kanjiService.onChange( this.lidarComBindDeInput.bind(this));
     }
   }
 
@@ -69,7 +75,7 @@ export class ReviseDeckPageComponent implements OnInit {
     this.corBackCard = "#6B1E1E";
   }
 
-  checkInput(){
+  checkInput(){   
       let inputCorrigida : string = this.inputDeTexto.toLowerCase().trim();
       let inputrequerida : string = this.textoDeTrazAtual.toLowerCase().trim();
       console.log(inputrequerida);
@@ -78,6 +84,24 @@ export class ReviseDeckPageComponent implements OnInit {
         this.corBackCard = "#257419";
         this.cartaEstaVirada = true;
       }
+  }
+
+
+  lidarComBindDeInput(){
+    if(this.input == undefined){
+      this.input = document.getElementById('wanakana-input') as HTMLInputElement;
+    }
+
+    if(this.kanjiService.isUsingKatakana() && !this.inputIsUsingKatakana){
+      wanakana.bind(this.input );
+      this.inputIsUsingKatakana = true;
+    }
+
+    if(!this.kanjiService.isUsingKatakana() && this.inputIsUsingKatakana){
+      wanakana.unbind(this.input);
+      this.inputIsUsingKatakana = false;
+      this.input.value = wanakana.toRomaji(this.input.value);
+    }
   }
 
   Sair(){

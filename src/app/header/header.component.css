@@ -7,17 +7,28 @@
 }
 
 h1{
+    margin-top: 4px;
+}
+
+a{
     color: #E5FFFD;
     font-family: 'Averia Serif Libre', cursive;
     font-size: 1.5rem;
     margin-left: 15px;
-    margin-top: 10px;
     font-weight: bold;
+    text-decoration: none;
+    box-shadow: none;
+    cursor:pointer;  
+}
+
+a:active{
+    background-color: inherit;
+    color: inherit;
+    text-decoration: none;
 }
 
 .Options{
     float: right;
-    margin-top: 15px;
 }
 
 li{
@@ -26,7 +37,7 @@ li{
     margin-right: 50px;
 }
 
-a{
+.option{
     font-family: 'Archivo', sans-serif;
     font-size: large;
     color: whitesmoke;
@@ -34,20 +45,23 @@ a{
     text-decoration: none;
 }
 
-.activeLink{
-    background-color: rgb(61, 94, 165);
+.fa-star{
+    padding-right: 5px;
 }
 
-a:hover{
-    text-decoration: underline whitesmoke;
+.activeKanaStar{
+    color: rgb(255, 153, 0);
+}
+
+.activeKanaButton{
+    background-color: rgb(17, 5, 49);
 }
 
 button{
     border: none;
     border-radius: 3px;
     color: whitesmoke;
-    background-color: cadetblue;
-
+    background-color: rgb(10, 73, 102);
 }
 
 button:hover{

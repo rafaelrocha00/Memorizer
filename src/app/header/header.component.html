@@ -7,11 +7,15 @@
 
 <div class="Header">
 
-    <h1>Memorizer</h1>
+    <h1><a routerLink="" routerLinkActive="activeLink">Memorizer</a></h1>
 
     <ol class="Options">
-        <li><a routerLink="" routerLinkActive="activeLink" [routerLinkActiveOptions]="{exact:true}">Revisar Deck</a></li>
-        <li><a routerLink="/createNewCard" routerLinkActive="activeLink">Gerenciar Decks</a></li>
+        <li>
+            <button class="option" (click)="kanjiService.useKatakana(!kanjiService.isUsingKatakana())"  [ngClass]="{'activeKanaButton': kanjiService.isUsingKatakana() == true}">
+            <i class="fa fa-star" [ngClass]="{'activeKanaStar' : kanjiService.isUsingKatakana() == true}"></i>
+            Hiragana
+            </button>
+        </li> 
     </ol>
 </div>
 
