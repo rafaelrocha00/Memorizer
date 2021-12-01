@@ -1,3 +1,4 @@
+import { identifierModuleUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Card } from './DataClass/Card';
 import { Deck } from './DataClass/Deck';
@@ -12,7 +13,7 @@ export class DeckService {
 
   decks : Deck[] = [];
   currentDeck : number = 0;
-  constructor() { }
+  constructor(private kanjiService : KanjiService) { }
 
   public CreateDecks(){
 
@@ -20,8 +21,7 @@ export class DeckService {
 
   public GetAllDecks() : Deck[]{
     if(this.decks.length == 0){
-      this.decks.push(this.CreateMockUpDeck());
-      return this.decks;
+      this.getGradeDecks()
     }
 
     return this.decks;
@@ -30,7 +30,7 @@ export class DeckService {
   public GetDeck(index : number){
 
     if(this.decks.length == 0){
-      this.decks.push(this.CreateMockUpDeck());
+      this.getGradeDecks()
     }
 
     return this.decks[index];
@@ -40,7 +40,7 @@ export class DeckService {
     return this.GetDeck(this.currentDeck);
   }
 
-  CreateMockUpDeck(){
+  CreateMockUpDeck() : Deck{
     //TODO: Multiplas leituras possiveis de um kanji. Faça uma lista e compare os resultados, mostre todas as possibilidades.
     //TODO: Encontrar uma API que entregue as leituras Kun e o Kanji. Até lá, é isso aqui mesmo.
     let deck = new Deck("Mock Grade 1");
@@ -61,6 +61,41 @@ export class DeckService {
     deck.AddCard(new Card(new Date(), "力", "ちから"));
     deck.AddCard(new Card(new Date(), "四", "よん"));
     deck.AddCard(new Card(new Date(), "生", "セイ"));
+    return deck;
+  }
+
+  getGradeDecks() : void{
+    this.kanjiService.getDataFromGradeFile('KanjiGrade1.csv').subscribe(x => this.GenerateDeck(x, "Grade 1"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade2.csv').subscribe(x => this.GenerateDeck(x, "Grade 2"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade3.csv').subscribe(x => this.GenerateDeck(x, "Grade 3"));
+
+  }
+
+  GenerateDeck(deck : string, name :string) : void{
+    let Deck : Deck = this.csvToKanjiDeck(deck);
+    Deck.name = name;
+    this.decks.push(Deck);
+  }
+
+  private csvToKanjiDeck(file : string) : Deck{
+   
+    if(file === undefined){
+      console.log("File is undefined");
+    }else{
+      console.log(file);
+    }
+
+    let deck : Deck = new Deck("Grade 1");
+    let stringSeparada = file.split(/\r?\n/);
+    console.log(stringSeparada.length);
+
+    for(let index = 1; index < stringSeparada.length; index++){
+      let stringSepareted : string[] = stringSeparada[index].split(';')
+      if(stringSepareted[1] == undefined) continue;
+      if(stringSepareted[3] == undefined) continue;
+
+      deck.AddCard(new Card(new Date(), stringSepareted[1], stringSepareted[3]));
+    }
     return deck;
   }
 

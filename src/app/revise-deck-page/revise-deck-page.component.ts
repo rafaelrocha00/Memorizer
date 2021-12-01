@@ -83,14 +83,19 @@ export class ReviseDeckPageComponent implements OnInit {
   checkInput(){   
       let inputCorrigida : string = this.inputDeTexto.toLowerCase().trim();
       inputCorrigida = wanakana.toRomaji(inputCorrigida);
-      let inputrequerida : string = this.textoDeTrazAtual.toLowerCase().trim();
-      inputrequerida = wanakana.toRomaji(inputrequerida);
-      console.log(inputrequerida);
-      if(inputCorrigida == inputrequerida)
-      {
-        this.corBackCard = "#257419";
-        this.cartaEstaVirada = true;
+      let inputRequerida : string = this.textoDeTrazAtual.toLowerCase().trim();
+      inputRequerida = wanakana.toRomaji(inputRequerida);
+      let inputrequeridaDividida : string[] = inputRequerida.split(',');
+      console.log(inputRequerida);
+      for(let index = 0; index < inputrequeridaDividida.length; index++){
+        if(inputCorrigida == inputrequeridaDividida[index])
+        {
+          this.corBackCard = "#257419";
+          this.cartaEstaVirada = true;
+          break;
+        }
       }
+     
   }
 
 

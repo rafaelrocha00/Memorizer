@@ -22,6 +22,7 @@ export class Deck{
     }
 
     public GetAllCards() : Card[]{
+        console.log(this.name);
         return this.cards;
     }
 
