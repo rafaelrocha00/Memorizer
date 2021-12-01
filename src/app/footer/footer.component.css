@@ -1,7 +1,7 @@
 .Container{
-    position: absolute;
-    bottom: 5px;
-    left: 0px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
     width: 100%;
     text-align: center;
     border-top: rgb(112, 119, 119) dashed 2px;

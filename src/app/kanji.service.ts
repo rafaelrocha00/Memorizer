@@ -1,15 +1,19 @@
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Card } from './DataClass/Card';
+import { map, mapTo, observable, Observable } from 'rxjs';
+import { Kanji } from './DataClass/Kanji';
 
 @Injectable({
   providedIn: 'root'
 })
 export class KanjiService {
 
-  usingKatakana : boolean = false
+  usingKatakana : boolean = true
   callbacks : any[] = [];
+  private kanjiAPIUrl : string = ""
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   public useKatakana(use : boolean){
     this.usingKatakana = use;
@@ -17,7 +21,6 @@ export class KanjiService {
 
     this.callBackOnKanaChange();
   }
-
 
   public isUsingKatakana() : boolean{
     return this.usingKatakana;
@@ -32,6 +35,30 @@ export class KanjiService {
     for(let index = 0; index < this.callbacks.length; index++){
       this.callbacks[index]();
     }
+  }
+
+  public getEspecificKanki(kanji : string) : Observable<Card>{
+    let urlToUse = 'https://kanjiapi.dev/v1/kanji/' + kanji
+    return this.http.get<Kanji>(urlToUse).pipe(map((kanji: Kanji) => this.kanjiToCard(kanji)));
+  }
+
+  public getKanjisByGrade() : Observable<any>{
+    //Apenas entrega o nome dos kanjis. É necessário fazer mais um httpRequest para cada um dos kanjis entregues.
+    let urlToUse = 'https://kanjiapi.dev/v1/kanji/grade-1'
+    return this.http.get<Kanji[]>(urlToUse);
+  }
+
+  public kanjiToCard(kanji : Kanji): Card {
+    return new Card(new Date(), kanji.kanji, kanji.kun_readings[0]);
+  } 
+
+  public ListOfKanjiToCards(Kanjis : Kanji[]) : Card[]{
+    let cards : Card[] = [];
+    for(let index = 0; index < Kanjis.length; index++){
+      cards.push(this.kanjiToCard(Kanjis[index]));
+    }
+
+    return cards;
   }
 
 }

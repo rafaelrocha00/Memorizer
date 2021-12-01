@@ -1,8 +1,0 @@
-//Editar cartas
-//Pegar cartas da API
-// Cache de cartas
-// Mostrar pagina atual no header
-// Escrever em hiragana
-//Concertar bugs de ui
-// Diferença de tempo
-

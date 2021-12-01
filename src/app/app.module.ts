@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { DeckComponent } from './deck/deck.component';
 import { BotaoAdicionarDeckComponent } from './botao-adicionar-deck/botao-adicionar-deck.component';
 import { ManageDeckPageComponent } from './manage-deck-page/manage-deck-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ManageDeckPageComponent } from './manage-deck-page/manage-deck-page.com
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -26,7 +26,7 @@ export class ReviseDeckPageComponent implements OnInit {
   idDeCartaAtual: number = 0
 
   input : HTMLInputElement | undefined
-  inputIsUsingKatakana : boolean = false;
+  inputIsUsingKatakana : boolean = true;
 
   constructor(private deckService : DeckService, private kanjiService : KanjiService, private routeService : Router) {
     this.currentDeck = this.deckService.GetCurrentDeck();
@@ -37,7 +37,7 @@ export class ReviseDeckPageComponent implements OnInit {
     this.input = document.getElementById('wanakana-input') as HTMLInputElement;
 
     this.finalizouDeRevisar = false;
-    this.MudarCartaPorIndex(0);
+    this.mudarCartaPorIndex(0);
     if(this.input != null){
       if(this.kanjiService.isUsingKatakana()){
         wanakana.bind(this.input);
@@ -47,7 +47,7 @@ export class ReviseDeckPageComponent implements OnInit {
     }
   }
 
-  MudarCarta(){
+  mudarCarta(){
       this.inputDeTexto = "";
       this.cartaEstaVirada = false;
       this.idDeCartaAtual++;
@@ -59,17 +59,22 @@ export class ReviseDeckPageComponent implements OnInit {
         return;
       }
 
-      this.MudarCartaPorIndex(this.idDeCartaAtual);
+      this.mudarCartaPorIndex(this.idDeCartaAtual);
       console.log("Carta mudou");
   }
 
-  MudarCartaPorIndex(index : number){
+  mudarCartaPorIndex(index : number){
     this.cartaAtual = this.currentDeck.GetCard(index);
     this.textoDaFrenteAtual = this.cartaAtual.frontText;
     this.textoDeTrazAtual = this.cartaAtual.backText;
   }
 
-  VirarCarta(){
+  virarCarta(){
+    if(this.cartaEstaVirada){
+      this.mudarCarta();
+      return;
+    }
+
     this.cartaEstaVirada = true;
     this.inputDeTexto = this.textoDeTrazAtual;
     this.corBackCard = "#6B1E1E";
@@ -77,7 +82,9 @@ export class ReviseDeckPageComponent implements OnInit {
 
   checkInput(){   
       let inputCorrigida : string = this.inputDeTexto.toLowerCase().trim();
+      inputCorrigida = wanakana.toRomaji(inputCorrigida);
       let inputrequerida : string = this.textoDeTrazAtual.toLowerCase().trim();
+      inputrequerida = wanakana.toRomaji(inputrequerida);
       console.log(inputrequerida);
       if(inputCorrigida == inputrequerida)
       {
@@ -104,7 +111,7 @@ export class ReviseDeckPageComponent implements OnInit {
     }
   }
 
-  Sair(){
+  sair(){
     this.routeService.navigate([""]);
   }
 }

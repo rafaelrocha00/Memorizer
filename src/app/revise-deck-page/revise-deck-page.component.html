@@ -9,14 +9,14 @@
         </div>
 
         <div [style.backgroundColor]="corBackCard"  class="backCard">
-            <input type="text" #thisinput class="inputTextBox" id="wanakana-input" name="backCardInput" [(ngModel)]="inputDeTexto" (input)="checkInput()"> 
+            <input type="text" #thisinput class="inputTextBox" id="wanakana-input" name="backCardInput" [(ngModel)]="inputDeTexto" (input)="checkInput()" (keydown.enter)="virarCarta()"> 
         </div>
 
     </div>
     <div class="botoesDeCartas">
-        <button class="botaoVirarCarta" [hidden]="cartaEstaVirada" [hidden]="finalizouDeRevisar" (click)="VirarCarta()">Virar</button>
-        <button class="botaoVirarCarta" [hidden]="!cartaEstaVirada" (click)="MudarCarta()">Proxima</button>
-        <button class="botaoVirarCarta" [hidden]="!finalizouDeRevisar" (click)="Sair()">Sair</button>
+        <button class="botaoVirarCarta" [hidden]="cartaEstaVirada" [hidden]="finalizouDeRevisar" (click)="virarCarta()">Virar</button>
+        <button class="botaoVirarCarta" [hidden]="!cartaEstaVirada" (click)="mudarCarta()">Proxima</button>
+        <button class="botaoVirarCarta" [hidden]="!finalizouDeRevisar" (click)="sair()">Sair</button>
 
     </div>
 </div>
