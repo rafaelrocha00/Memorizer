@@ -1,19 +1,17 @@
 <form #myForm="ngForm" class="form-card" [formGroup]="formCard" (ngSubmit)="onSubmit()">
   
     <div class="PrimeiroBloco">
-        <label for="FrontText"><p>Front:</p></label>
+        <label for="FrontText"><p>Kanji:</p></label>
         <input type="text" name="FrontText" id="FrontText" class="TextoInput" placeholder="Pergunta" formControlName="frontText" required minlength="1">
     </div>
     <div class="SegundoBlock">
-        <label for="BackText"><p>Back:</p></label>
+        <label for="BackText"><p>Reading:</p></label>
         <input type="text" name="BackText" id="BackText" class="TextoInput" placeholder="Resposta" formControlName="backText" required minlength="1">
     </div>
-
-    <div class="BotoesCentrais">
-        <button type="submit" [disabled]="!myForm.form.valid" class="BotaoGrande">Adicionar</button>
-    </div>
-
     <div class="Aviso" *ngIf="!myForm.form.valid">
         <p>Preencha os dois campos.</p>
+    </div>
+    <div class="BotoesCentrais">
+        <button type="submit" [disabled]="!myForm.form.valid" class="BotaoGrande">Adicionar</button>
     </div>
 </form>

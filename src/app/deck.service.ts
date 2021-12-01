@@ -65,9 +65,12 @@ export class DeckService {
   }
 
   getGradeDecks() : void{
-    this.kanjiService.getDataFromGradeFile('KanjiGrade1.csv').subscribe(x => this.GenerateDeck(x, "Grade 1"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade2.csv').subscribe(x => this.GenerateDeck(x, "Grade 2"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade3.csv').subscribe(x => this.GenerateDeck(x, "Grade 3"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade1.csv').subscribe(x => this.GenerateDeck(x, "Deck 1"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade2.csv').subscribe(x => this.GenerateDeck(x, "Deck 2"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade3.csv').subscribe(x => this.GenerateDeck(x, "Deck 3"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade4.csv').subscribe(x => this.GenerateDeck(x, "Deck 4"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade5.csv').subscribe(x => this.GenerateDeck(x, "Deck 5"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade6.csv').subscribe(x => this.GenerateDeck(x, "Deck 6"));
 
   }
 
@@ -81,8 +84,6 @@ export class DeckService {
    
     if(file === undefined){
       console.log("File is undefined");
-    }else{
-      console.log(file);
     }
 
     let deck : Deck = new Deck("Grade 1");

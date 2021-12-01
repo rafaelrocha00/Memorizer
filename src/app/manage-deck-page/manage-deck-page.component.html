@@ -1,17 +1,17 @@
 <app-header></app-header>
 
 <div class="Container">
-    <div class="deckName">Deck Kanji - 1Grade Kun readings</div>
+    <div class="deckName">Deck Kanji - Readings</div>
     <div class="searchBarContainer">
         <div class="iconContainer">
             <i class="fa fa-search"></i>
         </div>
-        <input type="text" placeholder="Procurar carta">    
+        <input type="text" placeholder="Procurar carta" id="searchBoxContainer" (input)="checkInput()">    
     </div>
     <div class="cardsContainer">
-        <p *ngFor="let card of cards;">
+        <p *ngFor="let card of filteredCards;">
             <button class="card">
-                <div class="porcentagem">11%</div>
+                <div class="porcentagem">100%</div>
                 <div class="frontName">{{card.frontText}}</div>
                 <button class="fa fa-trash" (click)="deletarCarta(card)"></button>
             </button>
