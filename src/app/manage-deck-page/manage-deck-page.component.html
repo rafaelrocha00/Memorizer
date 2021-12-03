@@ -11,10 +11,10 @@
         </div>
         <div class="cardsContainer">
     
-            <button class="cardAdd green" type="button" (click)="abrirRouteRevisarDeck()">
+            <button class="cardAdd green" type="button" (click)="routeToReviseDeckPage()">
                 <i class="fa fa-play"> <p>Revise Deck!</p></i>
             </button>
-            <button class="cardAdd" type="button" (click)="abrirMenuAdicionarCarta()">
+            <button class="cardAdd" type="button" (click)="openAddCardMenu()">
                 <i class="fa fa-plus-circle"><p>Add Card</p></i>
             </button>
     
@@ -22,7 +22,7 @@
                 <button class="card">
                     <div class="porcentagem">{{card.porcentage}}%</div>
                     <div class="frontName">{{card.frontText}}</div>
-                    <button class="fa fa-trash" (click)="deletarCarta(card)"></button>
+                    <button class="fa fa-trash" (click)="deleteCard(card)"></button>
                 </button>
             </p>
         </div>
@@ -48,7 +48,7 @@
 
 <div class="createCard" *ngIf="addingNewCard">
     <app-card-form></app-card-form>
-    <button class="buttonAddCardMenu" (click)="fecharMenuAdicionarCarta()">Cancel</button>
+    <button class="buttonAddCardMenu" (click)="closeAddCardMenu()">Cancel</button>
 </div>
 
 <app-footer></app-footer>

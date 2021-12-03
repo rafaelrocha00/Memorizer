@@ -54,26 +54,22 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
     this.porcentageCircle = [median, 100];
   }
 
-  onClick(){
-
-  }
-
-  abrirMenuAdicionarCarta(){
+  openAddCardMenu(){
     this.addingNewCard = true;
   }
 
-  fecharMenuAdicionarCarta(){
+  closeAddCardMenu(){
     this.addingNewCard = false;
   }
 
-  abrirRouteRevisarDeck(){
+  routeToReviseDeckPage(){
     if(this.currentDeck != undefined){
       this.currentDeck.addRevision();
     }
     this.routeService.navigate(["reviseDeck"])
   }
 
-  deletarCarta(cardToRemove : Card){
+  deleteCard(cardToRemove : Card){
     this.currentDeck?.deleteCard(cardToRemove);
   }
 
