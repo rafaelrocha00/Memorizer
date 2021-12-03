@@ -20,7 +20,7 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
   currentElementInList : Card;
   stringToSearch : HTMLInputElement | undefined;
   subscription : Subscription | undefined;
-  totalPorcentage : number = 0;
+  totalPorcentage : string = "0";
   porcentageCircle: number[] = [100, 100]
 
   constructor(private deckService : DeckService, private routeService : Router) { 
@@ -50,7 +50,7 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
       median += this.cards[index].porcentage;
     }
     median = median/this.cards.length;
-    this.totalPorcentage = median;
+    this.totalPorcentage = median.toPrecision(2);
     this.porcentageCircle = [median, 100];
   }
 
