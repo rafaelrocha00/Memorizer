@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Card } from '../DataClass/Card';
 import { Deck } from '../DataClass/Deck';
 import { DeckService } from '../deck.service';
 
@@ -17,15 +18,17 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.decks = this.deckService.GetAllDecks();
+   this.decks = this.deckService.getAllDecks();
   }
 
   public addNewDeck(){
-    this.decks.push(new Deck("Deck"));
+    let deck = new Deck("Deck");
+    deck.AddCard(new Card(new Date(), "日本語", "にほんご"));
+    this.decks.push(deck);
   }
 
   public selectDeck(deck: Deck){
-    this.deckService.SetCurrentDeck(deck);
+    this.deckService.setCurrentDeck(deck);
     this.router.navigate(['manageDeck']);
   }
 

@@ -1,4 +1,3 @@
-// Flex dos baralhos
 // Arrumar dois botoes
 // Texto de explicação
 // Diferença de tempo

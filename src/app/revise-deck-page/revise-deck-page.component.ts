@@ -14,84 +14,97 @@ import { KanjiService } from '../kanji.service';
 })
 export class ReviseDeckPageComponent implements OnInit {
 
-  cartaEstaVirada: boolean = false
-  finalizouDeRevisar: boolean = false
-  textoDaFrenteAtual: string = "";
-  textoDeTrazAtual: string = "";
-  corBackCard : string = "#243955";
-  inputDeTexto : string = "";
+  cardIsTurned: boolean = false
+  revisionEnded: boolean = false
+  currentFrontText: string = "";
+  currentBackText: string = "";
+  backCardColor : string = "#243955";
+  wrongAnswerColor : string = "#6B1E1E";
+  correctAnswerColor : string = "#257419";
 
   currentDeck : Deck;
-  cartaAtual: Card | undefined;
-  idDeCartaAtual: number = 0
+  currentCard: Card | undefined;
+  currentCardId: number = 0
 
-  input : HTMLInputElement | undefined
+  inputElement : HTMLInputElement | undefined
+  textInput : string = "";
   inputIsUsingKatakana : boolean = true;
 
   constructor(private deckService : DeckService, private kanjiService : KanjiService, private routeService : Router) {
-    this.currentDeck = this.deckService.GetCurrentDeck();
+    this.currentDeck = this.deckService.getCurrentDeck();
   }
 
   ngOnInit(): void {
     if(this.currentDeck.GetLenght() == 0) return;
-    this.input = document.getElementById('wanakana-input') as HTMLInputElement;
 
-    this.finalizouDeRevisar = false;
-    this.mudarCartaPorIndex(0);
-    if(this.input != null){
+    this.inputElement = document.getElementById('wanakana-input') as HTMLInputElement;
+    
+    if(this.inputElement != null){
       if(this.kanjiService.isUsingKatakana()){
-        wanakana.bind(this.input);
+        wanakana.bind(this.inputElement);
       }
-      this.input.focus();
-      this.kanjiService.onChange( this.lidarComBindDeInput.bind(this));
+
+      this.inputElement.focus();
+      this.kanjiService.onChange( this.bindInputToWanakana.bind(this));
     }
+
+    this.revisionEnded = false;
+    this.changeCardByIndex(0);
   }
 
-  mudarCarta(){
-      this.inputDeTexto = "";
-      this.cartaEstaVirada = false;
-      this.idDeCartaAtual++;
-      this.corBackCard = "#243955";
+  changeCard(){
+      this.textInput = "";
+      this.cardIsTurned = false;
+      this.currentCardId++;
+      this.backCardColor = "#243955";
 
-      if(this.idDeCartaAtual >= this.currentDeck.GetLenght()){
-        this.finalizouDeRevisar = true;
-        this.textoDaFrenteAtual = "Nenhuma carta nova!";
+      if(this.currentCardId >= this.currentDeck.GetLenght()){
+        this.revisionEnded = true;
+        this.currentFrontText = "You saw all Cards!";
         return;
       }
 
-      this.mudarCartaPorIndex(this.idDeCartaAtual);
+      this.changeCardByIndex(this.currentCardId);
       console.log("Carta mudou");
   }
 
-  mudarCartaPorIndex(index : number){
-    this.cartaAtual = this.currentDeck.GetCard(index);
-    this.textoDaFrenteAtual = this.cartaAtual.frontText;
-    this.textoDeTrazAtual = this.cartaAtual.backText;
+  changeCardByIndex(index : number){
+    this.currentCard = this.currentDeck.GetCard(index);
+    this.currentFrontText = this.currentCard.frontText;
+    this.currentBackText = this.currentCard.backText;
   }
 
-  virarCarta(){
-    if(this.cartaEstaVirada){
-      this.mudarCarta();
+  turnCard(){
+    if(this.cardIsTurned){
+      this.changeCard();
       return;
     }
 
-    this.cartaEstaVirada = true;
-    this.inputDeTexto = this.textoDeTrazAtual;
-    this.corBackCard = "#6B1E1E";
+    this.cardIsTurned = true;
+    this.textInput = this.currentBackText;
+    this.backCardColor = this.wrongAnswerColor;
+    this.currentCard?.addMistake();
   }
 
   checkInput(){   
-      let inputCorrigida : string = this.inputDeTexto.toLowerCase().trim();
+    if(this.cardIsTurned){
+      return;
+    }
+
+      let inputCorrigida : string = this.textInput.toLowerCase().trim();
       inputCorrigida = wanakana.toRomaji(inputCorrigida);
-      let inputRequerida : string = this.textoDeTrazAtual.toLowerCase().trim();
+      let inputRequerida : string = this.currentBackText.toLowerCase().trim();
       inputRequerida = wanakana.toRomaji(inputRequerida);
       let inputrequeridaDividida : string[] = inputRequerida.split(',');
+
       console.log(inputRequerida);
+
       for(let index = 0; index < inputrequeridaDividida.length; index++){
         if(inputCorrigida == inputrequeridaDividida[index])
         {
-          this.corBackCard = "#257419";
-          this.cartaEstaVirada = true;
+          this.backCardColor = this.correctAnswerColor;
+          this.cardIsTurned = true;
+          this.currentCard?.addHit();
           break;
         }
       }
@@ -99,24 +112,24 @@ export class ReviseDeckPageComponent implements OnInit {
   }
 
 
-  lidarComBindDeInput(){
-    if(this.input == undefined){
-      this.input = document.getElementById('wanakana-input') as HTMLInputElement;
+  bindInputToWanakana(){
+    if(this.inputElement == undefined){
+      this.inputElement = document.getElementById('wanakana-input') as HTMLInputElement;
     }
 
     if(this.kanjiService.isUsingKatakana() && !this.inputIsUsingKatakana){
-      wanakana.bind(this.input );
+      wanakana.bind(this.inputElement );
       this.inputIsUsingKatakana = true;
     }
 
     if(!this.kanjiService.isUsingKatakana() && this.inputIsUsingKatakana){
-      wanakana.unbind(this.input);
+      wanakana.unbind(this.inputElement);
       this.inputIsUsingKatakana = false;
-      this.input.value = wanakana.toRomaji(this.input.value);
+      this.inputElement.value = wanakana.toRomaji(this.inputElement.value);
     }
   }
 
-  sair(){
+  changePageToMainPage(){
     this.routeService.navigate([""]);
   }
 }

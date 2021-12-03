@@ -24,9 +24,18 @@ export class ManageDeckPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.currentDeck = this.deckService.GetCurrentDeck();
-    this.cards = this.currentDeck.GetAllCards();
+    if(this.deckService.canGetDeck()){
+      this.setDeck(this.deckService.getCurrentDeck());
+    }else{
+      this.deckService.getCurrentDeckAsynch().subscribe(this.setDeck.bind(this));
+    }
     this.stringToSearch = document.getElementById("searchBoxContainer") as HTMLInputElement;
+  }
+
+  setDeck(newDeck: Deck){
+    console.log(newDeck.GetLenght());
+    this.currentDeck = newDeck;
+    this.cards = newDeck.getAllCards();
     this.filteredCards = this.cards;
   }
 

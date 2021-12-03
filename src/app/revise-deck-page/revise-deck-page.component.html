@@ -4,19 +4,19 @@
 
         <div class="frontCard">
             <div class="textBox">
-                <p class="textCard">{{textoDaFrenteAtual}}</p>
+                <p class="textCard">{{currentFrontText}}</p>
             </div>
         </div>
 
-        <div [style.backgroundColor]="corBackCard"  class="backCard">
-            <input type="text" #thisinput class="inputTextBox" id="wanakana-input" name="backCardInput" [(ngModel)]="inputDeTexto" (input)="checkInput()" (keydown.enter)="virarCarta()"> 
+        <div [style.backgroundColor]="backCardColor"  class="backCard">
+            <input type="text" #thisinput class="inputTextBox" id="wanakana-input" name="backCardInput" [(ngModel)]="textInput" (input)="checkInput()" (keydown.enter)="turnCard()"> 
         </div>
 
     </div>
     <div class="botoesDeCartas">
-        <button class="botaoVirarCarta" [hidden]="cartaEstaVirada" [hidden]="finalizouDeRevisar" (click)="virarCarta()">Virar</button>
-        <button class="botaoVirarCarta" [hidden]="!cartaEstaVirada" (click)="mudarCarta()">Proxima</button>
-        <button class="botaoVirarCarta" [hidden]="!finalizouDeRevisar" (click)="sair()">Sair</button>
+        <button class="botaoVirarCarta" [hidden]="cardIsTurned" [hidden]="revisionEnded" (click)="turnCard()">Virar</button>
+        <button class="botaoVirarCarta" [hidden]="!cardIsTurned" (click)="changeCard()">Proxima</button>
+        <button class="botaoVirarCarta" [hidden]="!revisionEnded" (click)="changePageToMainPage()">Sair</button>
 
     </div>
 </div>

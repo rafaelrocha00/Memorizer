@@ -4,14 +4,12 @@
     align-items: center;
     margin-bottom: 20px;
     margin-top: 10px;
-
 }
 
 .SegundoBlock{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 40px;
 }
 
 .TextoInput{
@@ -28,6 +26,7 @@ p{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10px;
 ;}
 
 .BotaoGrande{
@@ -43,6 +42,22 @@ p{
 
 .Aviso{
     text-align: center;
-    color: rgb(182, 17, 50);
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.Aviso p {
+    color: rgb(255, 21, 68);
+}
+
+.BotaoGrande{
+    background-color: #373a61;
+    border: none;
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.BotaoGrande:hover{
+    background-color: rgb(67, 164, 255);
 }

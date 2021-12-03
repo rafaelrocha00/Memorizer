@@ -1,8 +1,9 @@
 import { identifierModuleUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { Observable, } from 'rxjs';
+import { map, filter, tap } from 'rxjs/operators'
 import { Card } from './DataClass/Card';
 import { Deck } from './DataClass/Deck';
-import { Kanji } from './DataClass/Kanji';
 import { KanjiService } from './kanji.service';
 
 
@@ -12,72 +13,70 @@ import { KanjiService } from './kanji.service';
 export class DeckService {
 
   decks : Deck[] = [];
-  currentDeck : number = 0;
+  currentDeck : number = -1;
   constructor(private kanjiService : KanjiService) { }
 
-  public CreateDecks(){
+  public createDecks(){
 
   }
 
-  public GetAllDecks() : Deck[]{
-    if(this.decks.length == 0){
-      this.getGradeDecks()
-    }
-
+  public getAllDecks() : Deck[]{
+    this.getGradeDecks();
     return this.decks;
   }
 
-  public GetDeck(index : number){
+  public getDeck(index : number){
 
-    if(this.decks.length == 0){
+    if(this.decks.length != 6){
       this.getGradeDecks()
+      console.log("Decks on memory: " + this.decks.length);
     }
 
     return this.decks[index];
   }
 
-  public GetCurrentDeck(){
-    return this.GetDeck(this.currentDeck);
+  public canGetDeck(){
+    return this.decks.length > 0;
   }
 
-  CreateMockUpDeck() : Deck{
-    //TODO: Multiplas leituras possiveis de um kanji. Faça uma lista e compare os resultados, mostre todas as possibilidades.
-    //TODO: Encontrar uma API que entregue as leituras Kun e o Kanji. Até lá, é isso aqui mesmo.
-    let deck = new Deck("Mock Grade 1");
-    deck.AddCard(new Card(new Date(), "日", "ひ"));
-    deck.AddCard(new Card(new Date(), "一", "イチ"));
-    deck.AddCard(new Card(new Date(), "人", "ひと"));
-    deck.AddCard(new Card(new Date(), "年", "ネン"));
-    deck.AddCard(new Card(new Date(), "大", " おおきい"));
-    deck.AddCard(new Card(new Date(), "十", "とお"));
-    deck.AddCard(new Card(new Date(), "二", "ニ"));
-    deck.AddCard(new Card(new Date(), "本", "ホン"));
-    deck.AddCard(new Card(new Date(), "中", "なか"));
-    deck.AddCard(new Card(new Date(), "出", "でる"));
-    deck.AddCard(new Card(new Date(), "三", "サン"));
-    deck.AddCard(new Card(new Date(), "見", "みる"));
-    deck.AddCard(new Card(new Date(), "五", "ゴ"));
-    deck.AddCard(new Card(new Date(), "上", "うえ"));
-    deck.AddCard(new Card(new Date(), "力", "ちから"));
-    deck.AddCard(new Card(new Date(), "四", "よん"));
-    deck.AddCard(new Card(new Date(), "生", "セイ"));
-    return deck;
+  public getCurrentDeckIdFromMemory(){
+    if(this.currentDeck == -1){
+      let currentDeckInSave = localStorage.getItem("currentDeck");
+      if(currentDeckInSave != null){
+        console.log("Found deck in memory");
+        this.currentDeck = +currentDeckInSave;
+      }
+    }
+  }
+
+  public getCurrentDeck(){
+    this.getCurrentDeckIdFromMemory();
+    console.log("returning: " + this.currentDeck);
+    console.log("Decks on memory: " + this.decks.length);
+    return this.getDeck(this.currentDeck);
+  }
+
+  public getCurrentDeckAsynch() : Observable<Deck>{
+    this.getCurrentDeckIdFromMemory();
+    let kanjiFileToGet = this.currentDeck + 1;
+    return this.kanjiService.getDataFromGradeFile('KanjiGrade'+ kanjiFileToGet +'.csv').pipe(map(x => this.generateDeck(x, "Deck 1")));
   }
 
   getGradeDecks() : void{
-    this.kanjiService.getDataFromGradeFile('KanjiGrade1.csv').subscribe(x => this.GenerateDeck(x, "Deck 1"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade2.csv').subscribe(x => this.GenerateDeck(x, "Deck 2"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade3.csv').subscribe(x => this.GenerateDeck(x, "Deck 3"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade4.csv').subscribe(x => this.GenerateDeck(x, "Deck 4"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade5.csv').subscribe(x => this.GenerateDeck(x, "Deck 5"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade6.csv').subscribe(x => this.GenerateDeck(x, "Deck 6"));
-
+    console.log("Getting all decks");
+    this.kanjiService.getDataFromGradeFile('KanjiGrade1.csv').subscribe(x => this.generateDeck(x, "Deck 1"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade2.csv').subscribe(x => this.generateDeck(x, "Deck 2"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade3.csv').subscribe(x => this.generateDeck(x, "Deck 3"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade4.csv').subscribe(x => this.generateDeck(x, "Deck 4"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade5.csv').subscribe(x => this.generateDeck(x, "Deck 5"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade6.csv').subscribe(x => this.generateDeck(x, "Deck 6"));
   }
 
-  GenerateDeck(deck : string, name :string) : void{
-    let Deck : Deck = this.csvToKanjiDeck(deck);
-    Deck.name = name;
-    this.decks.push(Deck);
+  generateDeck(deck : string, name :string) : Deck{
+    let deckFromCsv : Deck = this.csvToKanjiDeck(deck);
+    deckFromCsv.name = name;
+    this.decks.push(deckFromCsv);
+    return deckFromCsv;
   }
 
   private csvToKanjiDeck(file : string) : Deck{
@@ -100,11 +99,12 @@ export class DeckService {
     return deck;
   }
 
-  public GetIndexOf(deck : Deck){
+  public getIndexOf(deck : Deck){
     return this.decks.indexOf(deck);
   }
 
-  public SetCurrentDeck(deck : Deck){
-    this.currentDeck = this.GetIndexOf(deck);
+  public setCurrentDeck(deck : Deck){
+    this.currentDeck = this.getIndexOf(deck);
+    localStorage.setItem("currentDeck", this.currentDeck.toString());
   }
 }

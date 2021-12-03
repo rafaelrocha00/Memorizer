@@ -6,28 +6,30 @@
         <div class="iconContainer">
             <i class="fa fa-search"></i>
         </div>
-        <input type="text" placeholder="Procurar carta" id="searchBoxContainer" (input)="checkInput()">    
+        <input type="text" placeholder="Search Card" id="searchBoxContainer" (input)="checkInput()">    
     </div>
     <div class="cardsContainer">
+
+        <button class="cardAdd green" type="button" (click)="abrirRouteRevisarDeck()">
+            <i class="fa fa-play"> <p>Revise Deck!</p></i>
+        </button>
+        <button class="cardAdd" type="button" (click)="abrirMenuAdicionarCarta()">
+            <i class="fa fa-plus-circle"><p>Add Card</p></i>
+        </button>
+
         <p *ngFor="let card of filteredCards;">
             <button class="card">
-                <div class="porcentagem">100%</div>
+                <div class="porcentagem">{{card.porcentage}}%</div>
                 <div class="frontName">{{card.frontText}}</div>
                 <button class="fa fa-trash" (click)="deletarCarta(card)"></button>
             </button>
         </p>
-        <button class="cardAdd" type="button" (click)="abrirMenuAdicionarCarta()">
-            <i class="fa fa-plus-circle"></i>
-        </button>
-        <button class="cardAdd green" type="button" (click)="abrirRouteRevisarDeck()">
-            <i class="fa fa-play"></i>
-        </button>
     </div>
 </div>
 
 <div class="createCard" *ngIf="addingNewCard">
     <app-card-form></app-card-form>
-    <button class="buttonAddCardMenu" (click)="fecharMenuAdicionarCarta()">Cancelar</button>
+    <button class="buttonAddCardMenu" (click)="fecharMenuAdicionarCarta()">Cancel</button>
 </div>
 
 <app-footer></app-footer>

@@ -92,7 +92,6 @@ input:focus{
 
 .frontName{
     margin-left: 30px;
-
 }
 
 .card .fa-trash{
@@ -120,6 +119,13 @@ input:focus{
     height: 50px;
     text-decoration: none;
     font-size: 16px;
+}
+
+.cardAdd p {
+    font-family: 'Archivo', sans-serif;
+    font-weight:lighter;
+    font-size: 1.4rem;
+    margin-left: 25px;
 }
 
 .cardAdd:hover{
