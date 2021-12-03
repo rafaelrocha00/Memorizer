@@ -19,7 +19,7 @@ export class DeckComponent implements OnInit {
   ngOnInit(): void {
     if(this.associatedDeck == undefined)return;
 
-    this.numberOfCards = this.associatedDeck.GetLenght();
+    this.numberOfCards = this.associatedDeck.getLenght();
     this.nameOfDeck = this.associatedDeck.name;
   }
 

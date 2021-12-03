@@ -24,7 +24,7 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
   porcentageCircle: number[] = [100, 100]
 
   constructor(private deckService : DeckService, private routeService : Router) { 
-    this.currentElementInList = new Card(new Date(),"","");
+    this.currentElementInList = new Card("","");
   }
 
   ngOnInit(): void {
@@ -41,7 +41,7 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
   }
 
   setDeck(newDeck: Deck){
-    console.log(newDeck.GetLenght());
+    console.log(newDeck.getLenght());
     this.currentDeck = newDeck;
     this.cards = newDeck.getAllCards();
     this.filteredCards = this.cards;
@@ -67,12 +67,14 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
   }
 
   abrirRouteRevisarDeck(){
-    if(this.currentDeck != undefined) this.currentDeck.numberOfRevisionsMade++;
+    if(this.currentDeck != undefined){
+      this.currentDeck.addRevision();
+    }
     this.routeService.navigate(["reviseDeck"])
   }
 
   deletarCarta(cardToRemove : Card){
-    this.currentDeck?.DeleteCard(cardToRemove);
+    this.currentDeck?.deleteCard(cardToRemove);
   }
 
   checkInput(){

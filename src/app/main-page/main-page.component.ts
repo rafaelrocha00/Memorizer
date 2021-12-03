@@ -22,8 +22,8 @@ export class MainPageComponent implements OnInit {
   }
 
   public addNewDeck(){
-    let deck = new Deck("Deck");
-    deck.AddCard(new Card(new Date(), "日本語", "にほんご"));
+    let deck = new Deck(this.deckService.getNewId(), "Deck");
+    deck.addCard(new Card("日本語", "にほんご"));
     this.decks.push(deck);
   }
 

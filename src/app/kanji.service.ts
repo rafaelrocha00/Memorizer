@@ -49,7 +49,7 @@ export class KanjiService {
   }
 
   public kanjiToCard(kanji : Kanji): Card {
-    return new Card(new Date(), kanji.kanji, kanji.kun_readings[0]);
+    return new Card(kanji.kanji, kanji.kun_readings[0]);
   } 
 
   public ListOfKanjiToCards(Kanjis : Kanji[]) : Card[]{

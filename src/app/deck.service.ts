@@ -1,7 +1,6 @@
-import { identifierModuleUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { Observable, Subscription, } from 'rxjs';
-import { map, filter, tap } from 'rxjs/operators'
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'
 import { Card } from './DataClass/Card';
 import { Deck } from './DataClass/Deck';
 import { KanjiService } from './kanji.service';
@@ -14,11 +13,16 @@ export class DeckService {
 
   decks : Deck[] = [];
   currentDeck : number = -1;
-  constructor(private kanjiService : KanjiService) { }
+  currentBiggerId : number = 0;
 
+  constructor(private kanjiService : KanjiService) {
+    let stringId = localStorage.getItem("currentBiggerId");
+    if(stringId == undefined){
+      this.currentBiggerId = 0;
+      return;
+    }
 
-  public createDecks(){
-
+    this.currentBiggerId = +stringId;
   }
 
   public getAllDecks() : Deck[]{
@@ -59,41 +63,39 @@ export class DeckService {
 
   public getCurrentDeck(){
     this.getCurrentDeckIdFromMemory();
-    console.log("returning: " + this.currentDeck);
-    console.log("Decks on memory: " + this.decks.length);
     return this.getDeck(this.currentDeck);
   }
 
   public getCurrentDeckAsynch() : Observable<Deck>{
     this.getCurrentDeckIdFromMemory();
     let kanjiFileToGet = this.currentDeck + 1;
-    return this.kanjiService.getDataFromGradeFile('KanjiGrade'+ kanjiFileToGet +'.csv').pipe(map(x => this.generateDeck(x, "Deck 1")));
+    return this.kanjiService.getDataFromGradeFile('KanjiGrade'+ kanjiFileToGet +'.csv').pipe(map(x => this.generateDeck(x, kanjiFileToGet, "Deck 1")));
   }
 
   importGradeDecks() : void{
     console.log("Getting all decks");
-    this.kanjiService.getDataFromGradeFile('KanjiGrade1.csv').subscribe(x => this.generateDeck(x, "Deck 1"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade2.csv').subscribe(x => this.generateDeck(x, "Deck 2"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade3.csv').subscribe(x => this.generateDeck(x, "Deck 3"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade4.csv').subscribe(x => this.generateDeck(x, "Deck 4"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade5.csv').subscribe(x => this.generateDeck(x, "Deck 5"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade6.csv').subscribe(x => this.generateDeck(x, "Deck 6"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade1.csv').subscribe(x => this.generateDeck(x, 1, "Deck 1"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade2.csv').subscribe(x => this.generateDeck(x, 2, "Deck 2"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade3.csv').subscribe(x => this.generateDeck(x, 3, "Deck 3"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade4.csv').subscribe(x => this.generateDeck(x, 4, "Deck 4"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade5.csv').subscribe(x => this.generateDeck(x, 5, "Deck 5"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade6.csv').subscribe(x => this.generateDeck(x, 6, "Deck 6"));
   }
 
-  generateDeck(deck : string, name :string) : Deck{
-    let deckFromCsv : Deck = this.csvToKanjiDeck(deck);
+  generateDeck(deck : string, id : number, name :string) : Deck{
+    let deckFromCsv : Deck = this.csvToKanjiDeck(id, deck);
     deckFromCsv.name = name;
     this.decks.push(deckFromCsv);
     return deckFromCsv;
   }
 
-  private csvToKanjiDeck(file : string) : Deck{
+  private csvToKanjiDeck(id : number,  file : string) : Deck{
    
     if(file === undefined){
       console.log("File is undefined");
     }
 
-    let deck : Deck = new Deck("Grade 1");
+    let deck : Deck = new Deck(id, "Grade 1");
     let stringSeparada = file.split(/\r?\n/);
     console.log(stringSeparada.length);
 
@@ -102,7 +104,7 @@ export class DeckService {
       if(stringSepareted[1] == undefined) continue;
       if(stringSepareted[3] == undefined) continue;
 
-      deck.AddCard(new Card(new Date(), stringSepareted[1], stringSepareted[3]));
+      deck.addCard(new Card(stringSepareted[1], stringSepareted[3]));
     }
     return deck;
   }
@@ -114,5 +116,11 @@ export class DeckService {
   public setCurrentDeck(deck : Deck){
     this.currentDeck = this.getIndexOf(deck);
     localStorage.setItem("currentDeck", this.currentDeck.toString());
+  }
+
+  public getNewId() : number {
+    this.currentBiggerId++;
+    localStorage.setItem("currentBiggerId", this.currentBiggerId.toString());
+    return this.currentBiggerId;
   }
 }

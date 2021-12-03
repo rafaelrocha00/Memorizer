@@ -29,14 +29,14 @@
     </div>
     <div class="right">
         <svg viewBox="0 0 100 46" preserveAspectRatio="none" style="shape-rendering:geometricPrecision; image-rendering:optimizeQuality;">
-            <circle cx="50" cy="25" r="15.9155" fill="none" stroke="#32518B"
+            <circle cx="50" cy="23" r="15.9155" fill="none" stroke="#32518B"
                 stroke-width="2"
                 stroke-dasharray="100, 100" />
-            <circle cx="50" cy="25" r="15.9155" fill="none" stroke="#33BEFF" stroke-linecap="round" id="circleFill"
+            <circle cx="50" cy="23" r="15.9155" class="circleofprogress" fill="none" stroke="#33BEFF" stroke-linecap="round" id="circleFill"
                 stroke-width="2.2"
                 attr.stroke-dasharray="{{porcentageCircle}}"
                 />
-            <text x="50" y="25" text-anchor="middle" alignmentBaseline='central' dominant-baseline="middle"  id="totalPorcentage">{{totalPorcentage}}%</text>
+            <text x="50" y="23" text-anchor="middle" alignmentBaseline='central' dominant-baseline="middle"  id="totalPorcentage">{{totalPorcentage}}%</text>
         </svg>
         <h1>Total porcentage of answers</h1>
         <p>Total number of revisions: {{currentDeck?.numberOfRevisionsMade}}</p>

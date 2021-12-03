@@ -35,7 +35,7 @@ export class ReviseDeckPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.currentDeck.GetLenght() == 0) return;
+    if(this.currentDeck.getLenght() == 0) return;
 
     this.inputElement = document.getElementById('wanakana-input') as HTMLInputElement;
     
@@ -58,7 +58,7 @@ export class ReviseDeckPageComponent implements OnInit {
       this.currentCardId++;
       this.backCardColor = "#243955";
 
-      if(this.currentCardId >= this.currentDeck.GetLenght()){
+      if(this.currentCardId >= this.currentDeck.getLenght()){
         this.revisionEnded = true;
         this.currentFrontText = "You saw all Cards!";
         return;
@@ -69,7 +69,7 @@ export class ReviseDeckPageComponent implements OnInit {
   }
 
   changeCardByIndex(index : number){
-    this.currentCard = this.currentDeck.GetCard(index);
+    this.currentCard = this.currentDeck.getCard(index);
     this.currentFrontText = this.currentCard.frontText;
     this.currentBackText = this.currentCard.backText;
   }
