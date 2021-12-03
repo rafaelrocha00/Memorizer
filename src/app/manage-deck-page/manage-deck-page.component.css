@@ -2,6 +2,37 @@ html {
     height: 100%;
 }
 
+.container{
+    display: flex;
+}
+
+.left{
+    width: 50%;
+}
+
+.right{
+    width: 50%;
+    font-family: 'Archivo', sans-serif;
+    color: rgb(99, 99, 105);
+
+}
+
+.right h1{
+text-align: center;
+padding-bottom: 5px;
+border-bottom: 2px solid rgb(174, 174, 182);
+}
+
+.right p {
+    font-size: 1.2rem;
+    margin-top: 15px;
+}
+
+#totalPorcentage{
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.4rem;
+}
+
 .result{
     margin-left: 40%;
 }
@@ -64,7 +95,7 @@ input:focus{
 }
 
 .cardsContainer{
-    width: 50%;
+    width: 80%;
     margin-top: 200px;
     margin-left: 30px;
 }

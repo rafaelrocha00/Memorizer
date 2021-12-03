@@ -4,6 +4,7 @@ export class Deck{
     
     name : string = "";
     cards : Card[] = [];
+    numberOfRevisionsMade : number = 0;
 
     constructor(name : string){
         this.name = name;

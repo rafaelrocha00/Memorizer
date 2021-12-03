@@ -3,5 +3,4 @@
     <p *ngFor="let deck of decks; let i = index"><app-deck (ButtonWasClicked)="selectDeck($event)" [associatedDeck]="deck"></app-deck></p>
     <app-botao-adicionar-deck (ButtonWasClicked)="addNewDeck()"></app-botao-adicionar-deck>
 </div>
-
 <app-footer></app-footer>

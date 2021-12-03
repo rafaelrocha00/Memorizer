@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import * as wanakana from 'wanakana';
 import { Card } from '../DataClass/Card';
 import { Deck } from '../DataClass/Deck';
@@ -10,7 +11,7 @@ import { DeckService } from '../deck.service';
   templateUrl: './manage-deck-page.component.html',
   styleUrls: ['./manage-deck-page.component.css']
 })
-export class ManageDeckPageComponent implements OnInit {
+export class ManageDeckPageComponent implements OnInit, OnDestroy {
 
   addingNewCard : boolean = false;
   currentDeck : Deck | undefined;
@@ -18,6 +19,9 @@ export class ManageDeckPageComponent implements OnInit {
   filteredCards : Card[] = []
   currentElementInList : Card;
   stringToSearch : HTMLInputElement | undefined;
+  subscription : Subscription | undefined;
+  totalPorcentage : number = 0;
+  porcentageCircle: number[] = [100, 100]
 
   constructor(private deckService : DeckService, private routeService : Router) { 
     this.currentElementInList = new Card(new Date(),"","");
@@ -27,9 +31,13 @@ export class ManageDeckPageComponent implements OnInit {
     if(this.deckService.canGetDeck()){
       this.setDeck(this.deckService.getCurrentDeck());
     }else{
-      this.deckService.getCurrentDeckAsynch().subscribe(this.setDeck.bind(this));
+      this.subscription = this.deckService.getCurrentDeckAsynch().subscribe(this.setDeck.bind(this));
     }
     this.stringToSearch = document.getElementById("searchBoxContainer") as HTMLInputElement;
+  }
+
+  ngOnDestroy(){
+    this.subscription?.unsubscribe();
   }
 
   setDeck(newDeck: Deck){
@@ -37,6 +45,13 @@ export class ManageDeckPageComponent implements OnInit {
     this.currentDeck = newDeck;
     this.cards = newDeck.getAllCards();
     this.filteredCards = this.cards;
+    let median = 0;
+    for(let index = 0; index < this.cards.length; index++){
+      median += this.cards[index].porcentage;
+    }
+    median = median/this.cards.length;
+    this.totalPorcentage = median;
+    this.porcentageCircle = [median, 100];
   }
 
   onClick(){
@@ -52,6 +67,7 @@ export class ManageDeckPageComponent implements OnInit {
   }
 
   abrirRouteRevisarDeck(){
+    if(this.currentDeck != undefined) this.currentDeck.numberOfRevisionsMade++;
     this.routeService.navigate(["reviseDeck"])
   }
 
