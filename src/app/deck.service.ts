@@ -21,14 +21,21 @@ export class DeckService {
   }
 
   public getAllDecks() : Deck[]{
-    this.getGradeDecks();
+    if(this.shouldImportDecks()){
+      this.importGradeDecks();
+    }
+
     return this.decks;
+  }
+
+  shouldImportDecks() : boolean{
+    return this.decks.length < 6;
   }
 
   public getDeck(index : number){
 
-    if(this.decks.length != 6){
-      this.getGradeDecks()
+    if(this.shouldImportDecks()){
+      this.importGradeDecks()
       console.log("Decks on memory: " + this.decks.length);
     }
 
@@ -62,7 +69,7 @@ export class DeckService {
     return this.kanjiService.getDataFromGradeFile('KanjiGrade'+ kanjiFileToGet +'.csv').pipe(map(x => this.generateDeck(x, "Deck 1")));
   }
 
-  getGradeDecks() : void{
+  importGradeDecks() : void{
     console.log("Getting all decks");
     this.kanjiService.getDataFromGradeFile('KanjiGrade1.csv').subscribe(x => this.generateDeck(x, "Deck 1"));
     this.kanjiService.getDataFromGradeFile('KanjiGrade2.csv').subscribe(x => this.generateDeck(x, "Deck 2"));
