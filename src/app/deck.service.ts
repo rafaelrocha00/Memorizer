@@ -16,7 +16,7 @@ export class DeckService {
   currentBiggestDeckId : number = 0;
 
   constructor(private kanjiService : KanjiService) {
-    let stringId = localStorage.getItem("currentBiggerId");
+    let stringId = sessionStorage.getItem("currentBiggerId");
     if(stringId == undefined){
       this.currentBiggestDeckId = 0;
       return;
@@ -115,12 +115,12 @@ export class DeckService {
 
   public setCurrentDeck(deck : Deck){
     this.currentDeck = this.getIndexOf(deck);
-    localStorage.setItem("currentDeck", this.currentDeck.toString());
+    sessionStorage.setItem("currentDeck", this.currentDeck.toString());
   }
 
   public getNewDeckId() : number {
     this.currentBiggestDeckId++;
-    localStorage.setItem("currentBiggerId", this.currentBiggestDeckId.toString());
+    sessionStorage.setItem("currentBiggerId", this.currentBiggestDeckId.toString());
     return this.currentBiggestDeckId;
   }
 }

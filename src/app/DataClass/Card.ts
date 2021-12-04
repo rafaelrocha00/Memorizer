@@ -1,4 +1,3 @@
-import { Deck } from "./Deck";
 
 export class Card{
 
@@ -44,12 +43,12 @@ export class Card{
      }
 
      public saveCard(globalId : number){
-          localStorage.setItem(globalId + this.id.toString() + "correctAnswers", this.correctAnswers.toString());
+          sessionStorage.setItem(globalId + this.id.toString() + "correctAnswers", this.correctAnswers.toString());
           console.log("Saving: deckId: " + globalId + " id " + this.id + " " + this.frontText);
      }
 
      public loadCard(globalId : number){
-          let correctAnswersSaved = localStorage.getItem(globalId + this.id.toString() + "correctAnswers");
+          let correctAnswersSaved = sessionStorage.getItem(globalId + this.id.toString() + "correctAnswers");
           console.log("loading: deckId: " + globalId + " id " + this.id + " " + this.frontText);
           if(correctAnswersSaved != undefined){
                this.correctAnswers = +correctAnswersSaved;
