@@ -22,7 +22,7 @@ export class MainPageComponent implements OnInit {
   }
 
   public addNewDeck(){
-    let deck = new Deck(this.deckService.getNewId(), "Deck");
+    let deck = new Deck(this.deckService.getNewDeckId(), "Deck");
     deck.addCard(new Card("日本語", "にほんご"));
     this.decks.push(deck);
   }

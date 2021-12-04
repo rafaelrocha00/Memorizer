@@ -1,5 +1,8 @@
+import { Deck } from "./Deck";
+
 export class Card{
 
+     id : number = 0;
      frontText : string;
      backText : string;
 
@@ -18,6 +21,10 @@ export class Card{
           this.daysUntilItsShowedAgain = days;
      }
 
+     public setId(id : number){
+          this.id = id;
+     }
+
      public addHit(){
           if(this.correctAnswers + 1 >= this.porcentageChange.length){
                return;
@@ -34,6 +41,21 @@ export class Card{
 
      public updatePorcentage(){
           this.porcentage = this.porcentageChange[this.correctAnswers]
+     }
+
+     public saveCard(globalId : number){
+          localStorage.setItem(globalId + this.id.toString() + "correctAnswers", this.correctAnswers.toString());
+          console.log("Saving: deckId: " + globalId + " id " + this.id + " " + this.frontText);
+     }
+
+     public loadCard(globalId : number){
+          let correctAnswersSaved = localStorage.getItem(globalId + this.id.toString() + "correctAnswers");
+          console.log("loading: deckId: " + globalId + " id " + this.id + " " + this.frontText);
+          if(correctAnswersSaved != undefined){
+               this.correctAnswers = +correctAnswersSaved;
+               this.updatePorcentage();
+               console.log("loading sucessifull");
+          }    
      }
 
 }

@@ -105,6 +105,7 @@ export class ReviseDeckPageComponent implements OnInit {
           this.backCardColor = this.correctAnswerColor;
           this.cardIsTurned = true;
           this.currentCard?.addHit();
+          this.currentCard?.saveCard(this.currentDeck.id);
           break;
         }
       }

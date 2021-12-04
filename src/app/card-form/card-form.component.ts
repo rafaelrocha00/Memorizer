@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { CardServiceService } from '../card-service.service';
 import { Card } from '../DataClass/Card';
 import { DeckService } from '../deck.service';
 
@@ -25,8 +24,10 @@ export class CardFormComponent implements OnInit {
   }
 
   onSubmit(){
+    let currentDeck = this.deckService.getCurrentDeck();
+
     let card = new Card(this.formCard.controls['frontText'].value, this.formCard.controls['backText'].value);
-    this.deckService.getCurrentDeck().addCard(card);
+    currentDeck.addCard(card);
     this.formCard.reset()
   }
 
