@@ -44,7 +44,7 @@ export class Card{
 
      public saveCard(globalId : number){
           sessionStorage.setItem(globalId + this.id.toString() + "correctAnswers", this.correctAnswers.toString());
-          console.log("Saving: deckId: " + globalId + " id " + this.id + " " + this.frontText);
+          console.log("Saving card: deckId: " + globalId + " id " + this.id + " " + this.frontText);
      }
 
      public loadCard(globalId : number){
@@ -54,7 +54,10 @@ export class Card{
                this.correctAnswers = +correctAnswersSaved;
                this.updatePorcentage();
                console.log("loading sucessifull");
-          }    
+               return;
+          } 
+
+          console.log("loading card fail. No card with this id found in storage.");
      }
 
 }

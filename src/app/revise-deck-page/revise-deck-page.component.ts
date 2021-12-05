@@ -5,6 +5,7 @@ import { Deck } from '../DataClass/Deck';
 import { DeckService } from '../deck.service';
 import * as wanakana from 'wanakana';
 import { KanjiService } from '../kanji.service';
+import { identifierModuleUrl } from '@angular/compiler';
 
 
 @Component({
@@ -102,10 +103,15 @@ export class ReviseDeckPageComponent implements OnInit {
       for(let index = 0; index < inputrequeridaDividida.length; index++){
         if(inputCorrigida == inputrequeridaDividida[index])
         {
+          if(this.currentCard == undefined){
+            console.error("There is no card in revision.");
+            return;
+          }
+
           this.backCardColor = this.correctAnswerColor;
           this.cardIsTurned = true;
-          this.currentCard?.addHit();
-          this.currentCard?.saveCard(this.currentDeck.id);
+          this.currentCard.addHit();
+          this.currentCard.saveCard(this.currentDeck.id);
           break;
         }
       }

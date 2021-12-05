@@ -50,7 +50,7 @@ export class Deck{
         sessionStorage.setItem(this.id.toString() + "_revisions", this.numberOfRevisionsMade.toString());
     }
 
-    public saveDeck(){
+    private saveDeck(){
         this.saveRevisions();
         for(let index = 0; index < this.cards.length; index++){
             this.cards[index].saveCard(this.id);
