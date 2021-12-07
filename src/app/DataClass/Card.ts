@@ -43,12 +43,12 @@ export class Card{
      }
 
      public saveCard(globalId : number){
-          sessionStorage.setItem(globalId + this.id.toString() + "correctAnswers", this.correctAnswers.toString());
+          localStorage.setItem(globalId + this.id.toString() + "correctAnswers", this.correctAnswers.toString());
           console.log("Saving card: deckId: " + globalId + " id " + this.id + " " + this.frontText);
      }
 
      public loadCard(globalId : number){
-          let correctAnswersSaved = sessionStorage.getItem(globalId + this.id.toString() + "correctAnswers");
+          let correctAnswersSaved = localStorage.getItem(globalId + this.id.toString() + "correctAnswers");
           console.log("loading: deckId: " + globalId + " id " + this.id + " " + this.frontText);
           if(correctAnswersSaved != undefined){
                this.correctAnswers = +correctAnswersSaved;

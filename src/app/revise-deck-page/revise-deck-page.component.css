@@ -1,3 +1,19 @@
+.containter{
+    display: flex;
+    flex-direction: column;
+}
+
+.mainPage{
+    height: 90%;
+}
+
+.mainPage::after {
+    content: '';
+    display: block;
+    height: 70px;
+}
+  
+
 .currentDeck{
     margin-top: 40px;
 }

@@ -47,10 +47,10 @@ export class Deck{
             console.error("this card is empty and cant be saved.");
             return;
         }
-        sessionStorage.setItem(this.id.toString() + "_revisions", this.numberOfRevisionsMade.toString());
+        localStorage.setItem(this.id.toString() + "_revisions", this.numberOfRevisionsMade.toString());
     }
 
-    private saveDeck(){
+    public saveDeck(){
         this.saveRevisions();
         for(let index = 0; index < this.cards.length; index++){
             this.cards[index].saveCard(this.id);
@@ -58,7 +58,7 @@ export class Deck{
     }
 
     public loadDeck(){
-        let revisions = sessionStorage.getItem(this.id.toString() + "_revisions");
+        let revisions = localStorage.getItem(this.id.toString() + "_revisions");
         if(revisions != undefined){
             this.numberOfRevisionsMade = +revisions;
         }
@@ -66,7 +66,7 @@ export class Deck{
 
     public getNewCardId(){
         this.currentBiggestCardId++;
-        sessionStorage.setItem(this.id.toString() + "biggestCardId", this.currentBiggestCardId.toString());
+        localStorage.setItem(this.id.toString() + "biggestCardId", this.currentBiggestCardId.toString());
         return this.currentBiggestCardId;
     }
 }
