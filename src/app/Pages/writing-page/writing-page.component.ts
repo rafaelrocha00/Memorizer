@@ -92,32 +92,47 @@ export class WritingPageComponent implements OnInit {
     this.inputElement.value = this.EntradasDeTexto[this.entradaDeTextoAtual].texto;
   }
 
+  inputKanji(){
+    if(!this.inputElement) { return;}
+
+    this.inputElement.value = this.inputElement.value.split('ー')[0] + ' ' + this.sugestoesDeKanji[this.sugestaoAtualDeKanji]
+    this.searchingKanji = false 
+    this.sugestoesDeKanji = []
+  }
+
   checkKanji(val : null | any) : boolean{
-    console.log('checando kanji ' + val.target.value)
+    if(!this.inputIsUsingKatakana) {return true;}
 
     if(val.key === 'Enter' && this.inputElement && this.searchingKanji){
       val.stopPropagation();
       val.preventDefault();
-      this.inputElement.value = this.inputElement.value.split('ー')[0] + ' ' + this.sugestoesDeKanji[this.sugestaoAtualDeKanji]
-      this.searchingKanji = false 
-      this.sugestoesDeKanji = []
+     
+      this.inputKanji();
       return false;
     }
 
     if(this.searchingKanji && val.key !== 'Tab' && val.key !== 'Enter'){
       const words = val.target.value.split('ー')
       console.log(words[words.length - 1].replace('ー', ''))
-      this.sugestoesDeKanji = this.deckService.getAllKanjisOfReading(words[words.length - 1].replace('ー', ''), 16)
+      this.sugestoesDeKanji = this.deckService.getAllKanjisOfReading(words[words.length - 1].replace('ー', ''))
     }
 
     if(val.key === 'Tab') {
       val.stopPropagation();
       val.preventDefault();
+
+      if(this.sugestoesDeKanji.length === 1) { 
+        this.inputKanji();
+        return false;
+      }
+
       this.sugestaoAtualDeKanji = this.sugestaoAtualDeKanji + 1;
       console.log(this.sugestaoAtualDeKanji)
       if(this.sugestaoAtualDeKanji === this.sugestoesDeKanji.length){
         this.sugestaoAtualDeKanji = 0;
       }
+
+      return false;
     }
 
     if(val.key === '-') {
