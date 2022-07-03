@@ -74,12 +74,12 @@ export class DeckService {
 
   importGradeDecks() : void{
     console.log("Getting all decks");
-    this.kanjiService.getDataFromGradeFile('KanjiGrade1.csv').subscribe(x => this.generateDeck(x, 1, "Deck 1"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade2.csv').subscribe(x => this.generateDeck(x, 2, "Deck 2"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade3.csv').subscribe(x => this.generateDeck(x, 3, "Deck 3"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade4.csv').subscribe(x => this.generateDeck(x, 4, "Deck 4"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade5.csv').subscribe(x => this.generateDeck(x, 5, "Deck 5"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade6.csv').subscribe(x => this.generateDeck(x, 6, "Deck 6"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade1.csv').subscribe(x => this.generateDeck(x, 1, "Grade 1"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade2.csv').subscribe(x => this.generateDeck(x, 2, "Grade 2"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade3.csv').subscribe(x => this.generateDeck(x, 3, "Grade 3"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade4.csv').subscribe(x => this.generateDeck(x, 4, "Grade 4"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade5.csv').subscribe(x => this.generateDeck(x, 5, "Grade 5"));
+    this.kanjiService.getDataFromGradeFile('KanjiGrade6.csv').subscribe(x => this.generateDeck(x, 6, "Grade 6"));
   }
 
   generateDeck(deck : string, id : number, name :string) : Deck{
@@ -122,5 +122,17 @@ export class DeckService {
     this.currentBiggestDeckId++;
     localStorage.setItem("currentBiggerId", this.currentBiggestDeckId.toString());
     return this.currentBiggestDeckId;
+  }
+
+  public getAllKanjisOfReading(val : string) : string[] {
+    let result : string[] = []
+    
+    for (let index = 0; index < this.decks.length; index++) {
+      const element = this.decks[index];
+      const readings = element.getAllKanjisOfReading(val);
+      result = result.concat(...readings)
+      
+    }
+    return result
   }
 }

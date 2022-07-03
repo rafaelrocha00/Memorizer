@@ -1,3 +1,4 @@
+import * as wanakana from "wanakana";
 import { Card } from "./Card"
 
 export class Deck{
@@ -71,11 +72,28 @@ export class Deck{
     }
 
     public getMediumPerfomanceOnDeck(){
-    let median = 0;
-    for(let index = 0; index < this.cards.length; index++){
-      median += this.cards[index].porcentage;
+        let median = 0;
+        for(let index = 0; index < this.cards.length; index++){
+        median += this.cards[index].porcentage;
+        }
+        median = median/this.cards.length;
+        return median;
     }
-    median = median/this.cards.length;
-    return median;
+
+    public getAllKanjisOfReading(reading : string) : string[]{
+        let result : string[] = []
+
+        for (let i = 0; i < this.cards.length; i++) {
+            const card = this.cards[i];
+
+            const readingRomanji = wanakana.toRomaji(reading);
+            const cardTomanji = wanakana.toRomaji(card.backText)
+
+            if(cardTomanji.indexOf(readingRomanji) !== -1){
+                result.push(card.frontText)
+            }
+        }
+
+        return result
     }
 }

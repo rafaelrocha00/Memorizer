@@ -9,7 +9,9 @@
 
     <h1><a class="main-link" routerLink="" routerLinkActive="activeLink">Memorizer Kanji</a></h1>
 
-    <ol class="Options">
+    <ol class="options">
+        <app-b-input icon="fa fa-search" (onChange)="searchCards($event)" [options]="kanjiReadings"></app-b-input>
+
         <a class="option-link m-r-lg">
             Decks
         </a>

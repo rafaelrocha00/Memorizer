@@ -26,8 +26,10 @@ h1 {
     text-decoration: none;
 }
 
-.Options {
+.options {
     float: right;
+    display: flex;
+    align-items: center;
 }
 
 li {

@@ -1,0 +1,38 @@
+.main-bar {
+    display: flex;
+    align-items: center;
+    width: 350px;
+}
+
+.main-bar input[type='text'] {
+    width: 320px;
+    padding-left: 50px;
+    font-family: 'Archivo', sans-serif;
+}
+
+.inside-input {
+    color: rgb(40, 39, 42);
+    margin-right: -30px;
+    font-size: 1.3rem;
+    z-index: 2;
+}
+
+.db-option-box {
+    position: absolute;
+    top: 39px;
+    left: 1px;
+    width: 317px;
+    font-size: 1.5rem;
+    background-color: rgb(255, 255, 255);
+    z-index: 2;
+    max-height: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.db-option {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 40px;
+    width: 200px;
+}

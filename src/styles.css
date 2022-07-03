@@ -46,6 +46,10 @@
     display: flex;
 }
 
+.column {
+    flex-direction: column;
+}
+
 .m-1 {
     margin: 32px;
 }
@@ -128,4 +132,12 @@
 
 .m-b-1 {
     margin-bottom: 1px;
+}
+
+.h-m {
+    height: 40px;
+}
+
+.w-md {
+    width: 100px;
 }

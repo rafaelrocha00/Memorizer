@@ -19,6 +19,7 @@ import { CircleComponent } from './Components/circle/circle.component';
 import { SwitchComponent } from './switch/switch.component';
 import { WritingPageComponent } from './Pages/writing-page/writing-page.component';
 import { MarkdownInputComponent } from './markdown-input/markdown-input.component';
+import { BInputComponent } from './Components/b-input/b-input.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MarkdownInputComponent } from './markdown-input/markdown-input.componen
     CircleComponent,
     SwitchComponent,
     WritingPageComponent,
-    MarkdownInputComponent
+    MarkdownInputComponent,
+    BInputComponent
   ],
   imports: [
     BrowserModule,
