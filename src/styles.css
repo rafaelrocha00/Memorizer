@@ -16,6 +16,10 @@
     margin-right: 24px;
 }
 
+.m-l-md {
+    margin-left: 24px;
+}
+
 .m-r-lg {
     margin-right: 48px;
 }
@@ -202,4 +206,9 @@
 .align {
     flex-direction: column;
     align-items: center;
+}
+
+.overflow-h {
+    overflow: hidden;
+    width: 100%;
 }

@@ -1,5 +1,5 @@
 .entradas-de-texto {
-    width: 280px;
+    min-width: 280px;
     height: 80vh;
     background-color: #8f9aa7;
 }
@@ -31,4 +31,20 @@
 .opcoes {
     height: 50px;
     background-color: #d9d9d9;
+}
+
+.kanjiSearch {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+.kanji {
+    padding: 5px 10px;
+}
+
+.kanjiAtivo {
+    background-color: #323941;
+    border-radius: 3px;
+    color: rgb(240, 240, 240);
 }

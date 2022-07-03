@@ -124,13 +124,20 @@ export class DeckService {
     return this.currentBiggestDeckId;
   }
 
-  public getAllKanjisOfReading(val : string) : string[] {
+  public getAllKanjisOfReading(val : string, maxNumber : number = 10) : string[] {
     let result : string[] = []
+    if(!this.decks.length){
+      this.getAllDecks()
+    }
     
     for (let index = 0; index < this.decks.length; index++) {
       const element = this.decks[index];
       const readings = element.getAllKanjisOfReading(val);
       result = result.concat(...readings)
+      if(result.length >= maxNumber) {
+        result = result.slice(0, maxNumber); 
+        return result;
+      }
       
     }
     return result

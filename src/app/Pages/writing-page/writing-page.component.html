@@ -14,12 +14,20 @@
         </div>
 
         <div class="full-width">
-            <div class="opcoes middle end">
-                <div *ngFor="let opcao of options; let i = index" [class]="(opcao.active ? 'bg-color-active ' : 'bg-color-primary ') +' opcao box-small '" (click)="opcao.active = !opcao.active">
-                    <span [class]="opcao.icon + ' color-contrast '"></span>
+            <div class="opcoes middle flex space-between">
+                <div class="flex m-l-md kanji-sugestions overflow-h">
+                    <div *ngFor="let kanji of sugestoesDeKanji; let i = index" [class]="(i === sugestaoAtualDeKanji ? 'kanjiAtivo ' : '') + ' kanji m-r-md'">
+                        {{kanji}}
+                    </div>
+                </div>
+
+                <div class="opcoes middle end">
+                    <div *ngFor="let opcao of options; let i = index" [class]="(opcao.active ? 'bg-color-active ' : 'bg-color-primary ') +' opcao box-small '" (click)="opcao.active = !opcao.active">
+                        <span [class]="opcao.icon + ' color-contrast '"></span>
+                    </div>
                 </div>
             </div>
-            <textarea class="area-de-escrita p-2 text-md full-width" id="wanakana-input"></textarea>
+            <textarea (keydown)="checkKanji($event)" class="area-de-escrita p-2 text-md full-width" id="wanakana-input"></textarea>
 
         </div>
 

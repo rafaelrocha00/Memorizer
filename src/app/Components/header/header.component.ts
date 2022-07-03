@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
     this.kanjiReadings = [];
     const readings = this.deckService.getAllKanjisOfReading(val)
     // TODO: Forma melhor de procurar Kanjis e tela de Kanji individual
-    readings.forEach((option) => {this.kanjiReadings.push({nome: option, onClick: () => { this.router.navigate(['kanji']);}})})
+    readings.forEach((option) => {this.kanjiReadings.push({nome: option, onClick: () => { this.router.navigateByUrl('kanji/' + option);}})})
   }
 
 }

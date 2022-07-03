@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Card } from '../DataClass/Card';
 import { map, mapTo, observable, Observable } from 'rxjs';
 import { Kanji } from '../DataClass/Kanji';
-import { Deck } from '../DataClass/Deck';
-import { DeckService } from './deck.service';
 
 @Injectable({
   providedIn: 'root'

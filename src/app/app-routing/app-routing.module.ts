@@ -29,7 +29,7 @@ const routes: Routes = [
   component: WritingPageComponent
 },
 {
-  path: 'kanji',
+  path: 'kanji/:id',
   component: KanjiPageComponent
 }
 ];
