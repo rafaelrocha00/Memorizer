@@ -87,9 +87,9 @@ export class Deck{
             const card = this.cards[i];
 
             const readingRomanji = wanakana.toRomaji(reading);
-            const cardTomanji = wanakana.toRomaji(card.backText)
+            const cardRomanji = wanakana.toRomaji(card.backText)
 
-            if(cardTomanji.indexOf(readingRomanji) !== -1){
+            if(cardRomanji.indexOf(readingRomanji) !== -1){
                 result.push(card.frontText)
             }
         }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { DropdownOption } from 'src/app/DataClass/DropdownOption';
 import { KanjiService } from 'src/app/Services/kanji.service';
 import * as wanakana from 'wanakana';
@@ -58,6 +58,11 @@ export class BInputComponent implements OnInit {
     wanakana.unbind(this.inputElement);
     this.inputIsUsingKatakana = false;
     this.inputElement.value = wanakana.toRomaji(this.inputElement.value);
+  }
+
+  @HostListener('document:click')
+  clickout() {
+    this.options = []
   }
 
 }

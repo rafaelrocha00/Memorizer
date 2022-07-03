@@ -30,9 +30,16 @@
     overflow-y: scroll;
 }
 
+.db-option:last-child {
+    border-bottom: none;
+}
+
 .db-option {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 40px;
-    width: 200px;
+    width: 235px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+    padding-left: 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #16333d;
 }
