@@ -212,3 +212,7 @@
     overflow: hidden;
     width: 100%;
 }
+
+.btn-danger {
+    cursor: pointer;
+}

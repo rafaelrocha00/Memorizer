@@ -1,4 +1,4 @@
-.ListaDeDecks{
+.ListaDeDecks {
     display: flex;
     flex-direction: row;
     margin-top: 10px;
@@ -7,6 +7,6 @@
     flex-wrap: wrap;
 }
 
-p{
+p {
     min-width: 0;
 }

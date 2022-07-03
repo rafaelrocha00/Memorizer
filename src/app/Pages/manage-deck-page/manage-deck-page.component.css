@@ -130,7 +130,7 @@ input:focus {
 }
 
 .card .fa-trash:hover {
-    color: rgb(85, 15, 15);
+    color: #c76161;
 }
 
 .cardAdd {
@@ -143,6 +143,7 @@ input:focus {
     height: 50px;
     text-decoration: none;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .cardAdd p {
