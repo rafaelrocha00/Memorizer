@@ -1,0 +1,222 @@
+html {
+    height: 100%;
+}
+
+.container {
+    display: flex;
+}
+
+.left {
+    width: 50%;
+}
+
+.right {
+    width: 50%;
+    font-family: 'Archivo', sans-serif;
+    color: rgb(99, 99, 105);
+}
+
+.right h1 {
+    padding-bottom: 5px;
+    border-bottom: 2px solid rgb(174, 174, 182);
+}
+
+.right p {
+    font-size: 1.2rem;
+    margin-top: 15px;
+}
+
+.result {
+    margin-left: 40%;
+}
+
+.deckName {
+    font-family: 'Archivo', sans-serif;
+    font-size: 3rem;
+    margin-top: 40px;
+    margin-left: 30px;
+    width: 80%;
+    padding-bottom: 5px;
+    border-bottom: rgba(202, 206, 224, 0.199) solid 2px;
+}
+
+.searchBarContainer {
+    margin-top: 15px;
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    background-color: rgb(14, 14, 20);
+    border-radius: 3px 0px 0px 3px;
+    width: 80%;
+}
+
+.iconContainer {
+    color: whitesmoke;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+i {
+    font-size: 25px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+input {
+    height: 30px;
+    width: 100%;
+    border-radius: 0%;
+}
+
+input[type=text] {
+    font-family: 'Archivo', sans-serif;
+    font-size: 1.3rem;
+    padding-left: 10px;
+    color: rgb(40, 40, 44);
+}
+
+input::placeholder {
+    font-family: 'Archivo', sans-serif;
+    color: rgb(188, 189, 202)
+}
+
+input:focus {
+    outline: thin dotted;
+}
+
+.cardsContainer {
+    width: 80%;
+    margin-top: 200px;
+    margin-left: 30px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    background-color: #4e539b;
+    border: none;
+    color: white;
+    width: 100%;
+    height: 50px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.card:hover {
+    background-color: rgb(67, 164, 255);
+}
+
+.porcentagem {
+    margin-left: 10px;
+    width: 40px;
+}
+
+.frontName {
+    margin-left: 30px;
+}
+
+.card .fa-trash {
+    margin-left: auto;
+    margin-right: 0;
+    padding-right: 15px;
+    display: inline-block;
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: white;
+}
+
+.card .fa-trash:hover {
+    color: rgb(85, 15, 15);
+}
+
+.cardAdd {
+    display: flex;
+    align-items: center;
+    background-color: #373a61;
+    border: none;
+    color: white;
+    width: 100%;
+    height: 50px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.cardAdd p {
+    font-family: 'Archivo', sans-serif;
+    font-weight: lighter;
+    font-size: 1.4rem;
+    margin-left: 25px;
+}
+
+.cardAdd:hover {
+    background-color: rgb(67, 164, 255);
+}
+
+.cardsContainer i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.0rem;
+}
+
+.createCard {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    background-color: rgba(4, 5, 17, 0.822);
+}
+
+.cardAddText {
+    font-family: 'Archivo', sans-serif;
+    width: 50%;
+    height: 3.5rem;
+    border: 3px solid rgb(59, 46, 129);
+    text-align: center;
+}
+
+.cardAddLabel {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.buttonAddCardMenu {
+    background-color: #373a61;
+    border: none;
+    color: white;
+    font-size: 1.4rem;
+    padding: 10px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.buttonAddCardMenu:hover {
+    background-color: rgb(67, 164, 255);
+}
+
+.buttonsMenu {
+    display: flex;
+    justify-content: center;
+}
+
+.green {
+    background-color: rgb(23, 156, 78);
+}
+
+.green:hover {
+    background-color: rgb(92, 218, 75)
+}

@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<div class="container">
+    <div class="left">
+        <div class="deckName">Deck Kanji - Readings</div>
+        <div class="searchBarContainer">
+            <div class="iconContainer">
+                <i class="fa fa-search"></i>
+            </div>
+            <input type="text" placeholder="Search Card" id="searchBoxContainer" (input)="checkInput()">
+        </div>
+        <div class="cardsContainer">
+
+            <button class="cardAdd green" type="button" (click)="routeToReviseDeckPage()">
+                <i class="fa fa-play"> <p>Revise Deck!</p></i>
+            </button>
+            <button class="cardAdd" type="button" (click)="openAddCardMenu()">
+                <i class="fa fa-plus-circle"><p>Add Card</p></i>
+            </button>
+
+            <p *ngFor="let card of filteredCards;">
+                <button class="card">
+                    <div class="porcentagem">{{card.porcentage}}%</div>
+                    <div class="frontName">{{card.frontText}}</div>
+                    <button class="fa fa-trash" (click)="deleteCard(card)"></button>
+                </button>
+            </p>
+        </div>
+    </div>
+    <div class="right">
+        <app-circle [currentPorcentage]="porcentageCircle" [label]="totalPorcentage + ' %'" [absolute]="false"></app-circle>
+        <h1 class="text-align-center">Total porcentage of answers</h1>
+        <p>Total number of revisions: {{currentDeck?.numberOfRevisionsMade}}</p>
+    </div>
+
+</div>
+
+
+
+<div class="createCard" *ngIf="addingNewCard">
+    <app-card-form></app-card-form>
+    <button class="buttonAddCardMenu" (click)="closeAddCardMenu()">Cancel</button>
+</div>
+
+<app-footer></app-footer>

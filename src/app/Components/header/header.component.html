@@ -1,0 +1,32 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@300&display=swap" rel="stylesheet">
+
+<div class="Header bg-color-primary">
+
+    <h1><a class="main-link" routerLink="" routerLinkActive="activeLink">Memorizer Kanji</a></h1>
+
+    <ol class="Options">
+        <a class="option-link m-r-lg">
+            Decks
+        </a>
+
+        <a class="option-link m-r-lg">
+            Revision
+        </a>
+
+        <a class="option-link m-r-lg" routerLink="Writing" routerLinkActive="activeLink">
+            Writing
+        </a>
+
+        <li>
+            <button class="option" (click)="kanjiService.toggleKatakana()" [ngClass]="{'activeKanaButton': kanjiService.isUsingKatakana() == true}">
+            <i class="fa fa-star" [ngClass]="{'activeKanaStar' : kanjiService.isUsingKatakana() == true}"></i>
+            Hiragana
+            </button>
+        </li>
+    </ol>
+</div>

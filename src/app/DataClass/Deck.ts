@@ -69,4 +69,13 @@ export class Deck{
         localStorage.setItem(this.id.toString() + "biggestCardId", this.currentBiggestCardId.toString());
         return this.currentBiggestCardId;
     }
+
+    public getMediumPerfomanceOnDeck(){
+    let median = 0;
+    for(let index = 0; index < this.cards.length; index++){
+      median += this.cards[index].porcentage;
+    }
+    median = median/this.cards.length;
+    return median;
+    }
 }

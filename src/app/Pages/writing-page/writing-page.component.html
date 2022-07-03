@@ -1,0 +1,30 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+<app-header></app-header>
+<div class="full-width">
+    <div class="mainPage m-1 flex">
+
+        <div class="entradas-de-texto m-r-md">
+            <div *ngFor="let entradaDeTexto of EntradasDeTexto; let i = index">
+                <button [class]="(entradaDeTexto.selected ? 'selected ' : '') + ' full-width btn-primary btn-color-secunday'" (click)="selecionarEntradaDeTexto(i)"><i class="fa fa-book"></i>Entrada {{i}}</button>
+            </div>
+            <button class="full-width btn-primary" (click)="createNewEntry()"><i class="fa fa-arrow-down"></i>New Entry</button>
+        </div>
+
+        <div class="full-width">
+            <div class="opcoes middle end">
+                <div *ngFor="let opcao of options; let i = index" [class]="(opcao.active ? 'bg-color-active ' : 'bg-color-primary ') +' opcao box-small '" (click)="opcao.active = !opcao.active">
+                    <span [class]="opcao.icon + ' color-contrast '"></span>
+                </div>
+            </div>
+            <textarea class="area-de-escrita p-2 text-md full-width" id="wanakana-input"></textarea>
+
+        </div>
+
+    </div>
+    <div class="footerContainer">
+        <app-footer></app-footer>
+    </div>
+</div>

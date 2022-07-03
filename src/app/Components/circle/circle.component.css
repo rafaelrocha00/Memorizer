@@ -1,0 +1,18 @@
+#label {
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.4rem;
+}
+
+.absolute-center {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.big {
+    transform: scale(1.6);
+}

@@ -1,0 +1,18 @@
+<form #myForm="ngForm" class="form-card" [formGroup]="formCard" (ngSubmit)="onSubmit()">
+
+    <div class="PrimeiroBloco">
+        <label for="FrontText"><p>Kanji:</p></label>
+        <input type="text" name="FrontText" id="FrontText" class="TextoInput" placeholder="日本語" formControlName="frontText" required minlength="1">
+    </div>
+    <div class="SegundoBlock">
+        <label for="BackText"><p>Reading:</p></label>
+        <input type="text" name="BackText" id="BackText" class="TextoInput" placeholder="にほんご" formControlName="backText" required minlength="1">
+    </div>
+    <div class="Aviso" *ngIf="!myForm.form.valid">
+        <p>Fill all fields.</p>
+        <p>You can separete readings with a comma.</p>
+    </div>
+    <div class="BotoesCentrais">
+        <button type="submit" [disabled]="!myForm.form.valid" class="BotaoGrande">Adicionar</button>
+    </div>
+</form>

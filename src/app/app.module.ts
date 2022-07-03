@@ -5,16 +5,20 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { MainPageComponent } from './main-page/main-page.component';
-import { CreateCardPageComponent } from './create-card-page/create-card-page.component';
-import { CardFormComponent } from './card-form/card-form.component';
-import { ReviseDeckPageComponent } from './revise-deck-page/revise-deck-page.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { DeckComponent } from './deck/deck.component';
-import { BotaoAdicionarDeckComponent } from './botao-adicionar-deck/botao-adicionar-deck.component';
-import { ManageDeckPageComponent } from './manage-deck-page/manage-deck-page.component';
+import { MainPageComponent } from './Pages/main-page/main-page.component';
+import { CreateCardPageComponent } from './Pages/create-card-page/create-card-page.component';
+import { CardFormComponent } from './Components/card-form/card-form.component';
+import { ReviseDeckPageComponent } from './Pages/revise-deck-page/revise-deck-page.component';
+import { HeaderComponent } from './Components/header/header.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { DeckComponent } from './Components/deck/deck.component';
+import { BotaoAdicionarDeckComponent } from './Components/botao-adicionar-deck/botao-adicionar-deck.component';
+import { ManageDeckPageComponent } from './Pages/manage-deck-page/manage-deck-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CircleComponent } from './Components/circle/circle.component';
+import { SwitchComponent } from './switch/switch.component';
+import { WritingPageComponent } from './Pages/writing-page/writing-page.component';
+import { MarkdownInputComponent } from './markdown-input/markdown-input.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     DeckComponent,
     BotaoAdicionarDeckComponent,
-    ManageDeckPageComponent
+    ManageDeckPageComponent,
+    CircleComponent,
+    SwitchComponent,
+    WritingPageComponent,
+    MarkdownInputComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,7 @@
-// Arrumar dois botoes
-// Texto de explicação
-// Diferença de tempo
-// Guardar erros
-// Editar cartas
+// Melhorar UI
+// Tela de pesquisa de Kanji
+// Digitação e guardar Texto
+// Favoritar Kanjis
+// Anki style Memorizer
+
+// Guardar data em servidor
