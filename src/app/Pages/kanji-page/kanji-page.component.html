@@ -1,0 +1,53 @@
+<app-header></app-header>
+<div class="page m-1 full-screen">
+    <div class="flex h-lg m-b-md">
+        <div class="kanjiSpace full-height">
+            夜
+        </div>
+        <div class="left-side full-width full-height flex column">
+            <div class="title full-width m-b-md">
+                Night
+            </div>
+            <div class="info-box full-width flex space-between">
+                <div class="ms-1 mt-2 flex column">
+                    <div class="m-b-sm">
+                        <span class="main">Onyomi:</span>
+                        <span class="info"> Yoru</span>
+                    </div>
+                    <div class="m-b-lg">
+                        <span class="main">Nonyomi:</span>
+                        <span class="info"> Yoru</span>
+                    </div>
+                    <div class="m-b-sm">
+                        <span class="main">Revisões:</span>
+                        <span class="info"> 10</span>
+                    </div>
+                    <div class="m-b-sm">
+                        <span class="main">Acertos:</span>
+                        <span class="info"> 1</span>
+                    </div>
+                    <div>
+                        <span class="main">Erros:</span>
+                        <span class="info"> 9</span>
+                    </div>
+                </div>
+
+                <div class="flex align m-r-big">
+                    <div class="circle relative">
+                        <app-circle [absolute]="true"></app-circle>
+                        <div>20% </div>
+                    </div>
+                    <div>Grade: 3</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-width full-height box-sugestao">
+        <div class="full-width sugestao" *ngFor="let sugestao of sugestoes; let i = index">
+            {{sugestao.nome}}
+        </div>
+    </div>
+
+</div>
+<app-footer></app-footer>

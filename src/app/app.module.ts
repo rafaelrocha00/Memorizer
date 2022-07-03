@@ -20,6 +20,7 @@ import { SwitchComponent } from './switch/switch.component';
 import { WritingPageComponent } from './Pages/writing-page/writing-page.component';
 import { MarkdownInputComponent } from './markdown-input/markdown-input.component';
 import { BInputComponent } from './Components/b-input/b-input.component';
+import { KanjiPageComponent } from './Pages/kanji-page/kanji-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { BInputComponent } from './Components/b-input/b-input.component';
     SwitchComponent,
     WritingPageComponent,
     MarkdownInputComponent,
-    BInputComponent
+    BInputComponent,
+    KanjiPageComponent
   ],
   imports: [
     BrowserModule,

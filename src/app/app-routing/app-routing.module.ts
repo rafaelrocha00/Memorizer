@@ -5,6 +5,7 @@ import { MainPageComponent } from '../Pages/main-page/main-page.component';
 import { ManageDeckPageComponent } from '../Pages/manage-deck-page/manage-deck-page.component';
 import { ReviseDeckPageComponent } from '../Pages/revise-deck-page/revise-deck-page.component';
 import { WritingPageComponent } from '../Pages/writing-page/writing-page.component';
+import { KanjiPageComponent } from '../Pages/kanji-page/kanji-page.component';
 
 const routes: Routes = [
 {
@@ -26,6 +27,10 @@ const routes: Routes = [
 {
   path: 'Writing',
   component: WritingPageComponent
+},
+{
+  path: 'kanji',
+  component: KanjiPageComponent
 }
 ];
 

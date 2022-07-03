@@ -3,7 +3,7 @@
     <div class="flex column relative">
         <input id="db-input-field" (input)="onChangeEmit($event)" class="h-m m-r-md full-width" type="text">
         <div *ngIf="options" class="db-option-box">
-            <div *ngFor="let option of options" class="db-option">
+            <div *ngFor="let option of options; let i = index" class="db-option" (click)="onClickOption(i)">
                 <span> {{option.nome}}</span>
             </div>
         </div>

@@ -54,6 +54,30 @@
     margin: 32px;
 }
 
+.child-mb>* {
+    margin: 8px 0;
+}
+
+.mt-1 {
+    margin-top: 38px;
+    margin-bottom: 38px;
+}
+
+.mt-2 {
+    margin-top: 28px;
+    margin-bottom: 28px;
+}
+
+.ms-1 {
+    margin-left: 38px;
+    margin-right: 38px;
+}
+
+.ms-0 {
+    margin-left: 72px;
+    margin-right: 72px;
+}
+
 .p-1 {
     padding: 32px;
 }
@@ -66,8 +90,17 @@
     font-size: 28px;
 }
 
+.text-b {
+    font-weight: bold;
+}
+
 .full-width {
     width: 100%;
+    box-sizing: border-box;
+}
+
+.full-height {
+    height: 100%;
     box-sizing: border-box;
 }
 
@@ -134,10 +167,39 @@
     margin-bottom: 1px;
 }
 
+.m-b-sm {
+    margin-bottom: 8px;
+}
+
+.m-b-md {
+    margin-bottom: 24px;
+}
+
+.m-b-lg {
+    margin-bottom: 40px;
+}
+
 .h-m {
     height: 40px;
 }
 
 .w-md {
     width: 100px;
+}
+
+.flex-h {
+    flex: 1;
+}
+
+.test {
+    background-color: red;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.align {
+    flex-direction: column;
+    align-items: center;
 }

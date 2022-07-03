@@ -60,9 +60,9 @@ export class BInputComponent implements OnInit {
     this.inputElement.value = wanakana.toRomaji(this.inputElement.value);
   }
 
-  @HostListener('document:click')
-  clickout() {
-    this.options = []
+  onClickOption(i : number){
+    console.log('click')
+    this.options[i].onClick()
   }
 
 }
