@@ -1,5 +1,5 @@
-<button (click)="onClick()" type="button" class="Container bg-color-secondary">
+<button (click)="onClick()" type="button" [class]="'Container bg-color-secondary ' + (breakpoint.mobileBreakpoint ? ' big-deck' : '')">
     <app-circle [currentPorcentage]="perfomanceCircle"></app-circle>
-    <div class="numeroDeCartas">{{numberOfCards}}</div>
-    <div class="nomeDoDeck">{{nameOfDeck}}</div>
+    <div [class]="'numero-carta' + (breakpoint.mobileBreakpoint ? ' numero-carta-lg' : '')">{{numberOfCards}}</div>
+    <div [class]="'nome-deck' + (breakpoint.mobileBreakpoint ? ' nome-deck-lg' : '')">{{nameOfDeck}}</div>
 </button>

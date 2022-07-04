@@ -17,20 +17,34 @@ button:hover {
     cursor: pointer;
 }
 
-.numeroDeCartas {
+.numero-carta {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 2.3rem;
     text-align: center;
     color: #EAF9FF;
     display: block;
-    margin-top: 85px;
+    margin-top: 87px;
 }
 
-.nomeDoDeck {
+.numero-carta-lg {
+    font-size: 2.9rem;
+    margin-top: 100px;
+}
+
+.nome-deck {
     font-family: 'Archivo', sans-serif;
     font-size: 1.3rem;
     text-align: center;
     width: 100%;
     margin-top: 70px;
     color: #EAF9FF;
+}
+
+.nome-deck-lg {
+    font-size: 1.8rem;
+}
+
+.big-deck {
+    width: 280px;
+    height: 415px;
 }

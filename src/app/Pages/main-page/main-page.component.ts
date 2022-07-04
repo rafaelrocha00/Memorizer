@@ -4,6 +4,7 @@ import { Card } from '../../DataClass/Card';
 import { Deck } from '../../DataClass/Deck';
 import { CircleComponent } from 'src/app/Components/circle/circle.component';
 import { DeckService } from 'src/app/Services/deck.service';
+import { BreakpointService } from 'src/app/Services/breakpoint.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { DeckService } from 'src/app/Services/deck.service';
 export class MainPageComponent implements OnInit {
 
   decks : Deck[];
-  constructor(private deckService: DeckService, private router: Router) {
+  constructor(private deckService: DeckService, private router: Router, public breakpoint : BreakpointService) {
     this.decks = [];
   }
 
@@ -30,7 +31,7 @@ export class MainPageComponent implements OnInit {
 
   public selectDeck(deck: Deck){
     this.deckService.setCurrentDeck(deck);
-    this.router.navigate(['manageDeck']);
+    this.router.navigateByUrl('manageDeck/' + deck.id);
   }
 
 }

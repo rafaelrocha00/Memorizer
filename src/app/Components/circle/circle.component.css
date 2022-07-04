@@ -14,5 +14,9 @@
 }
 
 .big {
-    transform: scale(1.6);
+    transform: scale(0.9);
+}
+
+.small {
+    transform: scale(0.8);
 }

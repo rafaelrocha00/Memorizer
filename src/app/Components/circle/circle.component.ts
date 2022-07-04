@@ -9,6 +9,7 @@ export class CircleComponent implements OnInit {
   @Input() currentPorcentage : number[] = [0,0];
   @Input() label : String | undefined;
   @Input() absolute: boolean = true;
+  @Input() small: boolean = false;
 
   constructor() { }
 

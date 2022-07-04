@@ -2,16 +2,11 @@ html {
     height: 100%;
 }
 
-.container {
-    display: flex;
-}
-
-.left {
+.half-width {
     width: 50%;
 }
 
 .right {
-    width: 50%;
     font-family: 'Archivo', sans-serif;
     color: rgb(99, 99, 105);
 }
@@ -103,6 +98,7 @@ input:focus {
     height: 50px;
     text-decoration: none;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .card:hover {
@@ -136,6 +132,7 @@ input:focus {
 .cardAdd {
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: #373a61;
     border: none;
     color: white;
@@ -144,13 +141,19 @@ input:focus {
     text-decoration: none;
     font-size: 16px;
     cursor: pointer;
+    padding: 0 0px;
 }
 
 .cardAdd p {
     font-family: 'Archivo', sans-serif;
     font-weight: lighter;
     font-size: 1.4rem;
-    margin-left: 25px;
+    margin-left: 10px;
+    font-weight: 600;
+}
+
+.cardAdd span {
+    font-size: 1.6rem;
 }
 
 .cardAdd:hover {

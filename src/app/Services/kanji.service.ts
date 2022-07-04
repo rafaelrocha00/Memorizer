@@ -40,8 +40,9 @@ export class KanjiService {
     return this.http.get<Kanji>(urlToUse).pipe(map((kanji: Kanji) => this.kanjiToCard(kanji)));
   }
 
-  public getDataFromGradeFile(grade : string) : Observable<string>{
-    return this.http.get('assets/' + grade, {responseType: 'text'});
+  public async getDataFromGradeFile(grade : string) : Promise<string>{
+    const result = await fetch('assets/' + grade)
+    return await result.text();
   }
 
   public kanjiToCard(kanji : Kanji): Card {

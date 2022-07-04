@@ -21,6 +21,7 @@ import { WritingPageComponent } from './Pages/writing-page/writing-page.componen
 import { MarkdownInputComponent } from './markdown-input/markdown-input.component';
 import { BInputComponent } from './Components/b-input/b-input.component';
 import { KanjiPageComponent } from './Pages/kanji-page/kanji-page.component';
+import { BreakpointComponentComponent } from './breakpoint-component/breakpoint-component.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { KanjiPageComponent } from './Pages/kanji-page/kanji-page.component';
     WritingPageComponent,
     MarkdownInputComponent,
     BInputComponent,
-    KanjiPageComponent
+    KanjiPageComponent,
+    BreakpointComponentComponent
   ],
   imports: [
     BrowserModule,

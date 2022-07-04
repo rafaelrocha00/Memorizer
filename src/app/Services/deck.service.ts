@@ -34,7 +34,7 @@ export class DeckService {
   }
 
   shouldImportDecks() : boolean{
-    return this.decks.length < 6;
+    return !this.decks.length;
   }
 
   public getDeck(index : number){
@@ -46,6 +46,26 @@ export class DeckService {
 
     return this.decks[index];
   }
+
+  public async getDeckById(id : number) : Promise<Deck | null> {
+    if(this.shouldImportDecks()){
+      await this.importGradeDecks()
+      console.log("Decks on memory: " + this.decks.length);
+    }
+    
+    for (let i = 0; i < this.decks.length; i++) {
+      const element = this.decks[i];
+      if(element.id != id) {
+        continue;
+      }
+      
+      console.log('returning ' + element.id)
+      return element;
+    }
+
+    return null
+  }
+
 
   public canGetDeck(){
     return this.decks.length > 0;
@@ -59,6 +79,8 @@ export class DeckService {
         this.currentDeck = +currentDeckInSave;
       }
     }
+
+    return this.currentDeck
   }
 
   public getCurrentDeck(){
@@ -66,25 +88,26 @@ export class DeckService {
     return this.getDeck(this.currentDeck);
   }
 
-  public getCurrentDeckAsynch() : Observable<Deck>{
+  public async getCurrentDeckAsync() : Promise<Deck>{
     this.getCurrentDeckIdFromMemory();
     let kanjiFileToGet = this.currentDeck + 1;
-    return this.kanjiService.getDataFromGradeFile('KanjiGrade'+ kanjiFileToGet +'.csv').pipe(map(x => this.generateDeck(x, kanjiFileToGet, "Deck 1")));
+    const text = await this.kanjiService.getDataFromGradeFile('KanjiGrade' + kanjiFileToGet + '.csv');
+    const deck = this.generateDeck(text, kanjiFileToGet, "Deck 1")
+    return deck;
   }
 
-  importGradeDecks() : void{
+  async importGradeDecks() : Promise<void>{
     console.log("Getting all decks");
-    this.kanjiService.getDataFromGradeFile('KanjiGrade1.csv').subscribe(x => this.generateDeck(x, 1, "Grade 1"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade2.csv').subscribe(x => this.generateDeck(x, 2, "Grade 2"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade3.csv').subscribe(x => this.generateDeck(x, 3, "Grade 3"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade4.csv').subscribe(x => this.generateDeck(x, 4, "Grade 4"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade5.csv').subscribe(x => this.generateDeck(x, 5, "Grade 5"));
-    this.kanjiService.getDataFromGradeFile('KanjiGrade6.csv').subscribe(x => this.generateDeck(x, 6, "Grade 6"));
+    for (let index = 1; index <= 6; index++) {
+      const deck = await this.kanjiService.getDataFromGradeFile('KanjiGrade' + index + '.csv')
+      this.generateDeck(deck, index, "Grade " + index)
+    }
   }
 
   generateDeck(deck : string, id : number, name :string) : Deck{
     let deckFromCsv : Deck = this.csvToKanjiDeck(id, deck);
     deckFromCsv.name = name;
+    deckFromCsv.id = id;
     this.decks.push(deckFromCsv);
     return deckFromCsv;
   }

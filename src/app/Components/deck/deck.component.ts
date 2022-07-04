@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { BreakpointService } from 'src/app/Services/breakpoint.service';
 import { Deck } from '../../DataClass/Deck';
 import { CircleComponent } from '../circle/circle.component';
 
@@ -14,7 +15,9 @@ export class DeckComponent implements OnInit {
 
   numberOfCards : number = 0;
   nameOfDeck : string = "";
-  perfomanceCircle : number[] = [0, 0]
+  perfomanceCircle : number[] = [0, 100]
+
+  constructor(public breakpoint : BreakpointService) {}
 
   ngOnInit(): void {
     if(this.associatedDeck == undefined)return;

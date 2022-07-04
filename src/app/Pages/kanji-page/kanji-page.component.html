@@ -1,14 +1,14 @@
 <app-header></app-header>
 <div class="page m-1 full-screen">
-    <div class="flex h-lg m-b-md">
-        <div class="kanjiSpace full-height">
+    <div [class]="(breakpoint.mobileBreakpoint ? 'flex column full-width m-b-md ' : 'flex ') + 'h-lg m-b-md'">
+        <div [class]="' kanjiSpace full-height ' + (breakpoint.mobileBreakpoint ? ' full-width ' : ' third-width') ">
             {{kanji}}
         </div>
         <div class="left-side full-width full-height flex column">
-            <div class="title full-width m-b-md">
+            <div [class]="'full-width m-b-md ' + (breakpoint.mobileBreakpoint ? ' text-align-center p-b-md text-b text-md m-t-sm' : ' title')">
                 Night
             </div>
-            <div class="info-box full-width flex space-between">
+            <div [class]="'info-box full-width flex ' + (breakpoint.mobileBreakpoint ? ' column' : ' align-all space-between full-height')">
                 <div class="ms-1 mt-2 flex column">
                     <div class="m-b-sm">
                         <span class="main">Onyomi:</span>
@@ -32,8 +32,8 @@
                     </div>
                 </div>
 
-                <div class="flex align m-r-big">
-                    <div class="circle relative">
+                <div [class]="'flex align ' + (breakpoint.mobileBreakpoint ? '' : 'm-r-big')">
+                    <div [class]="breakpoint.mobileBreakpoint ? 'circle-mobile relative' : 'circle relative'">
                         <app-circle [absolute]="true"></app-circle>
                         <div>20% </div>
                     </div>

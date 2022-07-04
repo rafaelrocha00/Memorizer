@@ -13,7 +13,7 @@ const routes: Routes = [
   component: MainPageComponent
 },
 {
-  path: 'manageDeck',
+  path: 'manageDeck/:id',
   component: ManageDeckPageComponent
 },
 {

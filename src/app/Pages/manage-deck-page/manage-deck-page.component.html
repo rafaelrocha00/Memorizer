@@ -1,25 +1,27 @@
 <app-header></app-header>
 
-<div class="container">
-    <div class="left">
-        <div class="deckName">Deck Kanji - Readings</div>
+<div [class]="breakpoint.mobileBreakpoint ? 'flex align-inverse m-t-lg' : 'flex'">
+    <div [class]="breakpoint.mobileBreakpoint ? '' : 'half-width'">
+        <div [class]="(breakpoint.mobileBreakpoint ? 'text-align-center ' : '') + 'deckName'">Deck Kanji - Readings</div>
         <div class="searchBarContainer">
             <div class="iconContainer">
                 <i class="fa fa-search"></i>
             </div>
             <input type="text" placeholder="Search Card" id="searchBoxContainer" (input)="checkInput()">
         </div>
-        <div class="cardsContainer">
+        <div [class]="breakpoint.mobileBreakpoint ? 'm-t-lg' : 'cardsContainer'">
 
             <button class="cardAdd green" type="button" (click)="routeToReviseDeckPage()">
-                <i class="fa fa-play"> <p>Revise Deck!</p></i>
+                <span class="fa fa-play"></span>
+                <p>Revise Deck!</p>
             </button>
             <button class="cardAdd" type="button" (click)="openAddCardMenu()">
-                <i class="fa fa-plus-circle"><p>Add Card</p></i>
+                <span class="fa fa-plus-circle"></span>
+                <p>Add Card</p>
             </button>
 
             <p *ngFor="let card of filteredCards;">
-                <button class="card">
+                <button class="card" (click)="routeService.navigateByUrl('kanji/' + card.frontText)">
                     <div class="porcentagem">{{card.porcentage}}%</div>
                     <div class="frontName">{{card.frontText}}</div>
                     <button class="fa fa-trash btn-danger" (click)="deleteCard(card)"></button>
@@ -27,10 +29,10 @@
             </p>
         </div>
     </div>
-    <div class="right">
+    <div [class]="'right ' + (breakpoint.mobileBreakpoint ? 'full-width' : 'half-width')">
         <app-circle [currentPorcentage]="porcentageCircle" [label]="totalPorcentage + ' %'" [absolute]="false"></app-circle>
         <h1 class="text-align-center">Total porcentage of answers</h1>
-        <p>Total number of revisions: {{currentDeck?.numberOfRevisionsMade}}</p>
+        <p [class]="breakpoint.mobileBreakpoint ? 'text-align-center' : ''">Total number of revisions: {{currentDeck?.numberOfRevisionsMade}}</p>
     </div>
 
 </div>

@@ -5,11 +5,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@300&display=swap" rel="stylesheet">
 
-<div class="Header bg-color-primary">
+<div [class]="'Header bg-color-primary ' + (breakpoint.mobileBreakpoint ? ' sticky' : '')">
 
     <h1><a class="main-link" routerLink="" routerLinkActive="activeLink">Memorizer Kanji</a></h1>
 
-    <ol class="options">
+    <ol class="options" *ngIf="!breakpoint.mobileBreakpoint">
         <app-b-input icon="fa fa-search" (onChange)="searchCards($event)" [options]="kanjiReadings"></app-b-input>
 
         <a class="option-link m-r-lg">
@@ -31,4 +31,17 @@
             </button>
         </li>
     </ol>
+    <div *ngIf="breakpoint.mobileBreakpoint" class="flex">
+        <button class="box-small">
+            <span class="fa fa-search text-md"></span>
+        </button>
+        <div class="secondary-menu-mobile" *ngIf="mobileSecondaryMenuActive">
+            <a>Decks</a>
+            <a>Revision</a>
+            <a>Writing</a>
+        </div>
+        <button class="box-small" (click)="mobileSecondaryMenuActive = !mobileSecondaryMenuActive">
+            <span class="fas fa-angles-right text-md"></span>
+        </button>
+    </div>
 </div>

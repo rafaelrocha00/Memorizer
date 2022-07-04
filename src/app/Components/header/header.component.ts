@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { DeckService } from 'src/app/Services/deck.service';
 import { KanjiService } from '../../Services/kanji.service';
 import { DropdownOption } from 'src/app/DataClass/DropdownOption';
 import { Router } from '@angular/router';
+import { BreakpointService } from 'src/app/Services/breakpoint.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,9 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   kanjiReadings : DropdownOption[] = []
-  constructor(public kanjiService : KanjiService, private deckService : DeckService, private router: Router) { }
+  mobileSecondaryMenuActive : boolean = false
+  
+  constructor(public kanjiService : KanjiService, private deckService : DeckService, private router: Router, public breakpoint : BreakpointService) { }
 
   ngOnInit(): void {
 
