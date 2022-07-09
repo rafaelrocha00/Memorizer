@@ -22,6 +22,7 @@ import { MarkdownInputComponent } from './markdown-input/markdown-input.componen
 import { BInputComponent } from './Components/b-input/b-input.component';
 import { KanjiPageComponent } from './Pages/kanji-page/kanji-page.component';
 import { BreakpointComponentComponent } from './breakpoint-component/breakpoint-component.component';
+import { ModalComponent } from './Components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { BreakpointComponentComponent } from './breakpoint-component/breakpoint-
     MarkdownInputComponent,
     BInputComponent,
     KanjiPageComponent,
-    BreakpointComponentComponent
+    BreakpointComponentComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

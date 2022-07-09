@@ -259,3 +259,7 @@
 .btn-danger {
     cursor: pointer;
 }
+
+.min-h-lg{
+    min-height: 80vh;
+}
