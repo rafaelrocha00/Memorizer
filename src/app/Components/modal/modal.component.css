@@ -1,0 +1,50 @@
+.background {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(69, 99, 125, 0.389);
+}
+
+.container {
+    overflow: hidden;
+    border-radius: 16px;
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    height: 60%;
+}
+
+.title-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: -20px;
+    width: 100%;
+    height: 65px;
+    background-color: rgb(225, 233, 240);
+}
+
+.title-box-elements {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 94%;
+    height: 100%;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.exit {
+    cursor: pointer;
+    color: #ff948a;
+    font-size: 1.8rem;
+}

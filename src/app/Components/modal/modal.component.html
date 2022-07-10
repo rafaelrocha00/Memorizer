@@ -1,4 +1,11 @@
-<div class="background"></div>
-<div class="container">
-    <ng-content></ng-content>
+<div *ngIf="show" class="background">
+    <div class="container">
+        <div class="title-box">
+            <div class="title-box-elements">
+                <div class="title">Modal Generico(Tm)</div>
+                <div class="fa fa-xmark exit"></div>
+            </div>
+        </div>
+        <ng-content></ng-content>
+    </div>
 </div>

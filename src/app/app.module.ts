@@ -23,6 +23,7 @@ import { BInputComponent } from './Components/b-input/b-input.component';
 import { KanjiPageComponent } from './Pages/kanji-page/kanji-page.component';
 import { BreakpointComponentComponent } from './breakpoint-component/breakpoint-component.component';
 import { ModalComponent } from './Components/modal/modal.component';
+import { ModalAdicionarDeckComponent } from './modal-adicionar-deck/modal-adicionar-deck.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ModalComponent } from './Components/modal/modal.component';
     BInputComponent,
     KanjiPageComponent,
     BreakpointComponentComponent,
-    ModalComponent
+    ModalComponent,
+    ModalAdicionarDeckComponent
   ],
   imports: [
     BrowserModule,
