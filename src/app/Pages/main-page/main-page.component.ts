@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Card } from '../../DataClass/Card';
 import { Deck } from '../../DataClass/Deck';
-import { CircleComponent } from 'src/app/Components/circle/circle.component';
 import { DeckService } from 'src/app/Services/deck.service';
 import { BreakpointService } from 'src/app/Services/breakpoint.service';
 
@@ -15,6 +14,8 @@ import { BreakpointService } from 'src/app/Services/breakpoint.service';
 export class MainPageComponent implements OnInit {
 
   decks : Deck[];
+  showModal: boolean = false;
+
   constructor(private deckService: DeckService, private router: Router, public breakpoint : BreakpointService) {
     this.decks = [];
   }
@@ -23,10 +24,19 @@ export class MainPageComponent implements OnInit {
    this.decks = this.deckService.getAllDecks();
   }
 
-  public addNewDeck(){
-    let deck = new Deck(this.deckService.getNewDeckId(), "Deck");
+  public showModalAddNewDeck(){
+    this.showModal = true
+  }
+
+  public closeModalAddNewDeck(){
+    this.showModal = false
+  }
+
+  public addNewDeck(name: string){
+    let deck = new Deck(this.deckService.getNewDeckId(), name);
     deck.addCard(new Card("日本語", "にほんご"));
     this.decks.push(deck);
+    this.closeModalAddNewDeck()
   }
 
   public selectDeck(deck: Deck){

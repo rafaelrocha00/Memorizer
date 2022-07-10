@@ -1,1 +1,11 @@
-<p>modal-adicionar-deck works!</p>
+<app-modal [show]="show" title="Adicionar Deck" (onClose)="onClose.emit()">
+    <div content class="input-element">
+        <label for="deck-name"><p class="text-md m-b-sm">Name:</p></label>
+        <input [(ngModel)]="deckName" type="text" name="deck-name" id="deck-name" class="input full-width" placeholder="日本語" required minlength="1">
+    </div>
+    <div opcoes>
+        <button class="btn-primary" (click)="addNewDeck()">
+            Criar
+        </button>
+    </div>
+</app-modal>

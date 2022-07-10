@@ -3,7 +3,7 @@
     <p *ngFor="let deck of decks; let i = index">
         <app-deck (ButtonWasClicked)="selectDeck($event)" [associatedDeck]="deck"></app-deck>
     </p>
-    <app-botao-adicionar-deck (ButtonWasClicked)="addNewDeck()"></app-botao-adicionar-deck>
+    <app-botao-adicionar-deck (ButtonWasClicked)="showModalAddNewDeck()"></app-botao-adicionar-deck>
 </div>
-<app-modal></app-modal>
+<app-modal-adicionar-deck [show]="showModal" (onNewDeck)="addNewDeck($event)" (onClose)="closeModalAddNewDeck()"></app-modal-adicionar-deck>
 <app-footer></app-footer>

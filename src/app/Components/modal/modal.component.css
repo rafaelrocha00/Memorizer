@@ -15,7 +15,7 @@
     border-radius: 16px;
     background-color: rgb(255, 255, 255);
     width: 50%;
-    height: 60%;
+    min-height: 35%;
 }
 
 .title-box {
@@ -47,4 +47,21 @@
     cursor: pointer;
     color: #ff948a;
     font-size: 1.8rem;
+}
+
+.opcoes-modal {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+}
+
+.opcoes-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.relative {
+    position: relative;
 }

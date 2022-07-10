@@ -1,11 +1,18 @@
 <div *ngIf="show" class="background">
-    <div class="container">
+    <div class="container relative">
         <div class="title-box">
             <div class="title-box-elements">
-                <div class="title">Modal Generico(Tm)</div>
-                <div class="fa fa-xmark exit"></div>
+                <div class="title">{{title}}</div>
+                <div class="fa fa-xmark exit" (click)="closeModal()"></div>
             </div>
         </div>
-        <ng-content></ng-content>
+        <div class="m-1">
+            <ng-content select="[content]"></ng-content>
+            <div class="opcoes-modal">
+                <div class="opcoes-grid m-1">
+                    <ng-content select="[opcoes]"></ng-content>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
