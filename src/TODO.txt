@@ -1,7 +1,9 @@
-// Melhorar UI
-// Tela de pesquisa de Kanji
-// Digitação e guardar Texto
-// Favoritar Kanjis
-// Anki style Memorizer
-
-// Guardar data em servidor
+// Criar Conta
+// Login
+// Criar Deck - Server
+// Mensagem de resultado de requisição
+// Salvar revisão - Server
+// Modal de Resultado
+// Validação - CSS e Tipo
+// Melhorar tela de Login e Criar Conta
+// Ordem de Revisão

@@ -16,14 +16,16 @@ import { BotaoAdicionarDeckComponent } from './Components/botao-adicionar-deck/b
 import { ManageDeckPageComponent } from './Pages/manage-deck-page/manage-deck-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CircleComponent } from './Components/circle/circle.component';
-import { SwitchComponent } from './switch/switch.component';
+import { SwitchComponent } from './Components/switch/switch.component';
 import { WritingPageComponent } from './Pages/writing-page/writing-page.component';
-import { MarkdownInputComponent } from './markdown-input/markdown-input.component';
+import { MarkdownInputComponent } from './Components/markdown-input/markdown-input.component';
 import { BInputComponent } from './Components/b-input/b-input.component';
 import { KanjiPageComponent } from './Pages/kanji-page/kanji-page.component';
-import { BreakpointComponentComponent } from './breakpoint-component/breakpoint-component.component';
+import { BreakpointComponentComponent } from './Components/breakpoint-component/breakpoint-component.component';
 import { ModalComponent } from './Components/modal/modal.component';
-import { ModalAdicionarDeckComponent } from './modal-adicionar-deck/modal-adicionar-deck.component';
+import { ModalAdicionarDeckComponent } from './Pages/modal-adicionar-deck/modal-adicionar-deck.component';
+import { LoginPageComponent } from './Pages/login-page/login-page.component';
+import { CreateAccountPageComponent } from './Pages/create-account-page/create-account-page.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { ModalAdicionarDeckComponent } from './modal-adicionar-deck/modal-adicio
     KanjiPageComponent,
     BreakpointComponentComponent,
     ModalComponent,
-    ModalAdicionarDeckComponent
+    ModalAdicionarDeckComponent,
+    LoginPageComponent,
+    CreateAccountPageComponent
   ],
   imports: [
     BrowserModule,

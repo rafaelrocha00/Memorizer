@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Card } from '../../DataClass/Card';
 import { Deck } from '../../DataClass/Deck';
 import { DeckService } from 'src/app/Services/deck.service';
 import { BreakpointService } from 'src/app/Services/breakpoint.service';
+import { RequestService } from 'src/app/Services/request.service';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class MainPageComponent implements OnInit {
   decks : Deck[];
   showModal: boolean = false;
 
-  constructor(private deckService: DeckService, private router: Router, public breakpoint : BreakpointService) {
+  constructor(private request: RequestService, private deckService: DeckService, private router: Router, public breakpoint : BreakpointService) {
     this.decks = [];
   }
 
@@ -32,10 +32,9 @@ export class MainPageComponent implements OnInit {
     this.showModal = false
   }
 
-  public addNewDeck(name: string){
+  public async addNewDeck(name: string){
     let deck = new Deck(this.deckService.getNewDeckId(), name);
-    deck.addCard(new Card("日本語", "にほんご"));
-    this.decks.push(deck);
+    await this.request.post('decks', deck)
     this.closeModalAddNewDeck()
   }
 

@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators'
 import { Card } from '../DataClass/Card';
 import { Deck } from '../DataClass/Deck';
 import { KanjiService } from './kanji.service';
+import { RequestService } from './request.service';
 
 
 @Injectable({
@@ -15,7 +16,7 @@ export class DeckService {
   currentDeck : number = -1;
   currentBiggestDeckId : number = 0;
 
-  constructor(private kanjiService : KanjiService) {
+  constructor(private request: RequestService,private kanjiService : KanjiService) {
     let stringId = localStorage.getItem("currentBiggerId");
     if(stringId == undefined){
       this.currentBiggestDeckId = 0;
@@ -41,7 +42,6 @@ export class DeckService {
 
     if(this.shouldImportDecks()){
       this.importGradeDecks()
-      console.log("Decks on memory: " + this.decks.length);
     }
 
     return this.decks[index];
@@ -50,7 +50,6 @@ export class DeckService {
   public async getDeckById(id : number) : Promise<Deck | null> {
     if(this.shouldImportDecks()){
       await this.importGradeDecks()
-      console.log("Decks on memory: " + this.decks.length);
     }
     
     for (let i = 0; i < this.decks.length; i++) {
@@ -97,11 +96,14 @@ export class DeckService {
   }
 
   async importGradeDecks() : Promise<void>{
-    console.log("Getting all decks");
     for (let index = 1; index <= 6; index++) {
       const deck = await this.kanjiService.getDataFromGradeFile('KanjiGrade' + index + '.csv')
       this.generateDeck(deck, index, "Grade " + index)
     }
+
+    const user = sessionStorage.getItem('user_id')
+    const decks : any = this.request.get('decks/user/' + user)
+    console.log(decks)
   }
 
   generateDeck(deck : string, id : number, name :string) : Deck{

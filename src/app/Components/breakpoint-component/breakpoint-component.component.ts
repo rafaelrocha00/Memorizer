@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { BreakpointService } from '../Services/breakpoint.service';
+import { BreakpointService } from '../../Services/breakpoint.service';
 
 @Component({
   selector: 'app-breakpoint-component',

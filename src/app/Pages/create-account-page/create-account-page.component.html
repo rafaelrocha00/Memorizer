@@ -1,0 +1,24 @@
+<div class="background" *ngIf="show">
+    <div class="container">
+        <div class="text-align-center text-md text-b">Create Account</div>
+        <div content class="input-element">
+            <input [(ngModel)]="nome" type="text" name="deck-name" id="deck-name" class="input full-width" placeholder="Nome" required minlength="1">
+        </div>
+
+        <div content class="input-element">
+            <input [(ngModel)]="senha" type="password" name="deck-name" id="deck-name" class="input full-width" placeholder="Senha" required minlength="1">
+        </div>
+
+        <div content class="input-element">
+            <input [(ngModel)]="senhaRepetida" type="password" name="deck-name" id="deck-name" class="input full-width" placeholder="Senha" required minlength="1">
+        </div>
+
+        <button class="btn-primary full-width m-t-md" (click)="createAccount()">
+            Criar conta
+        </button>
+
+        <div class="text-align-center m-t-sm">
+            Ao criar sua conta, você concorda com nossos termos de serviço e termos de privacidade.
+        </div>
+    </div>
+</div>
