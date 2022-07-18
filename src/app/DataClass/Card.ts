@@ -11,9 +11,12 @@ export class Card{
 
      daysUntilItsShowedAgain : number = 5;
 
-    constructor(frontText : string, backText : string){
+    constructor(frontText : string, backText : string, _id: number | null = null){
         this.backText = backText;
         this.frontText = frontText;
+        if(_id){
+          this.id = _id
+        }
      }
 
      public changeDaysUntilCanShowAgain(days: number){
@@ -21,6 +24,7 @@ export class Card{
      }
 
      public setId(id : number){
+          if(this.id) { return }
           this.id = id;
      }
 
@@ -44,20 +48,16 @@ export class Card{
 
      public saveCard(globalId : number){
           localStorage.setItem(globalId + this.id.toString() + "correctAnswers", this.correctAnswers.toString());
-          console.log("Saving card: deckId: " + globalId + " id " + this.id + " " + this.frontText);
      }
 
      public loadCard(globalId : number){
           let correctAnswersSaved = localStorage.getItem(globalId + this.id.toString() + "correctAnswers");
-          console.log("loading: deckId: " + globalId + " id " + this.id + " " + this.frontText);
           if(correctAnswersSaved != undefined){
                this.correctAnswers = +correctAnswersSaved;
                this.updatePorcentage();
-               console.log("loading sucessifull");
                return;
           } 
 
-          console.log("loading card fail. No card with this id found in storage.");
      }
 
 }

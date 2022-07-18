@@ -15,6 +15,7 @@ export class DeckService {
   decks : Deck[] = [];
   currentDeck : number = -1;
   currentBiggestDeckId : number = 0;
+  loaded: boolean = false
 
   constructor(private request: RequestService,private kanjiService : KanjiService) {
     let stringId = localStorage.getItem("currentBiggerId");
@@ -67,14 +68,13 @@ export class DeckService {
 
 
   public canGetDeck(){
-    return this.decks.length > 0;
+    return !this.loaded
   }
 
   public getCurrentDeckIdFromMemory(){
     if(this.currentDeck == -1){
       let currentDeckInSave = localStorage.getItem("currentDeck");
       if(currentDeckInSave != null){
-        console.log("Found deck in memory");
         this.currentDeck = +currentDeckInSave;
       }
     }
@@ -101,9 +101,26 @@ export class DeckService {
       this.generateDeck(deck, index, "Grade " + index)
     }
 
-    const user = sessionStorage.getItem('user_id')
-    const decks : any = this.request.get('decks/user/' + user)
-    console.log(decks)
+    const answer : any = await this.request.get('decks/')
+    const deckArrays = answer.data
+    console.log(deckArrays)
+    for (let i = 0; i < deckArrays.length; i++) {
+      const deck = deckArrays[i];
+      const deckObj = new Deck(deck._id, deck.name)
+      for (let l = 0; l < deck.cards.length; l++) {
+        const card = deck.cards[l];
+        const cardObject = new Card(card.frontText, card.backText, card._id)
+        deckObj.addCard(cardObject)
+      }
+      this.decks.push(deckObj)
+      console.log('pushing new Card')
+    }
+    console.log(deckArrays)
+    this.loaded = true
+  }
+
+  jsonArrayToDeckArray(jsonArry: any){
+
   }
 
   generateDeck(deck : string, id : number, name :string) : Deck{

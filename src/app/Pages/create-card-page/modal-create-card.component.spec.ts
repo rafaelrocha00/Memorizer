@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateCardPageComponent } from './create-card-page.component';
+import { ModalCreateCardComponent } from './modal-create-card.component';
 
 describe('CreateCardPageComponent', () => {
-  let component: CreateCardPageComponent;
-  let fixture: ComponentFixture<CreateCardPageComponent>;
+  let component: ModalCreateCardComponent;
+  let fixture: ComponentFixture<ModalCreateCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateCardPageComponent ]
+      declarations: [ ModalCreateCardComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateCardPageComponent);
+    fixture = TestBed.createComponent(ModalCreateCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

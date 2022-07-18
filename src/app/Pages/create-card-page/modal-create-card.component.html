@@ -1,0 +1,24 @@
+<app-modal [show]="show" title="Adicionar Carta" (onClose)="onClose.emit()">
+    <div content>
+        <form #myForm="ngForm" [formGroup]="formCard">
+
+            <div class="PrimeiroBloco">
+                <label for="FrontText"><p>Kanji:</p></label>
+                <input type="text" name="FrontText" id="FrontText" class="TextoInput" placeholder="日本語" formControlName="frontText" required minlength="1">
+            </div>
+            <div class="SegundoBlock">
+                <label for="BackText"><p>Reading:</p></label>
+                <input type="text" name="BackText" id="BackText" class="TextoInput" placeholder="にほんご" formControlName="backText" required minlength="1">
+            </div>
+            <div class="Aviso" *ngIf="!myForm.form.valid">
+                <p>Fill all fields.</p>
+                <p>You can separete readings with a comma.</p>
+            </div>
+        </form>
+    </div>
+    <div opcoes>
+        <button class="btn-primary" [disabled]="!myForm.form.valid" (click)="addCard()">
+            Criar Carta
+        </button>
+    </div>
+</app-modal>

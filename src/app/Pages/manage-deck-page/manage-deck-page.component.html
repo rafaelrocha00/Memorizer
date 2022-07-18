@@ -38,10 +38,5 @@
 </div>
 
 
-
-<div class="createCard" *ngIf="addingNewCard">
-    <app-card-form></app-card-form>
-    <button class="buttonAddCardMenu" (click)="closeAddCardMenu()">Cancel</button>
-</div>
-
+<app-modal-create-card [show]="addingNewCard" (onClose)="closeAddCardMenu"></app-modal-create-card>
 <app-footer></app-footer>

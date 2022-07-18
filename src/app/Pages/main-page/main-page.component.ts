@@ -35,6 +35,7 @@ export class MainPageComponent implements OnInit {
   public async addNewDeck(name: string){
     let deck = new Deck(this.deckService.getNewDeckId(), name);
     await this.request.post('decks', deck)
+    this.deckService.loaded = false
     this.closeModalAddNewDeck()
   }
 

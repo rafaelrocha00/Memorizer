@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './Pages/main-page/main-page.component';
-import { CreateCardPageComponent } from './Pages/create-card-page/create-card-page.component';
+import { ModalCreateCardComponent } from './Pages/create-card-page/modal-create-card.component';
 import { CardFormComponent } from './Components/card-form/card-form.component';
 import { ReviseDeckPageComponent } from './Pages/revise-deck-page/revise-deck-page.component';
 import { HeaderComponent } from './Components/header/header.component';
@@ -26,12 +26,13 @@ import { ModalComponent } from './Components/modal/modal.component';
 import { ModalAdicionarDeckComponent } from './Pages/modal-adicionar-deck/modal-adicionar-deck.component';
 import { LoginPageComponent } from './Pages/login-page/login-page.component';
 import { CreateAccountPageComponent } from './Pages/create-account-page/create-account-page.component';
+import { ModalResultadoRevisaoComponent } from './Components/modal-resultado-revisao/modal-resultado-revisao.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
-    CreateCardPageComponent,
+    ModalCreateCardComponent,
     CardFormComponent,
     ReviseDeckPageComponent,
     HeaderComponent,
@@ -49,7 +50,8 @@ import { CreateAccountPageComponent } from './Pages/create-account-page/create-a
     ModalComponent,
     ModalAdicionarDeckComponent,
     LoginPageComponent,
-    CreateAccountPageComponent
+    CreateAccountPageComponent,
+    ModalResultadoRevisaoComponent
   ],
   imports: [
     BrowserModule,

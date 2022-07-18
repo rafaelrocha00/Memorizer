@@ -10,6 +10,7 @@ export class CircleComponent implements OnInit {
   @Input() label : String | undefined;
   @Input() absolute: boolean = true;
   @Input() small: boolean = false;
+  @Input() size: number = 1;
 
   constructor() { }
 

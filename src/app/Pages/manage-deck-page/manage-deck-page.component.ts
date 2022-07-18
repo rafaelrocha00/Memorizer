@@ -7,6 +7,7 @@ import { Deck } from '../../DataClass/Deck';
 import { DeckService } from 'src/app/Services/deck.service';
 import { CircleComponent } from 'src/app/Components/circle/circle.component';
 import { BreakpointService } from 'src/app/Services/breakpoint.service';
+import { RequestService } from 'src/app/Services/request.service';
 
 @Component({
   selector: 'app-manage-deck-page',
@@ -27,7 +28,7 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
   totalPorcentage : string = "0";
   porcentageCircle: number[] = [100, 100]
 
-  constructor(private deckService : DeckService, public routeService : Router, private route: ActivatedRoute, public breakpoint : BreakpointService) { 
+  constructor(private request: RequestService, private deckService : DeckService, public routeService : Router, private route: ActivatedRoute, public breakpoint : BreakpointService) { 
     this.currentElementInList = new Card("","");
   }
 
@@ -75,8 +76,10 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
     this.routeService.navigate(["reviseDeck"])
   }
 
-  deleteCard(cardToRemove : Card){
+  async deleteCard(cardToRemove : Card){
     this.currentDeck?.deleteCard(cardToRemove);
+    await this.request.delete('decks/removeCard/' + this.currentDeck?.id + '/' + cardToRemove.id)
+
   }
 
   checkInput(){

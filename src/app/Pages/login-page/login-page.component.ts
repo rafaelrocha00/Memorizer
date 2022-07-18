@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RequestService } from 'src/app/Services/request.service';
 
 @Component({
@@ -10,20 +11,22 @@ export class LoginPageComponent implements OnInit {
 
   nome: string = ''
   senha: string = ''
-  show: boolean = true
 
-  constructor(private requestService: RequestService) { }
+  constructor(private requestService: RequestService, private router: Router) { }
 
   ngOnInit(): void {
+    console.log('login page')
   }
 
   async entrar(){
-    const answer: any = await this.requestService.post('users/login', {name: this.nome, password: this.senha})
+    const answer: any = await this.requestService.post('users/login', {name: this.nome, password: this.senha}).catch(err => {
+      console.log(err)
+      return
+    })
+    if(!answer) { return}
+
     sessionStorage.setItem("user_key", answer.token);
-    sessionStorage.setItem("user_id", answer.userId);
-
-    this.show = false
-
+    this.router.navigate([''])
   } 
 
 }

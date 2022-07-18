@@ -1,6 +1,5 @@
-// Criar Conta
-// Login
 // Criar Deck - Server
+    Número de acertos, Erros e Revisões
 // Mensagem de resultado de requisição
 // Salvar revisão - Server
 // Modal de Resultado

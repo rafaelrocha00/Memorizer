@@ -1,15 +1,15 @@
 <app-header></app-header>
 <div class="containter">
     <div class="mainPage">
-        <div class="currentDeck">    
+        <div class="currentDeck">
             <div class="frontCard">
                 <div class="textBox">
                     <p class="textCard">{{currentFrontText}}</p>
                 </div>
             </div>
-    
-            <div [style.backgroundColor]="backCardColor"  class="backCard">
-                <input type="text" #thisinput class="inputTextBox" id="wanakana-input" name="backCardInput" [(ngModel)]="textInput" (input)="checkInput()" (keydown.enter)="turnCard()"> 
+
+            <div [style.backgroundColor]="backCardColor" class="backCard">
+                <input type="text" #thisinput class="inputTextBox" id="wanakana-input" name="backCardInput" [(ngModel)]="textInput" (input)="checkInput()" (keydown.enter)="turnCard()">
             </div>
         </div>
         <div class="botoesDeCartas">
@@ -18,6 +18,8 @@
             <button class="botaoVirarCarta" [hidden]="!revisionEnded" (click)="changePageToMainPage()">Sair</button>
         </div>
     </div>
+
+    <app-modal-resultado-revisao [show]="true"></app-modal-resultado-revisao>
     <div class="footerContainer">
         <app-footer></app-footer>
     </div>

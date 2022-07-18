@@ -23,9 +23,8 @@ export class CreateAccountPageComponent implements OnInit {
   async createAccount() {
     const answer : any = await this.requestService.post('users/register', {name: this.nome, password: this.senha})
     console.log(answer)
+    
     sessionStorage.setItem("user_key", answer.token);
-    sessionStorage.setItem("user_id", answer.userId);
-
     this.show = false
   }
 
