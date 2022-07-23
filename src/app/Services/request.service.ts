@@ -31,7 +31,7 @@ export class RequestService {
       if(!answer.ok){
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        throw answer.message
+        throw answer
       }
       return answer
 

@@ -1,20 +1,46 @@
-<div class="background">
+<div class="bg">
+    <img src="/assets/Imagens/loginBgImage.png" class="bg-img">
+    <div class="top-bar">
+        <div class="top-bar-itens">
+            <span class="title">Yama</span>
+            <span class="options">
+            </span>
+        </div>
+    </div>
     <div class="container">
-        <div class="text-align-center text-md text-b">Login</div>
-        <div content class="input-element">
-            <input [(ngModel)]="nome" type="text" name="deck-name" id="deck-name" class="input full-width" placeholder="Nome" required minlength="1">
+        <div class="text-align-center text-sm text text-light m-b-md">
+            <i class="fas fa-pen unactive-link"></i> Login
+        </div>
+        <div content class="m-b-ssm">
+            <input (focus)="focusUsername()" [class]="'input full-width relative ' + (usernameIncorrect ? ' input-error ' : '')" [(ngModel)]="nome" type="text" name="deck-name" id="deck-name" placeholder="Digite seu email..." required minlength="1">
+            <i *ngIf="usernameIncorrect" class="fa fa-times icon-append icon-danger"></i>
         </div>
 
         <div content class="input-element">
-            <input [(ngModel)]="senha" type="password" name="deck-name" id="deck-name" class="input full-width" placeholder="Senha" required minlength="1">
+            <input (focus)="focusPassword()" [class]="'input full-width ' + (passwordIncorrect ? ' input-error ' : '')" [(ngModel)]="senha" type="password" name="deck-name" id="deck-name" placeholder="Digite sua senha..." required minlength="4">
+            <i *ngIf="passwordIncorrect" class="fa fa-times icon-append icon-danger"></i>
         </div>
 
-        <button class="btn-primary full-width m-t-md" (click)="entrar()">
+        <button class="btn-primary full-width m-t-ssm" (click)="entrar()">
             Entrar
         </button>
 
-        <div class="text-align-center m-t-sm">
-            Ao entrar, você concorda com nossos termos de serviço e termos de privacidade.
+        <div class="text text-btn text-xs text-align-center m-t-ssm">
+            Esqueci minha senha
+        </div>
+
+        <div class="text text-light full-width flex middle justify-center m-t-ssm">
+            <input type="checkbox">
+            <label class="m-l-sm text-xs">Lembre-se de mim</label>
+        </div>
+
+        <div class="divider m-t-md"></div>
+        <div class="full-width end">
+            <button class="box google-btn-color text text-light text-sm">G</button>
+            <button class="box twitter-btn-color text text-light text-sm">T</button>
+        </div>
+        <div class="text text-light text-xs m-t-super">
+            Don't have an account? <a>Sign Up</a> or <a>Continue without login</a>
         </div>
     </div>
 </div>
