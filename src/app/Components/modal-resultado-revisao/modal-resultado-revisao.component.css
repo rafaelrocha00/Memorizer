@@ -1,0 +1,5 @@
+.result-box {
+    max-height: 300px;
+    overflow: scroll;
+    margin-bottom: 50px;
+}

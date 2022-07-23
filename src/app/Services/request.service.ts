@@ -104,4 +104,36 @@ export class RequestService {
     }
   }
 
+  public async patch(url: string, body: any, headers: any = {}){
+    url = this.serverURL + url 
+
+    const token = sessionStorage.getItem('user_key')
+
+    const options : RequestInit = {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': token || ''
+      },
+      body: JSON.stringify(body) || '',
+      mode: 'cors',
+      cache: 'default'
+    }
+
+    try{
+      let answer = await fetch(url, options)
+      answer = await answer.json();
+      if(!answer.ok){
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        throw answer.message
+      }
+      return answer
+
+    } catch(err) {
+      throw err
+    }
+  }
+
 }

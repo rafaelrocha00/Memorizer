@@ -1,5 +1,5 @@
 <div *ngIf="absolute">
-    <svg [class]="'absolute-center big' + (small ? ' small ': '')" viewBox="0 0 50 46" preserveAspectRatio="none" style="shape-rendering:geometricPrecision; image-rendering:optimizeQuality;">
+    <svg [class]="'absolute-center' + (small ? ' small ': '')" [style]="'transform: scale('+ scale +');'" viewBox="0 0 50 46" preserveAspectRatio="none" style="shape-rendering:geometricPrecision; image-rendering:optimizeQuality;">
         <circle cx="25" cy="23" r="15.9155" fill="none" stroke="#32518B"
             stroke-width="2"
             stroke-dasharray="100, 100" />
@@ -11,7 +11,7 @@
     </svg>
 </div>
 
-<div *ngIf="!absolute">
+<div *ngIf="!absolute" [class]="'transform: scale(0.3);'">
     <svg viewBox="0 0 100 46" preserveAspectRatio="none" style="shape-rendering:geometricPrecision; image-rendering:optimizeQuality;">
         <circle cx="50" cy="23" r="15.9155" fill="none" stroke="#32518B"
             stroke-width="2"

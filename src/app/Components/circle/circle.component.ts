@@ -11,6 +11,7 @@ export class CircleComponent implements OnInit {
   @Input() absolute: boolean = true;
   @Input() small: boolean = false;
   @Input() size: number = 1;
+  @Input() scale: number = 1;
 
   constructor() { }
 

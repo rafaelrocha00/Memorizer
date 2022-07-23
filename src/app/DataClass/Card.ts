@@ -2,12 +2,17 @@
 export class Card{
 
      id : number = 0;
+
      frontText : string;
      backText : string;
 
      porcentage : number = 0;
      porcentageChange : number[] = [0, 30, 70, 100]
      correctAnswers : number = 0;
+
+     revisions: number = 0
+     successes: number = 0
+     mistakes: number = 0
 
      daysUntilItsShowedAgain : number = 5;
 
@@ -33,13 +38,19 @@ export class Card{
                return;
           }
 
-          this.correctAnswers++;
+          this.correctAnswers++
+          this.successes++
+          this.revisions++
           this.updatePorcentage();
      }
 
      public addMistake(){
-          this.correctAnswers = 0;
-          this.updatePorcentage();
+          this.correctAnswers = 0
+
+          this.mistakes++
+          this.revisions++
+          
+          this.updatePorcentage()
      }
 
      public updatePorcentage(){

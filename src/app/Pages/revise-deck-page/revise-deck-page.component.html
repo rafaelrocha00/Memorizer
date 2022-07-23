@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <app-modal-resultado-revisao [show]="true"></app-modal-resultado-revisao>
+    <app-modal-resultado-revisao [show]="showResults" (onClose)="closeResultModal()" (onConclude)="conclude()" (onRetry)="retry()" [deck]="currentDeck"></app-modal-resultado-revisao>
     <div class="footerContainer">
         <app-footer></app-footer>
     </div>

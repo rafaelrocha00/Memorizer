@@ -5,7 +5,7 @@ import { Deck } from '../../DataClass/Deck';
 import { DeckService } from 'src/app/Services/deck.service';
 import * as wanakana from 'wanakana';
 import { KanjiService } from '../../Services/kanji.service';
-import { identifierModuleUrl } from '@angular/compiler';
+import { RequestService } from 'src/app/Services/request.service';
 
 
 @Component({
@@ -31,11 +31,17 @@ export class ReviseDeckPageComponent implements OnInit {
   textInput : string = "";
   inputIsUsingKatakana : boolean = true;
 
-  constructor(private deckService : DeckService, private kanjiService : KanjiService, private routeService : Router) {
+  showResults = false
+
+  constructor(private deckService : DeckService, private kanjiService : KanjiService, private routeService : Router, private request: RequestService) {
     this.currentDeck = this.deckService.getCurrentDeck();
   }
 
   ngOnInit(): void {
+    this.start()
+  }
+
+  start(){
     if(this.currentDeck.getLenght() == 0) return;
 
     this.inputElement = document.getElementById('wanakana-input') as HTMLInputElement;
@@ -61,7 +67,8 @@ export class ReviseDeckPageComponent implements OnInit {
 
       if(this.currentCardId >= this.currentDeck.getLenght()){
         this.revisionEnded = true;
-        this.currentFrontText = "You saw all Cards!";
+        this.openResultModal()
+        this.saveRevisionOnServer()
         return;
       }
 
@@ -138,5 +145,29 @@ export class ReviseDeckPageComponent implements OnInit {
 
   changePageToMainPage(){
     this.routeService.navigate([""]);
+  }
+
+  openResultModal(){
+    this.showResults = true
+  }
+
+  closeResultModal(){
+    this.showResults = false
+    console.log('closing modal')
+  }
+
+  saveRevisionOnServer(){
+    this.request.patch('decks/' + this.currentDeck.id, this.currentDeck)
+  }
+
+  conclude(){
+    this.routeService.navigateByUrl('manageDeck/' + this.currentDeck.id);
+    console.log('concluding')
+  }
+
+  retry(){
+    this.closeResultModal()
+    this.start()
+    console.log('restarting')
   }
 }
