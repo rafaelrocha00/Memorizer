@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
 import { Card } from '../DataClass/Card';
 import { Deck } from '../DataClass/Deck';
 import { KanjiService } from './kanji.service';
@@ -29,41 +27,30 @@ export class DeckService {
 
   public getAllDecks() : Deck[]{
     if(this.shouldImportDecks()){
-      this.importGradeDecks();
+      this.importDecks();
     }
 
     return this.decks;
   }
 
   shouldImportDecks() : boolean{
-    return !this.decks.length;
+    return !this.loaded;
   }
 
   public getDeck(index : number){
-
-    if(this.shouldImportDecks()){
-      this.importGradeDecks()
-    }
-
     return this.decks[index];
   }
 
   public async getDeckById(id : number) : Promise<Deck | null> {
-    if(this.shouldImportDecks()){
-      await this.importGradeDecks()
-    }
     
-    for (let i = 0; i < this.decks.length; i++) {
-      const element = this.decks[i];
-      if(element.id != id) {
-        continue;
-      }
-      
-      console.log('returning ' + element.id)
-      return element;
+    let deck = this.decks.find(x => x.id === id)
+    if(deck){
+      return deck
     }
 
-    return null
+    deck = await this.importDeck(id)
+
+    return deck
   }
 
 
@@ -95,32 +82,46 @@ export class DeckService {
     return deck;
   }
 
-  async importGradeDecks() : Promise<void>{
-    for (let index = 1; index <= 6; index++) {
-      const deck = await this.kanjiService.getDataFromGradeFile('KanjiGrade' + index + '.csv')
-      this.generateDeck(deck, index, "Grade " + index)
-    }
+  createDeck(deck : any) : Deck {
+
+    const deckObj = new Deck(deck._id, deck.name)
+
+    deck.cards.forEach((card: any) => {
+      const cardObject = new Card(card.frontText, card.backText, card.meanings, card._id)
+      deckObj.addCard(cardObject)
+    })
+
+    return deckObj
+  }
+
+  async importDecks() : Promise<void>{
+    this.decks = []
 
     const answer : any = await this.request.get('decks/')
     const deckArrays = answer.data
-    console.log(deckArrays)
+
     for (let i = 0; i < deckArrays.length; i++) {
       const deck = deckArrays[i];
-      const deckObj = new Deck(deck._id, deck.name)
-      for (let l = 0; l < deck.cards.length; l++) {
-        const card = deck.cards[l];
-        const cardObject = new Card(card.frontText, card.backText, card._id)
-        deckObj.addCard(cardObject)
-      }
+      const deckObj = this.createDeck(deck)
       this.decks.push(deckObj)
-      console.log('pushing new Card')
     }
-    console.log(deckArrays)
+
+    this.decks.sort((a, b) => {
+      if(a.id < b.id){
+        return -1
+      }
+
+      return 1
+    } );
+
     this.loaded = true
   }
 
-  jsonArrayToDeckArray(jsonArry: any){
-
+  async importDeck(id : number) : Promise<Deck>{
+    const res : any = await this.request.get('decks/' + id)
+    const deckObj = this.createDeck(res.data[0])
+    this.decks.push(deckObj)
+    return deckObj
   }
 
   generateDeck(deck : string, id : number, name :string) : Deck{
@@ -146,7 +147,7 @@ export class DeckService {
       if(stringSepareted[1] == undefined) continue;
       if(stringSepareted[3] == undefined) continue;
 
-      deck.addCard(new Card(stringSepareted[1], stringSepareted[3]));
+      deck.addCard(new Card(stringSepareted[1], stringSepareted[3], []));
     }
     return deck;
   }

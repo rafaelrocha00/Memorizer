@@ -5,31 +5,34 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@300&display=swap" rel="stylesheet">
 
-<div [class]="'Header bg-color-primary ' + (breakpoint.mobileBreakpoint ? ' sticky' : '')">
+<div [class]="'Header ' + (breakpoint.mobileBreakpoint ? ' sticky' : '')">
 
-    <h1><a class="main-link" routerLink="" routerLinkActive="activeLink">Memorizer Kanji</a></h1>
+    <h1><a class="logo" routerLink="" routerLinkActive="activeLink">
+        Yama</a></h1>
 
     <ol class="options" *ngIf="!breakpoint.mobileBreakpoint">
         <app-b-input icon="fa fa-search" (onChange)="searchCards($event)" [options]="kanjiReadings"></app-b-input>
 
-        <a class="option-link m-r-lg">
-            Decks
-        </a>
+        <div class="option-links">
+            <a class="option-link m-r-lg">
+                Decks
+            </a>
 
-        <a class="option-link m-r-lg">
-            Revision
-        </a>
+            <a class="option-link m-r-lg" routerLink="/Writing" routerLinkActive="activeLink">
+                Writing
+            </a>
 
-        <a class="option-link m-r-lg" routerLink="/Writing" routerLinkActive="activeLink">
-            Writing
-        </a>
+            <div class="user m-l-sm">
+                <i class="">R</i>
+            </div>
 
-        <li>
-            <button class="option" (click)="kanjiService.toggleKatakana()" [ngClass]="{'activeKanaButton': kanjiService.isUsingKatakana() == true}">
-            <i class="fa fa-star" [ngClass]="{'activeKanaStar' : kanjiService.isUsingKatakana() == true}"></i>
-            Hiragana
-            </button>
-        </li>
+            <!-- <li>
+                <button class="option" (click)="kanjiService.toggleKatakana()" [ngClass]="{'activeKanaButton': kanjiService.isUsingKatakana() == true}">
+                <i class="fa fa-star" [ngClass]="{'activeKanaStar' : kanjiService.isUsingKatakana() == true}"></i>
+                Hiragana
+                </button>
+            </li> -->
+        </div>
     </ol>
     <div *ngIf="breakpoint.mobileBreakpoint" class="flex">
         <button class="box-small">

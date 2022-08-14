@@ -4,17 +4,41 @@
     width: 350px;
 }
 
+.db-input-field {
+    border: none;
+    border-radius: 42px;
+}
+
+.bordas {
+    border: 3px solid #a5a4d7;
+}
+
+.db-input-field:focus {
+    outline: none;
+}
+
 .main-bar input[type='text'] {
-    width: 320px;
-    padding-left: 50px;
+    width: 350px;
+    padding-left: 30px;
     font-family: 'Archivo', sans-serif;
 }
 
-.inside-input {
-    color: rgb(40, 39, 42);
-    margin-right: -30px;
+.prepend {
+    color: #cfdfff;
+    height: 34px;
+    width: 30px;
     font-size: 1.3rem;
+    margin-left: -80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 4px solid #e9e9ff;
     z-index: 2;
+    cursor: pointer;
+}
+
+.prepend i {
+    padding-top: 4px;
 }
 
 .db-option-box {

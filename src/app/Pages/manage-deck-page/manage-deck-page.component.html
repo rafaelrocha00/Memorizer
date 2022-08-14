@@ -1,38 +1,69 @@
 <app-header></app-header>
 
-<div [class]="breakpoint.mobileBreakpoint ? 'flex align-inverse m-t-lg' : 'flex'">
-    <div [class]="breakpoint.mobileBreakpoint ? '' : 'half-width'">
-        <div [class]="(breakpoint.mobileBreakpoint ? 'text-align-center ' : '') + 'deckName'">Deck Kanji - Readings</div>
-        <div class="searchBarContainer">
-            <div class="iconContainer">
-                <i class="fa fa-search"></i>
-            </div>
-            <input type="text" placeholder="Search Card" id="searchBoxContainer" (input)="checkInput()">
-        </div>
-        <div [class]="breakpoint.mobileBreakpoint ? 'm-t-lg' : 'cardsContainer'">
+<div [class]="breakpoint.mobileBreakpoint ? 'flex align-inverse m-t-lg' : 'flex m-1'">
 
-            <button class="cardAdd green" type="button" (click)="routeToReviseDeckPage()">
-                <span class="fa fa-play"></span>
-                <p>Revise Deck!</p>
-            </button>
-            <button class="cardAdd" type="button" (click)="openAddCardMenu()">
-                <span class="fa fa-plus-circle"></span>
+    <div [class]="breakpoint.mobileBreakpoint ? '' : 'half-width half-width-gutter'">
+
+        <div [class]="(breakpoint.mobileBreakpoint ? 'text-align-center ' : '') + 'deckName'">{{currentDeck?.name }}</div>
+        <div class="flex m-t-sm">
+            <button class="btn-secundary btn-md m-r-sm" type="button" (click)="openAddCardMenu()">
+                <span class="fa fa-plus-circle m-r-sm"></span>
                 <p>Add Card</p>
             </button>
+            <button class="btn-secundary green-bg full-width" type="button" (click)="routeToReviseDeckPage()">
+                <span class="fa fa-play m-r-sm"></span>
+                <p>Revise Deck!</p>
+            </button>
+        </div>
 
-            <p *ngFor="let card of filteredCards;">
-                <button class="card" (click)="routeService.navigateByUrl('kanji/' + card.frontText)">
-                    <div class="porcentagem">{{card.porcentage}}%</div>
-                    <div class="frontName">{{card.frontText}}</div>
-                    <button class="fa fa-trash btn-danger" (click)="deleteCard(card)"></button>
-                </button>
-            </p>
+        <div [class]="breakpoint.mobileBreakpoint ? 'm-t-lg' : 'cards-container end'">
+            <div class="full-width">
+                <div class="full-width end">
+                    <app-b-input icon="fa fa-search" [bordas]="true" (onChange)="checkInput"></app-b-input>
+                </div>
+                <div *ngFor="let card of filteredCards">
+                    <div class="card-cell flex flex space-between" (click)="routeService.navigateByUrl('kanji/' + card.frontText)">
+                        <div>
+                            <span class="m-r-md">{{card.frontText}}</span>
+                            <span class="m-r-sm">-</span>
+                            <span class="">{{card.meaning[0]}}</span>
+                        </div>
+                        <div>
+                            <span>{{card.porcentage}}%</span>
+                            <button class="m-l-md btn-void green fa fa-arrow-up-right-from-square"></button>
+                            <button class="m-l-md m-r-md btn-void red fa fa-trash-alt"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div [class]="'right ' + (breakpoint.mobileBreakpoint ? 'full-width' : 'half-width')">
-        <app-circle [currentPorcentage]="porcentageCircle" [label]="totalPorcentage + ' %'" [absolute]="false"></app-circle>
-        <h1 class="text-align-center">Total porcentage of answers</h1>
-        <p [class]="breakpoint.mobileBreakpoint ? 'text-align-center' : ''">Total number of revisions: {{currentDeck?.numberOfRevisionsMade}}</p>
+    <div [class]="'right m-t-xd center ' + (breakpoint.mobileBreakpoint ? 'full-width' : 'half-width')">
+        <app-line-chart></app-line-chart>
+        <div class="m-t-md divider-65 m-l-10"></div>
+        <div class="flex align-bottom">
+            <div class="w-60 m-t-lg">
+                <div class="flex">
+                    <div class="cell-title">Total Revisions: </div> <span class="cell-info w-35 end">4</span>
+                </div>
+                <div class="flex">
+                    <div class="cell-title ">Cards to revise: </div> <span class="cell-info w-35 end">4</span>
+                </div>
+                <div class="flex">
+                    <div class="cell-title">Cards to learn: </div> <span class="cell-info w-35 end">4</span>
+                </div>
+            </div>
+            <div>
+                <span class="cell-title m-r-md">Sucess Rate:</span><span class="big-result m-l-sm">A</span>
+            </div>
+        </div>
+        <div class="flex m-t-md">
+            <div class="w-80 m-r-n20">
+                <app-circle [currentPorcentage]="porcentageCircle" [label]="totalPorcentage + ' %'" [absolute]="false"></app-circle>
+            </div>
+            <app-day-chart></app-day-chart>
+        </div>
+
     </div>
 
 </div>

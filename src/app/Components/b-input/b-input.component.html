@@ -1,11 +1,15 @@
 <div class="main-bar">
-    <label [class]="icon + ' inside-input' "></label>
     <div class="flex column relative">
-        <input id="db-input-field" (input)="onChangeEmit($event)" class="h-m m-r-md full-width" type="text">
+        <input id="db-input-field" (input)="onChangeEmit($event)" [class]="'db-input-field h-m m-r-md full-width ' + (bordas ? ' bordas' : '')" type="text">
+
         <div *ngIf="options" class="db-option-box">
             <div *ngFor="let option of options; let i = index" class="db-option" (click)="onClickOption(i)">
                 <span> {{option.nome}}</span>
             </div>
         </div>
     </div>
+    <label class="prepend">
+        <i [class]="icon"></i>
+    </label>
+
 </div>

@@ -6,6 +6,8 @@ export class Card{
      frontText : string;
      backText : string;
 
+     meaning: Array<string>;
+
      porcentage : number = 0;
      porcentageChange : number[] = [0, 30, 70, 100]
      correctAnswers : number = 0;
@@ -16,9 +18,10 @@ export class Card{
 
      daysUntilItsShowedAgain : number = 5;
 
-    constructor(frontText : string, backText : string, _id: number | null = null){
+    constructor(frontText : string, backText : string, meaning: Array<string>, _id: number | null = null){
         this.backText = backText;
         this.frontText = frontText;
+        this.meaning = meaning;
         if(_id){
           this.id = _id
         }

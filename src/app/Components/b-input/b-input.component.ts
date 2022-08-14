@@ -13,7 +13,8 @@ export class BInputComponent implements OnInit {
   inputElement : HTMLInputElement
   inputIsUsingKatakana : boolean = true;
   @Input() icon : string = ''
-  @Input() options : DropdownOption[] = [{nome: 'uor', onClick: () => {}},{nome: 'uor', onClick: () => {}},{nome: 'uor', onClick: () => {}},{nome: 'uor', onClick: () => {}}]
+  @Input() bordas : boolean = false
+  @Input() options : DropdownOption[] = []
   @Output() onChange : EventEmitter<string> = new EventEmitter();
 
   constructor(private kanjiService : KanjiService) { 

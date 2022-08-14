@@ -27,6 +27,8 @@ import { ModalAdicionarDeckComponent } from './Pages/modal-adicionar-deck/modal-
 import { LoginPageComponent } from './Pages/login-page/login-page.component';
 import { CreateAccountPageComponent } from './Pages/create-account-page/create-account-page.component';
 import { ModalResultadoRevisaoComponent } from './Components/modal-resultado-revisao/modal-resultado-revisao.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
+import { DayChartComponent } from './day-chart/day-chart.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { ModalResultadoRevisaoComponent } from './Components/modal-resultado-rev
     ModalAdicionarDeckComponent,
     LoginPageComponent,
     CreateAccountPageComponent,
-    ModalResultadoRevisaoComponent
+    ModalResultadoRevisaoComponent,
+    LineChartComponent,
+    DayChartComponent
   ],
   imports: [
     BrowserModule,

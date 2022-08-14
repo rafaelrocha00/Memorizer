@@ -26,7 +26,7 @@ export class CardFormComponent implements OnInit {
   onSubmit(){
     let currentDeck = this.deckService.getCurrentDeck();
 
-    let card = new Card(this.formCard.controls['frontText'].value, this.formCard.controls['backText'].value);
+    let card = new Card(this.formCard.controls['frontText'].value, this.formCard.controls['backText'].value, []);
     currentDeck.addCard(card);
     this.formCard.reset()
   }

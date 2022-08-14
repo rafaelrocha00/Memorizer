@@ -6,6 +6,10 @@ html {
     width: 50%;
 }
 
+.half-width-gutter {
+    margin-right: 72px;
+}
+
 .right {
     font-family: 'Archivo', sans-serif;
     color: rgb(99, 99, 105);
@@ -26,10 +30,10 @@ html {
 }
 
 .deckName {
-    font-family: 'Archivo', sans-serif;
+    color: #96b9ee;
+    font-family: var(--serif-font);
     font-size: 3rem;
     margin-top: 40px;
-    margin-left: 30px;
     width: 80%;
     padding-bottom: 5px;
     border-bottom: rgba(202, 206, 224, 0.199) solid 2px;
@@ -82,32 +86,31 @@ input:focus {
     outline: thin dotted;
 }
 
-.cardsContainer {
-    width: 80%;
-    margin-top: 200px;
-    margin-left: 30px;
+.cards-container {
+    margin-top: 76px;
 }
 
-.card {
+.card-cell {
     display: flex;
     align-items: center;
-    background-color: #4e539b;
+    font-size: 24px;
+    font-family: var(--serif-font);
     border: none;
-    color: white;
+    border-bottom: 4px solid #e4f1f7;
+    color: #96b9ee;
+    background-color: white;
     width: 100%;
-    height: 50px;
+    height: 56px;
     text-decoration: none;
-    font-size: 16px;
     cursor: pointer;
+}
+
+.card-cell:hover {
+    background-color: #f0f4f8;
 }
 
 .card:hover {
     background-color: rgb(67, 164, 255);
-}
-
-.porcentagem {
-    margin-left: 10px;
-    width: 40px;
 }
 
 .frontName {
@@ -129,19 +132,39 @@ input:focus {
     color: #c76161;
 }
 
-.cardAdd {
+.btn-secundary {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #373a61;
-    border: none;
+    background-color: #65d1ff;
     color: white;
+    border: none;
     width: 100%;
-    height: 50px;
+    height: 68px;
     text-decoration: none;
-    font-size: 16px;
+    font-family: var(--sans-serif-font);
+    border-radius: 22px;
+    font-size: 24px;
     cursor: pointer;
-    padding: 0 0px;
+    padding: 0 20px;
+}
+
+.btn-md {
+    width: 260px;
+}
+
+.btn-lg {
+    width: 348px;
+}
+
+.btn-void {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    width: 25px;
+    height: 35px;
+    font-size: 1.4rem;
+    cursor: pointer;
 }
 
 .cardAdd p {
@@ -217,10 +240,36 @@ input:focus {
     justify-content: center;
 }
 
+.green-bg {
+    background-color: #65ffa3;
+}
+
 .green {
-    background-color: rgb(23, 156, 78);
+    color: #65ffa3;
 }
 
 .green:hover {
-    background-color: rgb(92, 218, 75)
+    color: #5cda4b;
+}
+
+.red {
+    color: #FF6363;
+}
+
+.red:hover {
+    color: #4c2929;
+}
+
+.green-bg:hover {
+    background-color: #5cda4b
+}
+
+.cell-title {
+    font-weight: 600;
+    font-size: 24px;
+    width: 50%;
+}
+
+.cell-info {
+    width: 3%;
 }

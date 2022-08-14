@@ -46,7 +46,7 @@ export class KanjiService {
   }
 
   public kanjiToCard(kanji : Kanji): Card {
-    return new Card(kanji.kanji, kanji.kun_readings[0]);
+    return new Card(kanji.kanji, kanji.kun_readings[0],[kanji.meaning]);
   } 
 
   public ListOfKanjiToCards(Kanjis : Kanji[]) : Card[]{

@@ -61,6 +61,7 @@ export class RequestService {
     try{
       let answer = await fetch(url, options)
       answer = await answer.json();
+
       if(!answer.ok){
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore

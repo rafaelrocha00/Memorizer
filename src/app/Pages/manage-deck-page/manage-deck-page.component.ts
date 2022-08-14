@@ -29,7 +29,7 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
   porcentageCircle: number[] = [100, 100]
 
   constructor(private request: RequestService, private deckService : DeckService, public routeService : Router, private route: ActivatedRoute, public breakpoint : BreakpointService) { 
-    this.currentElementInList = new Card("","");
+    this.currentElementInList = new Card("","",[]);
   }
 
   ngOnInit(): void {
@@ -45,7 +45,6 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
   }
 
   async setDeck(id: number){
-    console.log(id)
     const newDeck = await this.deckService.getDeckById(id);
     if(!newDeck) {
       console.error('deck ' + id + ' was not found on system');
@@ -53,7 +52,6 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
     }
 
     this.currentDeck = newDeck;
-    console.log(this.currentDeck.id)
     this.cards = this.currentDeck.getAllCards();
     this.filteredCards = this.cards;
     const performance = this.currentDeck.getMediumPerfomanceOnDeck();
