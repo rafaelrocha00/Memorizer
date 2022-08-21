@@ -7,6 +7,7 @@ import { WritingPageComponent } from '../Pages/writing-page/writing-page.compone
 import { KanjiPageComponent } from '../Pages/kanji-page/kanji-page.component';
 import { LoginPageComponent } from '../Pages/login-page/login-page.component';
 import { LoginRequiredGuard } from '../login-required.guard';
+import { CreateAccountPageComponent } from '../Pages/create-account-page/create-account-page.component';
 
 const routes: Routes = [
 {
@@ -33,6 +34,10 @@ const routes: Routes = [
 {
   path: 'login',
   component: LoginPageComponent
+},
+{
+  path: 'create-account',
+  component: CreateAccountPageComponent
 }
 ];
 

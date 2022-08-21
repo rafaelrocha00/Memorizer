@@ -11,11 +11,11 @@ export class LoginRequiredGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(sessionStorage.getItem('user_key') === null){
-      this.router.navigateByUrl('/login');
+    if(!sessionStorage.getItem('user_key') && !localStorage.getItem('user_key')){
+      this.router.navigateByUrl('/login')
       return false
     }
-    return true;
+    return true
   }
   
 }

@@ -144,4 +144,8 @@ export class WritingPageComponent implements OnInit {
     return true
   }
 
+  checkInput(){
+    
+  }
+
 }

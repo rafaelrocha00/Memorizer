@@ -7,40 +7,46 @@
             </span>
         </div>
     </div>
-    <div class="container">
-        <div class="text-align-center text-sm text text-light m-b-md">
-            <i class="fas fa-pen unactive-link"></i> Login
-        </div>
-        <div content class="m-b-ssm">
-            <input (focus)="focusUsername()" [class]="'input full-width relative ' + (usernameIncorrect ? ' input-error ' : '')" [(ngModel)]="nome" type="text" name="deck-name" id="deck-name" placeholder="Digite seu email..." required minlength="1">
-            <i *ngIf="usernameIncorrect" class="fa fa-times icon-append icon-danger"></i>
-        </div>
+    <form>
+        <div [class]="'container'">
+            <div class="text-align-center text-sm text text-light m-b-md">
+                <i class="fas fa-pen unactive-link"></i> Login
+            </div>
+            <div content class="m-b-ssm relative">
+                <div class="top-input">E-mail</div>
+                <input (focus)="focusUsername()" [class]="'input full-width relative ' + (usernameIncorrect ? ' input-error ' : '')" [(ngModel)]="nome" type="text" name="inpt-email" id="inpt-email" placeholder="Digite seu email..." required minlength="1" autocomplete="on">
+                <i *ngIf="usernameIncorrect" class="fa fa-times icon-append icon-danger"></i>
+                <div *ngIf="usernameIncorrect" class="bottom-input red">{{usernameErrorMessage}}</div>
+            </div>
 
-        <div content class="input-element">
-            <input (focus)="focusPassword()" [class]="'input full-width ' + (passwordIncorrect ? ' input-error ' : '')" [(ngModel)]="senha" type="password" name="deck-name" id="deck-name" placeholder="Digite sua senha..." required minlength="4">
-            <i *ngIf="passwordIncorrect" class="fa fa-times icon-append icon-danger"></i>
-        </div>
+            <div content class="input-element relative">
+                <div class="top-input">Senha</div>
+                <input (focus)="focusPassword()" [class]="'input full-width ' + (passwordIncorrect ? ' input-error ' : '')" [(ngModel)]="senha" type="password" name="inpt-senha" id="inpt-senha" placeholder="Digite sua senha..." required minlength="4" autocomplete="on">
+                <i *ngIf="passwordIncorrect" class="fa fa-times icon-append icon-danger"></i>
+                <div *ngIf="passwordIncorrect" class="bottom-input red">{{passwordErrorMessage}}</div>
+            </div>
 
-        <button class="btn-primary full-width m-t-ssm" (click)="entrar()">
+            <button class="btn-primary full-width m-t-ssm" (click)="entrar()">
             Entrar
         </button>
 
-        <div class="text text-btn text-xs text-align-center m-t-ssm">
-            Esqueci minha senha
-        </div>
+            <div class="text text-btn text-xs text-align-center m-t-ssm">
+                Esqueci minha senha
+            </div>
 
-        <div class="text text-light full-width flex middle justify-center m-t-ssm">
-            <input type="checkbox">
-            <label class="m-l-sm text-xs">Lembre-se de mim</label>
-        </div>
+            <div class="text text-light full-width flex middle justify-center m-t-ssm">
+                <input type="checkbox" [(ngModel)]="remenberMe" name="remenber-me-checkbox">
+                <label class="m-l-sm text-xs">Lembre-se de mim</label>
+            </div>
 
-        <div class="divider m-t-md"></div>
-        <div class="full-width end">
-            <button class="box google-btn-color text text-light text-sm">G</button>
-            <button class="box twitter-btn-color text text-light text-sm">T</button>
+            <div class="divider m-t-md"></div>
+            <div class="full-width end">
+                <button class="box google-btn-color text text-light text-sm">G</button>
+                <button class="box twitter-btn-color text text-light text-sm">T</button>
+            </div>
+            <div class="text text-light text-xs m-t-super">
+                Don't have an account? <a [routerLink]="['/create-account']">Sign Up</a> or <a>Continue without login</a>
+            </div>
         </div>
-        <div class="text text-light text-xs m-t-super">
-            Don't have an account? <a>Sign Up</a> or <a>Continue without login</a>
-        </div>
-    </div>
+    </form>
 </div>

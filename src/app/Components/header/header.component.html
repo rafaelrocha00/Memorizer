@@ -7,14 +7,17 @@
 
 <div [class]="'Header ' + (breakpoint.mobileBreakpoint ? ' sticky' : '')">
 
-    <h1><a class="logo" routerLink="" routerLinkActive="activeLink">
-        Yama</a></h1>
+    <h1>
+        <a class="logo" routerLink="" routerLinkActive="activeLink">
+        Yama
+        </a>
+    </h1>
 
     <ol class="options" *ngIf="!breakpoint.mobileBreakpoint">
         <app-b-input icon="fa fa-search" (onChange)="searchCards($event)" [options]="kanjiReadings"></app-b-input>
 
         <div class="option-links">
-            <a class="option-link m-r-lg">
+            <a class="option-link m-r-lg" [routerLink]="['']">
                 Decks
             </a>
 

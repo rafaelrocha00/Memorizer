@@ -1,6 +1,28 @@
 .container {
-    width: 238px;
+    width: 268px;
     height: 241px;
     border-radius: 44px;
     background-color: #fff9ed;
+}
+
+.days-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 18px 33px;
+}
+
+.day {
+    width: 35px;
+    height: 35px;
+    border-radius: 7px;
+    margin: 2px;
+    background-color: #ffc0c0;
+}
+
+.green-day {
+    background-color: #c0ffe1;
+}
+
+.current-day {
+    background-color: #ccffcb;
 }

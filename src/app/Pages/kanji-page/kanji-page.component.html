@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="page m-1 full-screen">
+<div class="page m-lg ms-super full-screen">
     <div [class]="(breakpoint.mobileBreakpoint ? 'flex column full-width m-b-md ' : 'flex ') + 'h-lg m-b-md'">
         <div [class]="' kanjiSpace full-height ' + (breakpoint.mobileBreakpoint ? ' full-width ' : ' third-width') ">
             {{kanji}}
@@ -12,11 +12,11 @@
                 <div class="ms-1 mt-2 flex column">
                     <div class="m-b-sm">
                         <span class="main">Onyomi:</span>
-                        <span class="info"> Yoru</span>
+                        <div class="info m-t-sm"> Yoru</div>
                     </div>
                     <div class="m-b-lg">
                         <span class="main">Nonyomi:</span>
-                        <span class="info"> Yoru</span>
+                        <div class="info m-t-sm"> Yoru</div>
                     </div>
                     <div class="m-b-sm">
                         <span class="main">Revisões:</span>
@@ -37,15 +37,8 @@
                         <app-circle [absolute]="true"></app-circle>
                         <div>20% </div>
                     </div>
-                    <div>Grade: 3</div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="full-width full-height box-sugestao">
-        <div class="full-width sugestao" *ngFor="let sugestao of sugestoes; let i = index">
-            {{sugestao.nome}}
         </div>
     </div>
 

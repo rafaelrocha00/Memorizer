@@ -1,24 +1,48 @@
-<div class="background" *ngIf="show">
-    <div class="container">
-        <div class="text-align-center text-md text-b">Create Account</div>
-        <div content class="input-element">
-            <input [(ngModel)]="nome" type="text" name="deck-name" id="deck-name" class="input full-width" placeholder="Nome" required minlength="1">
-        </div>
-
-        <div content class="input-element">
-            <input [(ngModel)]="senha" type="password" name="deck-name" id="deck-name" class="input full-width" placeholder="Senha" required minlength="1">
-        </div>
-
-        <div content class="input-element">
-            <input [(ngModel)]="senhaRepetida" type="password" name="deck-name" id="deck-name" class="input full-width" placeholder="Senha" required minlength="1">
-        </div>
-
-        <button class="btn-primary full-width m-t-md" (click)="createAccount()">
-            Criar conta
-        </button>
-
-        <div class="text-align-center m-t-sm">
-            Ao criar sua conta, você concorda com nossos termos de serviço e termos de privacidade.
+<div class="bg">
+    <img src="/assets/Imagens/loginBgImage.png" class="bg-img">
+    <div class="top-bar">
+        <div class="top-bar-itens">
+            <span class="title">Yama</span>
+            <span class="options">
+            </span>
         </div>
     </div>
+    <form>
+        <div [class]="'container'">
+            <div class="text-align-center text-sm text text-light m-b-md">
+                <i class="fas fa-pen unactive-link"></i> Sign Up
+            </div>
+            <div content class="m-b-ssm relative">
+                <div class="top-input">E-mail</div>
+                <input (focus)="focusUsername()" [class]="'input full-width relative ' + (usernameIncorrect ? ' input-error ' : '')" [(ngModel)]="nome" type="text" name="inpt-email" id="inpt-email" placeholder="Digite seu email..." required minlength="1" autocomplete="on">
+                <i *ngIf="usernameIncorrect" class="fa fa-times icon-append icon-danger"></i>
+                <div *ngIf="usernameIncorrect" class="bottom-input red">{{usernameErrorMessage}}</div>
+            </div>
+
+            <div content class="input-element relative">
+                <div class="top-input">Senha</div>
+                <input (focus)="focusPassword()" [class]="'input full-width ' + (passwordIncorrect ? ' input-error ' : '')" [(ngModel)]="senha" type="password" name="inpt-senha" id="inpt-senha" placeholder="Digite sua senha..." required minlength="4" autocomplete="on">
+                <i *ngIf="passwordIncorrect" class="fa fa-times icon-append icon-danger"></i>
+                <div *ngIf="passwordIncorrect" class="bottom-input red">{{passwordErrorMessage}}</div>
+            </div>
+
+            <button class="btn-primary full-width m-t-ssm" (click)="createAccount()">
+            Criar Conta
+        </button>
+
+
+            <div class="text text-light full-width flex middle justify-center m-t-ssm">
+                <label class="m-l-sm text-xs">By creating the account, you accept the terms and conditions.</label>
+            </div>
+
+            <div class="divider m-t-md"></div>
+            <div class="full-width end">
+                <button class="box google-btn-color text text-light text-sm">G</button>
+                <button class="box twitter-btn-color text text-light text-sm">T</button>
+            </div>
+            <div class="text text-light text-xs m-t-super">
+                Already have an account? <a [routerLink]="['/login']">Sign In</a> or <a>Continue without login</a>
+            </div>
+        </div>
+    </form>
 </div>

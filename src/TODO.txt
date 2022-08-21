@@ -1,5 +1,9 @@
-// Mensagem de resultado de requisição
-// Salvar revisão - Server
-// Validação - CSS e Tipo
-// Melhorar tela de Login e Criar Conta
-// Ordem de Revisão
+// Terminar de mudar UI
+// Menu de usuario
+// Paginacao
+// Arrumar avisos tela de loading
+// Info de qualidade de revisões
+// Dois Tipos de Grafo
+// Revisão generalista
+// Algoritmo Anki
+// Concertar Autosuggest

@@ -5,10 +5,11 @@
 }
 
 .area-de-escrita {
-    font-family: 'Noto Serif JP', serif;
-    font-weight: 400;
-    height: 70vh;
-    background-color: #f4f4f4;
+    font-family: var(--serif-font);
+    font-weight: 500;
+    height: 40vh;
+    background-color: #f6fff9;
+    color: #181c1b;
     border: none;
     overflow: auto;
     outline: none;
@@ -16,6 +17,14 @@
     -moz-box-shadow: none;
     box-shadow: none;
     resize: none
+}
+
+.traducao {
+    height: 30vh;
+    width: 100%;
+    font-family: var(--serif-font);
+    color: #181c1b;
+    background-color: #ecf6ff;
 }
 
 .area-de-escrita:focus {
@@ -30,7 +39,15 @@
 
 .opcoes {
     height: 50px;
-    background-color: #d9d9d9;
+    background-color: #c4d6d4;
+}
+
+.bg-color-option {
+    background-color: #9BA8AF;
+}
+
+.white {
+    color: white;
 }
 
 .kanjiSearch {

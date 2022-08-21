@@ -4,16 +4,33 @@
 
 <app-header></app-header>
 <div class="full-width">
-    <div class="mainPage m-1 flex">
+    <div class="mainPage m-lg flex">
 
-        <div class="entradas-de-texto m-r-md">
-            <div *ngFor="let entradaDeTexto of EntradasDeTexto; let i = index">
-                <button [class]="(entradaDeTexto.selected ? 'selected ' : '') + ' full-width btn-primary btn-color-secunday'" (click)="selecionarEntradaDeTexto(i)"><i class="fa fa-book"></i>Entrada {{i}}</button>
+        <div class="w-40 m-t-xd">
+            <div class="full-width end">
+                <app-b-input icon="fa fa-search" [bordas]="true" (onChange)="checkInput"></app-b-input>
             </div>
-            <button class="full-width btn-primary" (click)="createNewEntry()"><i class="fa fa-arrow-down"></i>New Entry</button>
+            <div class="h-50 scroll">
+                <div *ngFor="let entradaDeTexto of EntradasDeTexto; let i = index">
+                    <div class="card-cell flex flex space-between" (click)="selecionarEntradaDeTexto(i)">
+                        <div>
+                            <span class="m-r-md">Entrada {{i}}</span>
+                        </div>
+                        <div>
+                            <button class="m-l-md btn-void green fa fa-arrow-up-right-from-square"></button>
+                            <button class="m-l-md m-r-md btn-void red fa fa-trash-alt"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex full-width justify-center">
+                <button class="btn-secundary w-80" (click)="createNewEntry()"><i class="fa fa-arrow-down m-r-sm"></i>New Entry</button>
+            </div>
         </div>
 
-        <div class="full-width">
+
+
+        <div class="m-l-lg w-80">
             <div class="opcoes middle flex space-between">
                 <div class="flex m-l-md kanji-sugestions overflow-h">
                     <div *ngFor="let kanji of sugestoesDeKanji; let i = index" [class]="(i === sugestaoAtualDeKanji ? 'kanjiAtivo ' : '') + ' kanji m-r-md'">
@@ -22,13 +39,13 @@
                 </div>
 
                 <div class="opcoes middle end">
-                    <div *ngFor="let opcao of options; let i = index" [class]="(opcao.active ? 'bg-color-active ' : 'bg-color-primary ') +' opcao box-small '" (click)="opcao.active = !opcao.active">
-                        <span [class]="opcao.icon + ' color-contrast '"></span>
+                    <div *ngFor="let opcao of options; let i = index" [class]="(opcao.active ? 'bg-color-primary ' : 'bg-color-option ') +' opcao box-small '" (click)="opcao.active = !opcao.active">
+                        <span [class]="opcao.icon + ' white '"></span>
                     </div>
                 </div>
             </div>
-            <textarea (keydown)="checkKanji($event)" class="area-de-escrita p-2 text-md full-width" id="wanakana-input"></textarea>
-
+            <textarea (keydown)="checkKanji($event)" class="area-de-escrita p-2 text-md full-width m-b-sm" id="wanakana-input"></textarea>
+            <div class="traducao"></div>
         </div>
 
     </div>

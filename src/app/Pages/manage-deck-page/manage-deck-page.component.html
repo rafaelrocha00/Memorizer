@@ -7,12 +7,11 @@
         <div [class]="(breakpoint.mobileBreakpoint ? 'text-align-center ' : '') + 'deckName'">{{currentDeck?.name }}</div>
         <div class="flex m-t-sm">
             <button class="btn-secundary btn-md m-r-sm" type="button" (click)="openAddCardMenu()">
-                <span class="fa fa-plus-circle m-r-sm"></span>
-                <p>Add Card</p>
+                <p>New Card</p>
             </button>
             <button class="btn-secundary green-bg full-width" type="button" (click)="routeToReviseDeckPage()">
-                <span class="fa fa-play m-r-sm"></span>
-                <p>Revise Deck!</p>
+                <p class="m-r-sm">Revise</p>
+                <span class="fa fa-play"></span>
             </button>
         </div>
 

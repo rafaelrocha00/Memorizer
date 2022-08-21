@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestService } from 'src/app/Services/request.service';
 
@@ -11,14 +11,24 @@ export class LoginPageComponent implements OnInit {
 
   nome: string = ''
   senha: string = ''
+  remenberMe: boolean = false
 
   usernameIncorrect: boolean = false
+  usernameErrorMessage: string = ''
   passwordIncorrect: boolean = false
+  passwordErrorMessage: string = ''
 
   constructor(private requestService: RequestService, private router: Router) { }
 
   ngOnInit(): void {
     console.log('login page')
+  }
+
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) { 
+    if(event.key !== 'Enter') {return}
+   
+    this.entrar()
   }
 
   focusUsername(){
@@ -29,23 +39,50 @@ export class LoginPageComponent implements OnInit {
     this.passwordIncorrect = false
   }
 
+  validarEmail(){
+    const emailValido = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(this.nome)
+    if(!emailValido){
+      this.usernameIncorrect = true
+      this.usernameErrorMessage = 'Email invalido'
+    }
+  }
+
   async entrar(){
+    if(!this.nome){
+      this.usernameErrorMessage = 'Email é obrigatorio'
+      this.usernameIncorrect = true
+    }
+
+    if(!this.senha || this.senha.length < 4){
+      this.passwordErrorMessage = 'Precsa ter ao menos 4 letras'
+      this.passwordIncorrect = true
+    }
+
+    if(this.usernameIncorrect || this.passwordIncorrect){
+      return;
+    }
+
     const answer: any = await this.requestService.post('users/login', {name: this.nome, password: this.senha}).catch(err => {
-      console.log(err)
       if(err.status === 404){
-        console.log('not found')
+        this.usernameErrorMessage = 'Usuario não encontrado'
         this.usernameIncorrect = true
       }
 
       if(err.status === 400){
+        this.passwordErrorMessage = 'Senha incorreta'
         this.passwordIncorrect = true
       }
-      console.log(err)
       return
     })
+
     if(!answer) { return}
 
-    sessionStorage.setItem("user_key", answer.token);
+    if(this.remenberMe)
+    {
+      localStorage.setItem("user_key", answer.token)
+    }else{
+      sessionStorage.setItem("user_key", answer.token);
+    }
     this.router.navigate([''])
   } 
 

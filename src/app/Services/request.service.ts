@@ -11,7 +11,7 @@ export class RequestService {
   public async post(url: string, body: any, headers: any = {}){
     url = this.serverURL + url 
 
-    const token = sessionStorage.getItem('user_key')
+    const token = sessionStorage.getItem('user_key') || localStorage.getItem('user_key')
 
     const options : RequestInit = {
       method: 'POST',
@@ -43,7 +43,7 @@ export class RequestService {
   public async get(url: string, headers: any = {}){
     url = this.serverURL + url 
 
-    const token = sessionStorage.getItem('user_key')
+    const token = sessionStorage.getItem('user_key') || localStorage.getItem('user_key')
     console.log(token)
     const options : RequestInit = {
       method: 'GET',
@@ -108,7 +108,7 @@ export class RequestService {
   public async patch(url: string, body: any, headers: any = {}){
     url = this.serverURL + url 
 
-    const token = sessionStorage.getItem('user_key')
+    const token = sessionStorage.getItem('user_key') || localStorage.getItem('user_key')
 
     const options : RequestInit = {
       method: 'PATCH',
