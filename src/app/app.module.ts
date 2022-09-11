@@ -31,6 +31,7 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 import { DayChartComponent } from './day-chart/day-chart.component';
 import { UserMenuComponent } from './user-menu/user-menu.component';
 import { DefaultPaginationComponent } from './default-pagination/default-pagination.component';
+import { TextEditorComponent } from './text-editor/text-editor.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { DefaultPaginationComponent } from './default-pagination/default-paginat
     LineChartComponent,
     DayChartComponent,
     UserMenuComponent,
-    DefaultPaginationComponent
+    DefaultPaginationComponent,
+    TextEditorComponent
   ],
   imports: [
     BrowserModule,

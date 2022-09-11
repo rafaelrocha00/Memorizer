@@ -11,18 +11,27 @@ import { ModalComponent } from '../modal/modal.component';
 export class ModalResultadoRevisaoComponent implements OnInit {
 
   @Input() show = true
-  @Input() deck: Deck | undefined
+  @Input() deck: Deck = new Deck(-1, '')
   @Output() onClose : EventEmitter<null> = new EventEmitter();
   @Output() onConclude : EventEmitter<null> = new EventEmitter();
   @Output() onRetry : EventEmitter<null> = new EventEmitter();
 
+  totalResult: number = 0
+
   constructor() { }
 
   ngOnInit(): void {
-    if(!this.deck){
-      console.log('no deck')
+    if(this.deck.id === -1){
+      console.error('no deck was assign to result modal!')
       return
     }
-    console.log(this.deck.cards)
+  }
+
+  getLabel(percentage: number){
+    if(percentage === 100) {return 'S'}
+    if(percentage >= 80) {return 'A'}
+    if(percentage >= 60) {return 'B'}
+    if(percentage >= 30) {return 'C'}
+    return 'F'
   }
 }

@@ -6,12 +6,17 @@
 <div class="full-width">
     <div class="mainPage m-lg flex">
 
+        <!-- Text Entries -->
         <div class="w-40 m-t-xd">
+
+            <!-- Search Bar-->
             <div class="full-width end">
                 <app-b-input icon="fa fa-search" [bordas]="true" (onChange)="checkInput"></app-b-input>
             </div>
+
+            <!-- Text Entries List -->
             <div class="h-50 scroll">
-                <div *ngFor="let entradaDeTexto of EntradasDeTexto; let i = index">
+                <div *ngFor="let entry of textEntries; let i = index">
                     <div class="card-cell flex flex space-between" (click)="selecionarEntradaDeTexto(i)">
                         <div>
                             <span class="m-r-md">Entrada {{i}}</span>
@@ -23,29 +28,16 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Buttons -->
             <div class="flex full-width justify-center">
                 <button class="btn-secundary blue-bg w-80" (click)="createNewEntry()"><i class="fa fa-arrow-down m-r-sm"></i>New Entry</button>
             </div>
         </div>
 
-
-
+        <!-- Text Editor -->
         <div class="m-l-lg w-80">
-            <div class="opcoes middle flex space-between">
-                <div class="flex m-l-md kanji-sugestions overflow-h">
-                    <div *ngFor="let kanji of sugestoesDeKanji; let i = index" [class]="(i === sugestaoAtualDeKanji ? 'kanjiAtivo ' : '') + ' kanji m-r-md'">
-                        {{kanji}}
-                    </div>
-                </div>
-
-                <div class="opcoes middle end">
-                    <div *ngFor="let opcao of options; let i = index" [class]="(opcao.active ? 'bg-color-primary ' : 'bg-color-option ') +' opcao box-small '" (click)="opcao.active = !opcao.active">
-                        <span [class]="opcao.icon + ' white '"></span>
-                    </div>
-                </div>
-            </div>
-            <textarea (keydown)="checkKanji($event)" class="area-de-escrita p-2 text-md full-width m-b-sm" id="wanakana-input"></textarea>
-            <div class="traducao"></div>
+            <app-text-editor [text]="getEntryText()"></app-text-editor>
         </div>
 
     </div>

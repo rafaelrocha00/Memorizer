@@ -1,22 +1,23 @@
 
 export class Card{
 
-     id : number = 0;
+     id : number = 0
 
-     frontText : string;
-     backText : string;
+     frontText : string
+     backText : string
 
-     meaning: Array<string>;
+     meaning: Array<string>
 
-     porcentage : number = 0;
+     oldPorcentage: number = 0
+     porcentage : number = 0
      porcentageChange : number[] = [0, 30, 70, 100]
-     correctAnswers : number = 0;
+     correctAnswers : number = 0
 
      revisions: number = 0
      successes: number = 0
      mistakes: number = 0
 
-     daysUntilItsShowedAgain : number = 5;
+     daysUntilItsShowedAgain : number = 5
 
     constructor(frontText : string, backText : string, meaning: Array<string>, _id: number | null = null){
         this.backText = backText;
@@ -57,6 +58,7 @@ export class Card{
      }
 
      public updatePorcentage(){
+          this.oldPorcentage = this.porcentage
           this.porcentage = this.porcentageChange[this.correctAnswers]
      }
 

@@ -4,7 +4,7 @@
 
     <div [class]="breakpoint.mobileBreakpoint ? '' : 'half-width half-width-gutter'">
 
-        <div [class]="(breakpoint.mobileBreakpoint ? 'text-align-center ' : '') + 'deckName'">{{currentDeck?.name }}</div>
+        <div [class]="(breakpoint.mobileBreakpoint ? 'text-align-center ' : '') + 'deckName'">{{currentDeck.name }}</div>
         <div class="flex m-t-sm">
             <button class="btn-secundary blue-bg btn-md m-r-sm" type="button" (click)="openAddCardMenu()">
                 <p>New Card</p>

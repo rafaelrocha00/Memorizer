@@ -33,8 +33,8 @@ export class KanjiPageComponent implements OnInit {
     console.log(this.card)
     this.card.successes = res.message.successes
     this.card.revisions = res.message.revisions
-    this.card.mistakes = this.card.revisions - this.card.successes
-    this.currentPorcentage = [(this.card.successes/ this.card.revisions) * 100, 100]
+    this.card.mistakes = (this.card.revisions - this.card.successes) || 0
+    this.currentPorcentage = [((this.card.successes/ this.card.revisions) || 0) * 100, 100]
   }
 
 }

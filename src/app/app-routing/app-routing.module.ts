@@ -20,7 +20,7 @@ const routes: Routes = [
   component: ManageDeckPageComponent
 },
 {
-  path: 'reviseDeck',
+  path: 'reviseDeck/:id',
   component: ReviseDeckPageComponent
 },
 {

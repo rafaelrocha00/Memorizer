@@ -13,7 +13,9 @@ export class DeckService {
   decks : Deck[] = []
   currentDeck : number = -1
   currentBiggestDeckId : number = 0
+
   loaded: boolean = false
+  searchingDecks: boolean = false
 
   totalRevisions: number = 0
   cardsToRevise: number = 0
@@ -100,7 +102,7 @@ export class DeckService {
 
   async importDecks() : Promise<void>{
     this.decks = []
-
+    this.searchingDecks = true
     const answer : any = await this.request.get('decks/')
     const deckArrays = answer.data.decks
     this.totalRevisions = answer.data.totalRevisions || 0
@@ -122,6 +124,7 @@ export class DeckService {
     } );
 
     this.loaded = true
+    this.searchingDecks = false
   }
 
   async importDeck(id : number) : Promise<Deck>{
@@ -176,7 +179,7 @@ export class DeckService {
 
   public getAllKanjisOfReading(val : string, maxNumber : number = 10) : string[] {
     let result : string[] = []
-    if(!this.decks.length){
+    if(!this.decks.length && !this.searchingDecks){
       this.getAllDecks()
     }
     

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RoutesRecognized } from '@angular/router';
+import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { Card } from '../../DataClass/Card';
 import { Deck } from '../../DataClass/Deck';
 import { DeckService } from 'src/app/Services/deck.service';
 import * as wanakana from 'wanakana';
 import { KanjiService } from '../../Services/kanji.service';
 import { RequestService } from 'src/app/Services/request.service';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 
 @Component({
@@ -24,20 +25,39 @@ export class ReviseDeckPageComponent implements OnInit {
   correctAnswerColor : string = "#257419";
 
   currentDeck : Deck;
-  currentCard: Card | undefined;
+  currentCard: Card;
   currentCardId: number = 0
 
   inputElement : HTMLInputElement | undefined
   textInput : string = "";
   inputIsUsingKatakana : boolean = true;
 
+  routeChange : Subscription | undefined;
+
   showResults = false
 
-  constructor(private deckService : DeckService, private kanjiService : KanjiService, private routeService : Router, private request: RequestService) {
-    this.currentDeck = this.deckService.getCurrentDeck();
+  constructor(private deckService : DeckService, private kanjiService : KanjiService, private routeService : Router, private route: ActivatedRoute, private request: RequestService) {
+    this.currentDeck = this.deckService.getCurrentDeck()
+    this.currentCard = this.currentDeck.getCard(this.currentCardId)
+
   }
 
   ngOnInit(): void {
+    this.routeChange = this.route.params.subscribe(params => {
+      const currentDeckId = params['id']
+      this.setDeck(currentDeckId)
+    });
+
+  }
+
+  async setDeck(id: number){
+    const newDeck = await this.deckService.getDeckById(id);
+    if(!newDeck) {
+      console.error('deck ' + id + ' was not found on system');
+      return;
+    }
+
+    this.currentDeck = newDeck;
     this.start()
   }
 
@@ -67,13 +87,12 @@ export class ReviseDeckPageComponent implements OnInit {
 
       if(this.currentCardId >= this.currentDeck.getLenght()){
         this.revisionEnded = true;
-        this.openResultModal()
         this.saveRevisionOnServer()
+        this.openResultModal()
         return;
       }
 
       this.changeCardByIndex(this.currentCardId);
-      console.log("Carta mudou");
   }
 
   changeCardByIndex(index : number){
@@ -105,12 +124,10 @@ export class ReviseDeckPageComponent implements OnInit {
       inputRequerida = wanakana.toRomaji(inputRequerida);
       let inputrequeridaDividida : string[] = inputRequerida.split(',');
 
-      console.log(inputRequerida);
-
       for(let index = 0; index < inputrequeridaDividida.length; index++){
         if(inputCorrigida == inputrequeridaDividida[index])
         {
-          if(this.currentCard == undefined){
+          if(!this.currentCard){
             console.error("There is no card in revision.");
             return;
           }
@@ -153,7 +170,6 @@ export class ReviseDeckPageComponent implements OnInit {
 
   closeResultModal(){
     this.showResults = false
-    console.log('closing modal')
   }
 
   saveRevisionOnServer(){
@@ -162,12 +178,10 @@ export class ReviseDeckPageComponent implements OnInit {
 
   conclude(){
     this.routeService.navigateByUrl('manageDeck/' + this.currentDeck.id);
-    console.log('concluding')
   }
 
   retry(){
     this.closeResultModal()
     this.start()
-    console.log('restarting')
   }
 }

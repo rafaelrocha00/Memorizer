@@ -72,7 +72,7 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
     if(this.currentDeck != undefined){
       this.currentDeck.addRevision();
     }
-    this.routeService.navigate(["reviseDeck"])
+    this.routeService.navigate(["reviseDeck/" + this.currentDeck.id])
   }
 
   async deleteCard(cardToRemove : Card){
