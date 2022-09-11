@@ -56,7 +56,7 @@ export class DefaultPaginationComponent implements OnInit {
   }
 
   getPaginationArray() {
-    const arraySize = Math.floor(Math.max(this.totalItens/this.itensPerPage, 1)) 
+    const arraySize = Math.ceil(Math.max(this.totalItens/this.itensPerPage, 1)) 
     const arry = Array(arraySize).fill(1).map((_, i) => i + 1 + (Math.max(this.currentPage - this.maxPaginationSize, 0)))
     return arry
   }
