@@ -8,6 +8,8 @@ import { DeckService } from 'src/app/Services/deck.service';
 import { CircleComponent } from 'src/app/Components/circle/circle.component';
 import { BreakpointService } from 'src/app/Services/breakpoint.service';
 import { RequestService } from 'src/app/Services/request.service';
+import { PageServiceService } from 'src/app/Services/page-service.service';
+import { Pagination } from 'src/app/DataClass/pagination';
 
 @Component({
   selector: 'app-manage-deck-page',
@@ -17,19 +19,19 @@ import { RequestService } from 'src/app/Services/request.service';
 export class ManageDeckPageComponent implements OnInit, OnDestroy {
 
   addingNewCard : boolean = false;
-  currentDeck : Deck | undefined;
+  currentDeck : Deck;
   currentDeckId : number = -1;
   cards : Card[] = [];
   filteredCards : Card[] = []
   currentElementInList : Card;
-  searchBoxContainer : HTMLInputElement | undefined;
   subscription : Subscription | undefined;
   routeChange : Subscription | undefined;
   totalPorcentage : string = "0";
   porcentageCircle: number[] = [100, 100]
 
-  constructor(private request: RequestService, private deckService : DeckService, public routeService : Router, private route: ActivatedRoute, public breakpoint : BreakpointService) { 
+  constructor(private request: RequestService, private deckService : DeckService, public routeService : Router, private route: ActivatedRoute, public breakpoint : BreakpointService, public page: PageServiceService) { 
     this.currentElementInList = new Card("","",[]);
+    this.currentDeck = new Deck(-1, '')
   }
 
   ngOnInit(): void {
@@ -37,7 +39,6 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
       this.currentDeckId = params['id'];
       this.setDeck(this.currentDeckId);
     });
-    this.searchBoxContainer = document.getElementById("searchBoxContainer") as HTMLInputElement;
   }
 
   ngOnDestroy(){
@@ -77,18 +78,17 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
   async deleteCard(cardToRemove : Card){
     this.currentDeck?.deleteCard(cardToRemove);
     await this.request.delete('decks/removeCard/' + this.currentDeck?.id + '/' + cardToRemove.id)
-
   }
 
-  checkInput(){
-    this.changeCardsToShowInList();
+  checkInput(val : string){
+    this.changeCardsToShowInList(val);
   }
 
-  changeCardsToShowInList(): void {
+  changeCardsToShowInList(val : string): void {
 
-    if(!this.searchBoxContainer) return;
-    if(this.searchBoxContainer?.value == ""){
+    if(!val){
       this.filteredCards = this.cards;
+      return
     }
 
     this.filteredCards = [];
@@ -96,11 +96,15 @@ export class ManageDeckPageComponent implements OnInit, OnDestroy {
 
       let currentBackText = wanakana.toRomaji(this.cards[index].backText);
       let frontText = wanakana.toRomaji(this.cards[index].frontText);
-      let inputString = wanakana.toRomaji(this.searchBoxContainer.value);
+      let inputString = wanakana.toRomaji(val);
+
       if(currentBackText.includes(inputString) || frontText.includes(inputString)){
         this.filteredCards.push(this.cards[index]);
       }
     }
-
   } 
+
+  managePagination(pagination: Pagination) {
+    this.filteredCards = this.cards.slice(pagination.startItens, Math.min(pagination.endItens, this.cards.length))
+  }
 }

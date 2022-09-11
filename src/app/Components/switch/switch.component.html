@@ -1,3 +1,7 @@
-<div class="container">
-    <div class="label">{{label}}</div>
+<div class="flex align-center">
+    <input [ngModel]="state" type="checkbox" class="hidden" (click)="click()">
+    <div [class]="'container' + (state ? '-on' : '-off')" (click)="click()">
+        <div [class]="'switch' + (state ? '-on' : '-off')"></div>
+    </div>
+    <span class="label">{{label}}</span>
 </div>

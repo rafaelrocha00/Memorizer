@@ -1,0 +1,5 @@
+<div class="container full-width flex justify-center m-t-md">
+    <span (click)="backPage()" class="element unselectable"><</span>
+    <span (click)="changePage(i + 1)" [class]="'element unselectable ' + (i + 1 === currentPage ? 'current' : '')" *ngFor="let item of getPaginationArray(); let i=index">{{i + 1}}</span>
+    <span (click)="forwardPage()" class="element unselectable">></span>
+</div>

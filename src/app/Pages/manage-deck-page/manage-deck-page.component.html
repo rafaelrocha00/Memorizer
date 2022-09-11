@@ -6,7 +6,7 @@
 
         <div [class]="(breakpoint.mobileBreakpoint ? 'text-align-center ' : '') + 'deckName'">{{currentDeck?.name }}</div>
         <div class="flex m-t-sm">
-            <button class="btn-secundary btn-md m-r-sm" type="button" (click)="openAddCardMenu()">
+            <button class="btn-secundary blue-bg btn-md m-r-sm" type="button" (click)="openAddCardMenu()">
                 <p>New Card</p>
             </button>
             <button class="btn-secundary green-bg full-width" type="button" (click)="routeToReviseDeckPage()">
@@ -18,10 +18,10 @@
         <div [class]="breakpoint.mobileBreakpoint ? 'm-t-lg' : 'cards-container end'">
             <div class="full-width">
                 <div class="full-width end">
-                    <app-b-input icon="fa fa-search" [bordas]="true" (onChange)="checkInput"></app-b-input>
+                    <app-b-input icon="fa fa-search" [bordas]="true" (onChange)="checkInput($event)"></app-b-input>
                 </div>
-                <div *ngFor="let card of filteredCards">
-                    <div class="card-cell flex flex space-between" (click)="routeService.navigateByUrl('kanji/' + card.frontText)">
+                <div *ngFor="let card of filteredCards; let i=index">
+                    <div *ngIf="i < page.maxItensOnPage" class="card-cell flex flex space-between" (click)="routeService.navigateByUrl('kanji/' + card.frontText)">
                         <div>
                             <span class="m-r-md">{{card.frontText}}</span>
                             <span class="m-r-sm">-</span>
@@ -34,6 +34,7 @@
                         </div>
                     </div>
                 </div>
+                <app-default-pagination [totalItens]="cards.length" (pageChange)="managePagination($event)"></app-default-pagination>
             </div>
         </div>
     </div>
@@ -43,21 +44,21 @@
         <div class="flex align-bottom">
             <div class="w-60 m-t-lg">
                 <div class="flex">
-                    <div class="cell-title">Total Revisions: </div> <span class="cell-info w-35 end">4</span>
+                    <div class="cell-title">Total Revisions: </div> <span class="cell-info end">{{currentDeck.totalRevisions}}</span>
                 </div>
                 <div class="flex">
-                    <div class="cell-title ">Cards to revise: </div> <span class="cell-info w-35 end">4</span>
+                    <div class="cell-title ">Cards to revise: </div> <span class="cell-info end">{{currentDeck.cardsToRevise}}</span>
                 </div>
                 <div class="flex">
-                    <div class="cell-title">Cards to learn: </div> <span class="cell-info w-35 end">4</span>
+                    <div class="cell-title">Cards to learn: </div> <span class="cell-info end">{{currentDeck.cardsToLearn}}</span>
                 </div>
             </div>
             <div>
-                <span class="cell-title m-r-md">Sucess Rate:</span><span class="big-result m-l-sm">A</span>
+                <span class="cell-title m-r-md">Sucess Rate:</span><span class="big-result m-l-sm">{{currentDeck.getSucessRate()}}</span>
             </div>
         </div>
         <div class="flex m-t-md">
-            <div class="w-80 m-r-n20">
+            <div class="full-width" style="margin-left: -200px;">
                 <app-circle [currentPorcentage]="porcentageCircle" [label]="totalPorcentage + ' %'" [absolute]="false"></app-circle>
             </div>
             <app-day-chart></app-day-chart>

@@ -2,11 +2,11 @@
 <div class="page m-lg ms-super full-screen">
     <div [class]="(breakpoint.mobileBreakpoint ? 'flex column full-width m-b-md ' : 'flex ') + 'h-lg m-b-md'">
         <div [class]="' kanjiSpace full-height ' + (breakpoint.mobileBreakpoint ? ' full-width ' : ' third-width') ">
-            {{kanji}}
+            {{kanji?.frontText}}
         </div>
         <div class="left-side full-width full-height flex column">
             <div [class]="'full-width m-b-md ' + (breakpoint.mobileBreakpoint ? ' text-align-center p-b-md text-b text-md m-t-sm' : ' title')">
-                Night
+                {{kanji?.backText}}
             </div>
             <div [class]="'info-box full-width flex ' + (breakpoint.mobileBreakpoint ? ' column' : ' align-all space-between full-height')">
                 <div class="ms-1 mt-2 flex column">

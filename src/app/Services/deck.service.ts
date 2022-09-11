@@ -10,14 +10,18 @@ import { RequestService } from './request.service';
 })
 export class DeckService {
 
-  decks : Deck[] = [];
-  currentDeck : number = -1;
-  currentBiggestDeckId : number = 0;
+  decks : Deck[] = []
+  currentDeck : number = -1
+  currentBiggestDeckId : number = 0
   loaded: boolean = false
+
+  totalRevisions: number = 0
+  cardsToRevise: number = 0
+  cardsToLearn: number = 0
 
   constructor(private request: RequestService,private kanjiService : KanjiService) {
     let stringId = localStorage.getItem("currentBiggerId");
-    if(stringId == undefined){
+    if(!stringId){
       this.currentBiggestDeckId = 0;
       return;
     }
@@ -98,7 +102,10 @@ export class DeckService {
     this.decks = []
 
     const answer : any = await this.request.get('decks/')
-    const deckArrays = answer.data
+    const deckArrays = answer.data.decks
+    this.totalRevisions = answer.data.totalRevisions || 0
+    this.cardsToRevise = answer.data.cardsToRevise || 0
+    this.cardsToLearn = answer.data.cardsToLearn || 0
 
     for (let i = 0; i < deckArrays.length; i++) {
       const deck = deckArrays[i];

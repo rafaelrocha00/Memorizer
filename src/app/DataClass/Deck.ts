@@ -8,6 +8,10 @@ export class Deck{
     cards : Card[] = [];
     numberOfRevisionsMade : number = 0;
     currentBiggestCardId : number = 0;
+    cardsToLearn: number = 0;
+    cardsToRevise: number = 0;
+    totalRevisions: number = 0;
+    sucessRate: number = 0;
 
     constructor(id : number, name : string){
         this.name = name;
@@ -95,5 +99,9 @@ export class Deck{
         }
 
         return result
+    }
+
+    public getSucessRate() {
+        return 'A'
     }
 }

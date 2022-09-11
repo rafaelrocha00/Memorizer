@@ -16,7 +16,7 @@ export class MainPageComponent implements OnInit {
   decks : Deck[];
   showModal: boolean = false;
 
-  constructor(private request: RequestService, private deckService: DeckService, private router: Router, public breakpoint : BreakpointService) {
+  constructor(private request: RequestService, public deckService: DeckService, private router: Router, public breakpoint : BreakpointService) {
     this.decks = [];
   }
 

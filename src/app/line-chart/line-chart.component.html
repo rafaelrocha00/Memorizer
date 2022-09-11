@@ -1,1 +1,18 @@
-<div class="container"></div>
+<div class="container">
+    <svg viewBox="0 0 500 210" class="chart">
+        <g class="grid x-grid" id="xGrid">
+            <line x1="20" x2="20" y1="200" y2="20"></line>
+          </g>
+          <g class="grid y-grid" id="yGrid">
+            <line x1="20" x2="480" y1="200" y2="200"></line>
+          </g>
+
+        <polyline
+           fill="none"
+           stroke="#0074d9"
+           stroke-width="2"
+           [attr.points]="pointsFormatted"
+         />
+      </svg>
+
+</div>

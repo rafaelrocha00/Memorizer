@@ -1,5 +1,5 @@
 .result-box {
     max-height: 300px;
-    overflow: scroll;
+    overflow: auto;
     margin-bottom: 50px;
 }

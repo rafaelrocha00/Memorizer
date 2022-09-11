@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../Services/request.service';
+import { RevisionService } from '../Services/revision.service';
 
 @Component({
   selector: 'app-day-chart',
@@ -10,23 +11,19 @@ export class DayChartComponent implements OnInit {
 
   days: number[] = []
 
-  constructor(private request: RequestService) { }
+  constructor(private request: RequestService, private revision: RevisionService) { }
 
   ngOnInit(): void {
     this.getMonth()
   }
 
   async getMonth() {
-   const currentDate = new Date()
-   const month = parseInt(currentDate.getMonth().toString()) + 1
-   const res : any = await this.request.get('revisions/month/total/' + month)
-   this.days = res.data
+    this.days = await this.revision.getCurrentMonthRevisions()
   }
 
   getCurrentDayClass(day: number){
     let dayClass = 'day ' + (this.days[day] > 0 ? 'green-day' : '')
     const currentDay = new Date().getDate()
-    console.log(currentDay, day)
     dayClass = currentDay == day + 1 ? 'day current-day': dayClass
     return dayClass
   }

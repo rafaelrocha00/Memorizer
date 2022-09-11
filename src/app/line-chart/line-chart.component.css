@@ -4,3 +4,16 @@
     background-color: #fff9ed;
     border-radius: 44px;
 }
+
+.grid {
+    stroke: rgb(228, 238, 231);
+    stroke-dasharray: 0;
+    stroke-width: 2;
+}
+
+@media (max-width: 670px) {
+    .container {
+        width: 100%;
+        height: 240px;
+    }
+}

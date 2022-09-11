@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { RequestService } from 'src/app/Services/request.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-account-page',
@@ -13,13 +14,14 @@ export class CreateAccountPageComponent implements OnInit {
   senhaRepetida: string = ''
   show: boolean = true
   remenberMe: boolean = false
+  isCreatingAccount: boolean = false
 
   usernameIncorrect: boolean = false
   usernameErrorMessage: string = ''
   passwordIncorrect: boolean = false
   passwordErrorMessage: string = ''
 
-  constructor(private requestService: RequestService) { }
+  constructor(private requestService: RequestService, private router: Router) { }
 
   ngOnInit(): void {
     const user = sessionStorage.getItem("user_key");
@@ -65,14 +67,25 @@ export class CreateAccountPageComponent implements OnInit {
 
   async createAccount() {
 
+    if(this.isCreatingAccount){
+      return;
+    }
+
+    this.isCreatingAccount = true
+
     if(this.isInvalidAccount()){
       return;
     }
 
-    const answer : any = await this.requestService.post('users/register', {name: this.nome, password: this.senha})
+    const answer : any = await this.requestService.post('users/register', {name: this.nome, password: this.senha}).catch(err => {
+      this.isCreatingAccount = false
+      return
+    })
     
     sessionStorage.setItem("user_key", answer.token);
     this.show = false
+    this.router.navigate([''])
+
   }
 
 }

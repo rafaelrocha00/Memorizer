@@ -194,12 +194,6 @@
     background-color: #5cda4b
 }
 
-.cell-title {
-    font-weight: 600;
-    font-size: 24px;
-    width: 50%;
-}
-
 .cell-info {
     width: 3%;
 }
@@ -341,6 +335,10 @@
     margin: 32px;
 }
 
+.m-sm {
+    margin: 24px;
+}
+
 .m-lg {
     margin: 48px;
 }
@@ -398,6 +396,10 @@
     width: 80%;
 }
 
+.w-1000 {
+    width: 1000px;
+}
+
 .h-20 {
     height: 20%;
 }
@@ -438,6 +440,15 @@
 .full-height {
     height: 100%;
     box-sizing: border-box;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .box-small {
@@ -511,6 +522,7 @@
     font-size: 20px;
     height: 51px;
     cursor: pointer;
+    padding: 0 10px;
     -webkit-font-smoothing: antialised;
     transition: background-color .15s linear;
 }
@@ -714,7 +726,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #65d1ff;
     color: white;
     border: none;
     height: 68px;
@@ -724,6 +735,10 @@
     font-size: 24px;
     cursor: pointer;
     padding: 0 20px;
+}
+
+.blue-bg {
+    background-color: #65d1ff;
 }
 
 .btn-md {
@@ -763,8 +778,8 @@ a {
     color: var(--title-text-color);
     font-size: 24px;
     font-family: var(--title-sans-serif-font);
-    font-weight: bold;
-    width: 100%;
+    font-weight: 600;
+    width: 220px;
 }
 
 .cell-info {
@@ -773,7 +788,6 @@ a {
     font-family: var(--title-sans-serif-font);
     font-weight: bold;
     text-align: right;
-    width: 100%;
 }
 
 .big-result {

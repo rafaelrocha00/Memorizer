@@ -110,16 +110,16 @@ button:disabled {
     height: 150px;
     top: 50px;
     left: 0;
-    background-color: #39504e;
-    color: white;
+    background-color: #E9EDFA;
     z-index: 5;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 3px solid #181d1de3;
+    border-bottom: 3px solid #D4DCF1;
 }
 
 .secondary-menu-mobile a {
+    color: #646875;
     margin: 10px 0;
     font-size: 1.4rem;
 }

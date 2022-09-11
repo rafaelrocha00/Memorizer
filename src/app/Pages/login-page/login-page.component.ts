@@ -47,7 +47,7 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  async entrar(){
+  contaInvalida() {
     if(!this.nome){
       this.usernameErrorMessage = 'Email é obrigatorio'
       this.usernameIncorrect = true
@@ -58,31 +58,43 @@ export class LoginPageComponent implements OnInit {
       this.passwordIncorrect = true
     }
 
-    if(this.usernameIncorrect || this.passwordIncorrect){
+    return this.usernameIncorrect || this.passwordIncorrect
+  }
+
+  showMensagemDeErro(erro: any) {
+    if(erro.status === 404){
+      this.usernameErrorMessage = 'Usuario não encontrado'
+      this.usernameIncorrect = true
+    }
+
+    if(erro.status === 400){
+      this.passwordErrorMessage = 'Senha incorreta'
+      this.passwordIncorrect = true
+    }
+  }
+
+  setarToken(token: any){
+    if(this.remenberMe)
+    {
+      localStorage.setItem("user_key", token)
+      return
+    }
+
+    sessionStorage.setItem("user_key", token);
+  }
+
+  async entrar(){
+   
+
+    if(this.contaInvalida()){
       return;
     }
 
-    const answer: any = await this.requestService.post('users/login', {name: this.nome, password: this.senha}).catch(err => {
-      if(err.status === 404){
-        this.usernameErrorMessage = 'Usuario não encontrado'
-        this.usernameIncorrect = true
-      }
-
-      if(err.status === 400){
-        this.passwordErrorMessage = 'Senha incorreta'
-        this.passwordIncorrect = true
-      }
-      return
-    })
+    const answer: any = await this.requestService.post('users/login', {name: this.nome, password: this.senha}).catch(this.showMensagemDeErro)
 
     if(!answer) { return}
-
-    if(this.remenberMe)
-    {
-      localStorage.setItem("user_key", answer.token)
-    }else{
-      sessionStorage.setItem("user_key", answer.token);
-    }
+    
+    this.setarToken(answer.token)
     this.router.navigate([''])
   } 
 

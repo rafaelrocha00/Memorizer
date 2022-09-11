@@ -1,0 +1,5 @@
+<div class="container">
+    <app-switch label="Dark Mode" class="m-b-sm"></app-switch>
+    <app-switch label="Hiragana" [state]="kanjiService.isUsingKatakana()" (change)="ToggleHiragana()"></app-switch>
+    <button (click)="logOff()">Log Out</button>
+</div>

@@ -29,6 +29,8 @@ import { CreateAccountPageComponent } from './Pages/create-account-page/create-a
 import { ModalResultadoRevisaoComponent } from './Components/modal-resultado-revisao/modal-resultado-revisao.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { DayChartComponent } from './day-chart/day-chart.component';
+import { UserMenuComponent } from './user-menu/user-menu.component';
+import { DefaultPaginationComponent } from './default-pagination/default-pagination.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { DayChartComponent } from './day-chart/day-chart.component';
     CreateAccountPageComponent,
     ModalResultadoRevisaoComponent,
     LineChartComponent,
-    DayChartComponent
+    DayChartComponent,
+    UserMenuComponent,
+    DefaultPaginationComponent
   ],
   imports: [
     BrowserModule,

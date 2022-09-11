@@ -1,0 +1,31 @@
+.container {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: white;
+    border: 3px solid #c0dbdf;
+    border-radius: 14px;
+    width: 200px;
+    font-family: var(--sans-serif-font);
+    cursor: auto;
+}
+
+.container button {
+    border: none;
+    background-color: transparent;
+    font-family: var(--sans-serif-font);
+    color: #646875;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border-top: 3px solid #C0DBDF;
+}
+
+.container button:hover {
+    background-color: aliceblue;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+}

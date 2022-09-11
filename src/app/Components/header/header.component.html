@@ -25,18 +25,12 @@
                 Writing
             </a>
 
-            <div class="user m-l-sm">
-                <i class="">R</i>
+            <div class="user m-l-sm" (click)="userMenu = !userMenu">
+                <i class="unselectable">R</i>
             </div>
-
-            <!-- <li>
-                <button class="option" (click)="kanjiService.toggleKatakana()" [ngClass]="{'activeKanaButton': kanjiService.isUsingKatakana() == true}">
-                <i class="fa fa-star" [ngClass]="{'activeKanaStar' : kanjiService.isUsingKatakana() == true}"></i>
-                Hiragana
-                </button>
-            </li> -->
         </div>
     </ol>
+
     <div *ngIf="breakpoint.mobileBreakpoint" class="flex">
         <button class="box-small">
             <span class="fa fa-search text-md"></span>
@@ -51,3 +45,4 @@
         </button>
     </div>
 </div>
+<app-user-menu *ngIf="userMenu"></app-user-menu>

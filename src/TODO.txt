@@ -1,9 +1,6 @@
-// Terminar de mudar UI
-// Menu de usuario
+// Mobile
+// Autosuggest
+// Revisão Total
+// Tabulacao
+// SubMenu usuario
 // Paginacao
-// Arrumar avisos tela de loading
-// Info de qualidade de revisões
-// Dois Tipos de Grafo
-// Revisão generalista
-// Algoritmo Anki
-// Concertar Autosuggest

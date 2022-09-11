@@ -1,23 +1,55 @@
 <app-header></app-header>
-<div class="m-lg">
+
+<!--Desktop -->
+<div class="m-lg" *ngIf="!breakpoint.mobileBreakpoint">
     <div class="m-t-md m-b-lg flex space-between">
-        <div>
+        <div class="w-80">
             <app-line-chart></app-line-chart>
             <div class="full-width center m-t-lg">
-                <span class="cell-title m-r-md">Total Revisions: <span class="cell-info">4</span> </span>
-                <span class="cell-title m-r-md">Cards To Revise: <span class="cell-info">4</span></span>
-                <span class="cell-title">Cards To Learn: <span class="cell-info">4</span></span>
+                <span class="cell-title m-r-md">Total Revisions: <span class="cell-info">{{deckService.totalRevisions}}</span> </span>
+                <span class="cell-title m-r-md">Cards To Revise: <span class="cell-info">{{deckService.cardsToRevise}}</span></span>
+                <span class="cell-title">Cards To Learn: <span class="cell-info">{{deckService.cardsToLearn}}</span></span>
             </div>
         </div>
-        <div class="m-t-lg">
-            <span class="cell-title m-r-md">Sucess Rate: <span class="big-result m-l-sm">A</span> </span>
+        <div>
+            <span class="cell-title m-r-md">Sucess Rate:</span> <span class="cell-title big-result m-l-sm">A</span>
             <app-day-chart></app-day-chart>
         </div>
     </div>
 
     <div class="divider"></div>
 
-    <div [class]="'ListaDeDecks' + (breakpoint.mobileBreakpoint ? ' align' : '')">
+    <div class="ListaDeDecks">
+        <p *ngFor="let deck of decks; let i = index">
+            <app-deck (ButtonWasClicked)="selectDeck($event)" [associatedDeck]="deck"></app-deck>
+        </p>
+        <app-botao-adicionar-deck (ButtonWasClicked)="showModalAddNewDeck()"></app-botao-adicionar-deck>
+    </div>
+</div>
+
+<!--Mobile -->
+<div class="m-sm" *ngIf="breakpoint.mobileBreakpoint">
+    <div class="m-t-md m-b-lg column">
+        <div>
+            <app-line-chart></app-line-chart>
+            <div class="flex">
+                <div class="flex column m-t-sm w-1000">
+                    <span class="cell-title m-r-md">Total Revisions: <span class="cell-info">4</span> </span>
+                    <span class="cell-title m-r-md">Cards To Revise: <span class="cell-info">4</span></span>
+                    <span class="cell-title">Cards To Learn: <span class="cell-info">4</span></span>
+                </div>
+                <span class="cell-title big-result m-l-sm">A</span>
+            </div>
+        </div>
+        <div class="m-t-lg flex align">
+
+            <app-day-chart></app-day-chart>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="ListaDeDecks align">
         <p *ngFor="let deck of decks; let i = index">
             <app-deck (ButtonWasClicked)="selectDeck($event)" [associatedDeck]="deck"></app-deck>
         </p>
