@@ -11,6 +11,9 @@ export class DefaultPaginationComponent implements OnInit {
   @Input() totalItens: number = 0
   itensPerPage: number = 25
   currentPage: number = 1
+
+  maxPaginationSize: number = 10
+
   @Output() pageChange: EventEmitter<Pagination> = new EventEmitter()
 
   constructor() { }
@@ -40,8 +43,32 @@ export class DefaultPaginationComponent implements OnInit {
     this.pageChange.emit({startItens, endItens})
   }
 
+  getOneAbovePagination() {
+    let diff = this.currentPage - this.maxPaginationSize
+    diff = this.maxPaginationSize + Math.max(diff, 0)  
+    return diff + 1
+  }
+
+  setOneAbovePagination() {
+    const newPage = this.getOneAbovePagination()
+    this.changePage(newPage)
+    return this.currentPage
+  }
+
   getPaginationArray() {
     const arraySize = Math.floor(Math.max(this.totalItens/this.itensPerPage, 1)) 
-    return [].constructor(arraySize)
+    const arry = Array(arraySize).fill(1).map((_, i) => i + 1 + (Math.max(this.currentPage - this.maxPaginationSize, 0)))
+    return arry
+  }
+
+  showAbovePagination() {
+    const totalPages = this.totalItens / this.itensPerPage
+    const insideMinBound = this.getPaginationArray().length >= this.maxPaginationSize
+    const insideMaxBound = this.getOneAbovePagination() <= totalPages
+    return insideMinBound && insideMaxBound
+  }
+
+  getTotalPages() {
+    return Math.ceil(this.totalItens / this.itensPerPage)
   }
 }

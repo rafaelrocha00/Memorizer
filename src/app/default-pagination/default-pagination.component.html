@@ -1,5 +1,9 @@
 <div class="container full-width flex justify-center m-t-md">
     <span (click)="backPage()" class="element unselectable"><</span>
-    <span (click)="changePage(i + 1)" [class]="'element unselectable ' + (i + 1 === currentPage ? 'current' : '')" *ngFor="let item of getPaginationArray(); let i=index">{{i + 1}}</span>
+    <span (click)="changePage(item)" *ngFor="let item of getPaginationArray(); let i=index">
+        <span *ngIf="i < maxPaginationSize" [class]="'element unselectable ' + (item === currentPage ? 'current' : '')">{{item}}</span>
+    </span>
+    <span (click)="changePage(setOneAbovePagination())" *ngIf="showAbovePagination()" class="element unselectable">...</span>
+    <span (click)="changePage(getTotalPages())" *ngIf="showAbovePagination()" class="element unselectable">{{ getTotalPages()}}</span>
     <span (click)="forwardPage()" class="element unselectable">></span>
 </div>
