@@ -30,8 +30,8 @@
 
                 <div [class]="'flex align ' + (breakpoint.mobileBreakpoint ? '' : 'm-r-big')">
                     <div [class]="breakpoint.mobileBreakpoint ? 'circle-mobile relative' : 'circle relative'">
-                        <app-circle [absolute]="true"></app-circle>
-                        <div>20% </div>
+                        <app-circle [currentPorcentage]="currentPorcentage" [absolute]="true"></app-circle>
+                        <div>{{currentPorcentage[0]}} % </div>
                     </div>
                 </div>
             </div>

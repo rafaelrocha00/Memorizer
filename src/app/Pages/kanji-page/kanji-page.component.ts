@@ -15,6 +15,7 @@ export class KanjiPageComponent implements OnInit {
 
   sugestoes : Sugestao[] = []
   card : Card = new Card('', '', [])
+  currentPorcentage: Array<number> = []
   constructor(private Activatedroute:ActivatedRoute, public breakpoint : BreakpointService, public request: RequestService, public cards : CardServiceService) { }
 
   ngOnInit(): void {
@@ -33,6 +34,7 @@ export class KanjiPageComponent implements OnInit {
     this.card.successes = res.message.successes
     this.card.revisions = res.message.revisions
     this.card.mistakes = this.card.revisions - this.card.successes
+    this.currentPorcentage = [(this.card.successes/ this.card.revisions) * 100, 100]
   }
 
 }
