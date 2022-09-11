@@ -1,8 +1,9 @@
 <app-modal [show]="show" title="Adicionar Deck" (onClose)="onClose.emit()">
-    <div content class="input-element">
-        <label for="deck-name"><p class="text-md m-b-sm">Name:</p></label>
-        <input [(ngModel)]="deckName" type="text" name="deck-name" id="deck-name" class="input full-width" placeholder="日本語" required minlength="1">
+    <div content class="m-b-ssm relative">
+        <div class="top-input">Nome Deck</div>
+        <input class="input full-width relative " [(ngModel)]="deckName" type="text" name="inpt-email" id="inpt-email" placeholder="Digite o nome do deck..." required minlength="1" autocomplete="on">
     </div>
+
     <div opcoes>
         <button class="btn-primary" (click)="addNewDeck()">
             Criar

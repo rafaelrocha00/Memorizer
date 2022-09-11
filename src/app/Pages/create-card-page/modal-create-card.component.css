@@ -1,4 +1,13 @@
-li{
-    list-style-type: none;
-    margin-left: 20px;
+.aviso {
+    font-family: var(--sans-serif-font)
+}
+
+.input {
+    background-color: #e2e5ea;
+}
+
+textarea {
+    padding-top: 20px;
+    width: 100%;
+    resize: vertical;
 }

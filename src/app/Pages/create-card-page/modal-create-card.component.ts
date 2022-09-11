@@ -13,24 +13,19 @@ export class ModalCreateCardComponent implements OnInit {
 
   @Input() show: boolean = false
   @Output() onClose : EventEmitter<null> = new EventEmitter();
-  formCard: any;
+  frontText: string = ''
+  backText: string = ''
+  meaning: string = ''
   
-  constructor(private request: RequestService, private formBuider: FormBuilder, private deckService : DeckService) { }
+  constructor(private request: RequestService, private deckService : DeckService) { }
 
   ngOnInit(): void {
-    this.formCard = this.formBuider.group({
-      frontText: [''],
-      backText: ['']
-    });
   }
 
   addCard(){
     let currentDeck = this.deckService.getCurrentDeck();
 
-    const frontText = this.formCard.controls['frontText'].value
-    const backText = this.formCard.controls['backText'].value
-
-    this.request.post('decks/addCard/' + currentDeck.id, {frontText: frontText, backText: backText})
+    this.request.post('decks/addCard/' + currentDeck.id, {frontText: this.frontText, backText: this.backText})
     this.onClose.emit()
   }
 

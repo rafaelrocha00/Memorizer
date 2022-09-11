@@ -524,6 +524,7 @@
     cursor: pointer;
     padding: 0 10px;
     -webkit-font-smoothing: antialised;
+    min-width: 140px;
     transition: background-color .15s linear;
 }
 

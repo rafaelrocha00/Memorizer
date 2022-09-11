@@ -14,7 +14,7 @@ import { RequestService } from 'src/app/Services/request.service';
 export class KanjiPageComponent implements OnInit {
 
   sugestoes : Sugestao[] = []
-  kanji : Card | undefined
+  card : Card = new Card('', '', [])
   constructor(private Activatedroute:ActivatedRoute, public breakpoint : BreakpointService, public request: RequestService, public cards : CardServiceService) { }
 
   ngOnInit(): void {
@@ -28,7 +28,11 @@ export class KanjiPageComponent implements OnInit {
 
   async setCard(card: string){
     const res : any = await this.request.get('card/' + card)
-    this.kanji = res.data[0]
+    this.card = new Card(res.message.frontText, res.message.backText, res.message.meanings) 
+    console.log(this.card)
+    this.card.successes = res.message.successes
+    this.card.revisions = res.message.revisions
+    this.card.mistakes = this.card.revisions - this.card.successes
   }
 
 }

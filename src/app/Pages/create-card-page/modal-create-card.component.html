@@ -1,23 +1,26 @@
 <app-modal [show]="show" title="Adicionar Carta" (onClose)="onClose.emit()">
     <div content>
-        <form #myForm="ngForm" [formGroup]="formCard">
+        <div content class="m-b-md relative">
+            <div class="top-input">Front Text</div>
+            <input class="input full-width relative" [(ngModel)]="frontText" type="text" name="inpt-frontText" id="inpt-frontText" placeholder="日本語" required minlength="1" autocomplete="on">
+        </div>
 
-            <div class="PrimeiroBloco">
-                <label for="FrontText"><p>Kanji:</p></label>
-                <input type="text" name="FrontText" id="FrontText" class="TextoInput" placeholder="日本語" formControlName="frontText" required minlength="1">
-            </div>
-            <div class="SegundoBlock">
-                <label for="BackText"><p>Reading:</p></label>
-                <input type="text" name="BackText" id="BackText" class="TextoInput" placeholder="にほんご" formControlName="backText" required minlength="1">
-            </div>
-            <div class="Aviso" *ngIf="!myForm.form.valid">
-                <p>Fill all fields.</p>
-                <p>You can separete readings with a comma.</p>
-            </div>
-        </form>
+        <div content class="m-b-md relative">
+            <div class="top-input">Back Text</div>
+            <input class="input full-width relative" [(ngModel)]="backText" type="text" name="inpt-backText" id="inpt-backText" placeholder="にほんご" required minlength="1" autocomplete="on">
+        </div>
+
+        <div content class="m-b-md relative">
+            <div class="top-input">Meaning</div>
+            <textarea class="input full-width relative" [(ngModel)]="meaning" type="text" name="inpt-backText" id="inpt-backText" placeholder="Language" required minlength="1" autocomplete="on"></textarea>
+        </div>
+
+        <div class="full-width flex justify-center aviso">
+            <p>You can separate readings with a comma.</p>
+        </div>
     </div>
     <div opcoes>
-        <button class="btn-primary" [disabled]="!myForm.form.valid" (click)="addCard()">
+        <button class="btn-primary" [disabled]="!backText || !frontText" (click)="addCard()">
             Criar Carta
         </button>
     </div>

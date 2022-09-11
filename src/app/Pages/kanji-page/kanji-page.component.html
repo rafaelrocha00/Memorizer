@@ -2,33 +2,29 @@
 <div class="page m-lg ms-super full-screen">
     <div [class]="(breakpoint.mobileBreakpoint ? 'flex column full-width m-b-md ' : 'flex ') + 'h-lg m-b-md'">
         <div [class]="' kanjiSpace full-height ' + (breakpoint.mobileBreakpoint ? ' full-width ' : ' third-width') ">
-            {{kanji?.frontText}}
+            {{card.frontText}}
         </div>
         <div class="left-side full-width full-height flex column">
             <div [class]="'full-width m-b-md ' + (breakpoint.mobileBreakpoint ? ' text-align-center p-b-md text-b text-md m-t-sm' : ' title')">
-                {{kanji?.backText}}
+                {{card.meaning}}
             </div>
             <div [class]="'info-box full-width flex ' + (breakpoint.mobileBreakpoint ? ' column' : ' align-all space-between full-height')">
                 <div class="ms-1 mt-2 flex column">
-                    <div class="m-b-sm">
-                        <span class="main">Onyomi:</span>
-                        <div class="info m-t-sm"> Yoru</div>
-                    </div>
-                    <div class="m-b-lg">
-                        <span class="main">Nonyomi:</span>
-                        <div class="info m-t-sm"> Yoru</div>
+                    <div class="m-b-md">
+                        <span class="main">Readings:</span>
+                        <div class="info"> {{card.backText}}</div>
                     </div>
                     <div class="m-b-sm">
                         <span class="main">Revisões:</span>
-                        <span class="info"> 10</span>
+                        <span class="info"> {{card.revisions}}</span>
                     </div>
                     <div class="m-b-sm">
                         <span class="main">Acertos:</span>
-                        <span class="info"> 1</span>
+                        <span class="info"> {{card.successes}}</span>
                     </div>
                     <div>
                         <span class="main">Erros:</span>
-                        <span class="info"> 9</span>
+                        <span class="info"> {{card.mistakes}}</span>
                     </div>
                 </div>
 
