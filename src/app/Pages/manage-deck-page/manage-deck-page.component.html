@@ -1,10 +1,12 @@
 <app-header></app-header>
 
-<div [class]="breakpoint.mobileBreakpoint ? 'flex align-inverse m-t-lg' : 'flex m-1'">
+<div *ngIf="!breakpoint.mobileBreakpoint" class="flex ms-0">
 
-    <div [class]="breakpoint.mobileBreakpoint ? '' : 'half-width half-width-gutter'">
+    <div class="half-width half-width-gutter">
 
-        <div [class]="(breakpoint.mobileBreakpoint ? 'text-align-center ' : '') + 'deckName'">{{currentDeck.name }}</div>
+        <div class="deckName w-80">{{currentDeck.name }}</div>
+
+        <!-- Botoes Revisao e Nova Carta-->
         <div class="flex m-t-sm">
             <button class="btn-secundary blue-bg btn-md m-r-sm" type="button" (click)="openAddCardMenu()">
                 <p>New Card</p>
@@ -15,7 +17,8 @@
             </button>
         </div>
 
-        <div [class]="breakpoint.mobileBreakpoint ? 'm-t-lg' : 'cards-container end'">
+        <!-- Lista -->
+        <div class="cards-container end">
             <div class="full-width">
                 <div class="full-width end">
                     <app-b-input icon="fa fa-search" [bordas]="true" (onChange)="checkInput($event)"></app-b-input>
@@ -38,7 +41,9 @@
             </div>
         </div>
     </div>
-    <div [class]="'right m-t-xd center ' + (breakpoint.mobileBreakpoint ? 'full-width' : 'half-width')">
+
+    <!-- Informacao de revisao -->
+    <div class="right m-t-xd center half-width">
         <app-line-chart></app-line-chart>
         <div class="m-t-md divider-65 m-l-10"></div>
         <div class="flex align-bottom">
@@ -68,6 +73,47 @@
 
 </div>
 
+<div *ngIf="breakpoint.mobileBreakpoint">
+    <div class="deckName text-align-center full-width">{{currentDeck.name }}</div>
 
-<app-modal-create-card [show]="addingNewCard" (onClose)="closeAddCardMenu()"></app-modal-create-card>
+    <!-- Grafico de Dias de revisao -->
+    <app-day-chart></app-day-chart>
+
+    <!-- Botoes Revisao e Nova Carta-->
+    <div class="flex m-t-md ms-1">
+        <button class="btn-secundary blue-bg btn-md m-r-sm" type="button" (click)="openAddCardMenu()">
+            <p>New Card</p>
+        </button>
+        <button class="btn-secundary green-bg full-width" type="button" (click)="routeToReviseDeckPage()">
+            <p class="m-r-sm">Revise</p>
+            <span class="fa fa-play"></span>
+        </button>
+    </div>
+
+    <!-- Lista -->
+    <div class="m-t-md">
+        <div class="full-width">
+            <div class="full-width flex align-inverse">
+                <app-b-input icon=" fa fa-search " [bordas]="true " (onChange)="checkInput($event) "></app-b-input>
+            </div>
+            <div *ngFor="let card of filteredCards; let i=index ">
+                <div *ngIf="i < page.maxItensOnPage " class="card-cell flex flex space-between " (click)="routeService.navigateByUrl( 'kanji/' + card.frontText) ">
+                    <div>
+                        <span class="m-r-md m-l-md ">{{card.frontText}}</span>
+                        <span class="m-r-sm ">-</span>
+                        <span class=" ">{{card.meaning[0]}}</span>
+                    </div>
+                    <div>
+                        <span>{{card.porcentage}}%</span>
+                        <button class="m-l-md btn-void green fa fa-arrow-up-right-from-square "></button>
+                        <button class="m-l-md m-r-md btn-void red fa fa-trash-alt "></button>
+                    </div>
+                </div>
+            </div>
+            <app-default-pagination [totalItens]="cards.length " (pageChange)="managePagination($event) "></app-default-pagination>
+        </div>
+    </div>
+</div>
+
+<app-modal-create-card [show]=" addingNewCard " (onClose)="closeAddCardMenu() "></app-modal-create-card>
 <app-footer></app-footer>

@@ -22,19 +22,20 @@
 }
 
 .title {
-    height: 50px;
     background-color: #ECF6FF;
     color: #181C1B;
     display: flex;
     align-items: center;
     padding-left: 20px;
-    font-size: 1.8rem;
     font-weight: 600;
+}
+
+.h-50p {
+    height: 50px;
 }
 
 .info-box {
     background-color: #ECF6FF;
-    color: #181C1B;
 }
 
 .align-all {

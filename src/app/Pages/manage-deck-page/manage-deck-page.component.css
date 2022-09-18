@@ -34,7 +34,6 @@ html {
     font-family: var(--serif-font);
     font-size: 3rem;
     margin-top: 40px;
-    width: 80%;
     padding-bottom: 5px;
     border-bottom: rgba(202, 206, 224, 0.199) solid 2px;
     text-transform: capitalize;

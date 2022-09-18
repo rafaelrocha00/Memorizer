@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EntradaDeTexto } from 'src/app/DataClass/EntradaDeTexto';
+import { BreakpointService } from 'src/app/Services/breakpoint.service';
 import { DeckService } from 'src/app/Services/deck.service';
 import { RequestService } from 'src/app/Services/request.service';
 
@@ -13,7 +14,7 @@ export class WritingPageComponent implements OnInit {
   textEntries : EntradaDeTexto[] = []
   current : number = 0
 
-  constructor(private deckService : DeckService, private request: RequestService) { }
+  constructor(private deckService : DeckService, private request: RequestService, public breakpoint: BreakpointService) { }
 
   ngOnInit(): void {
     this.getEntriesFromServer()

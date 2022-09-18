@@ -9,7 +9,7 @@ import { RequestService } from 'src/app/Services/request.service';
 @Component({
   selector: 'app-kanji-page',
   templateUrl: './kanji-page.component.html',
-  styleUrls: ['./kanji-page.component.css']
+  styleUrls: ['./kanji-page.component.css'],
 })
 export class KanjiPageComponent implements OnInit {
 
@@ -35,6 +35,10 @@ export class KanjiPageComponent implements OnInit {
     this.card.revisions = res.message.revisions
     this.card.mistakes = (this.card.revisions - this.card.successes) || 0
     this.currentPorcentage = [((this.card.successes/ this.card.revisions) || 0) * 100, 100]
+  }
+
+  getBackText() {
+    return this.card.backText.split(',').join(', ')
   }
 
 }

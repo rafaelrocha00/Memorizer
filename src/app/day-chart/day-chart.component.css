@@ -26,3 +26,10 @@
 .current-day {
     background-color: #ccffcb;
 }
+
+@media (max-width: 670px) {
+    .container {
+        width: 100%;
+        min-height: 0px;
+    }
+}

@@ -1,14 +1,14 @@
 <app-header></app-header>
-<div class="page m-lg ms-super full-screen">
-    <div [class]="(breakpoint.mobileBreakpoint ? 'flex column full-width m-b-md ' : 'flex ') + 'h-lg m-b-md'">
-        <div [class]="' kanjiSpace full-height ' + (breakpoint.mobileBreakpoint ? ' full-width ' : ' third-width') ">
+<div *ngIf="!breakpoint.mobileBreakpoint" class="page m-lg ms-super full-screen">
+    <div class="flex h-lg m-b-md">
+        <div class="kanjiSpace full-height third-width">
             {{card.frontText}}
         </div>
         <div class="left-side full-width full-height flex column">
-            <div [class]="'full-width m-b-md ' + (breakpoint.mobileBreakpoint ? ' text-align-center p-b-md text-b text-md m-t-sm' : ' title')">
+            <div class="full-width m-b-md title h-50p">
                 {{card.meaning}}
             </div>
-            <div [class]="'info-box full-width flex ' + (breakpoint.mobileBreakpoint ? ' column' : ' align-all space-between full-height')">
+            <div class="info-box full-width flex align-all space-between full-height">
                 <div class="ms-1 mt-2 flex column">
                     <div class="m-b-md">
                         <span class="main">Readings:</span>
@@ -28,8 +28,8 @@
                     </div>
                 </div>
 
-                <div [class]="'flex align ' + (breakpoint.mobileBreakpoint ? '' : 'm-r-big')">
-                    <div [class]="breakpoint.mobileBreakpoint ? 'circle-mobile relative' : 'circle relative'">
+                <div class="flex align m-r-big">
+                    <div class="circle relative">
                         <app-circle [currentPorcentage]="currentPorcentage" [absolute]="true"></app-circle>
                         <div>{{currentPorcentage[0]}} % </div>
                     </div>
@@ -38,5 +38,47 @@
         </div>
     </div>
 
+</div>
+<div *ngIf="breakpoint.mobileBreakpoint">
+
+    <!-- Titulo Kanji-->
+    <div class="kanjiSpace full-width m-t-lg">
+        {{card.frontText}}
+    </div>
+
+    <!-- Significado Kanji-->
+    <div class="full-width m-t-md text title text-sm fit-heigth p-1">
+        {{card.meaning | CorrectSpace}}
+    </div>
+
+
+    <!-- Informacoes do Kanji -->
+    <div class="info-box full-width full-height m-t-md p-1 color-primary">
+        <div class="ms-1 mt-2 flex column">
+            <div class="m-b-md ">
+                <span class="main cell-title">Readings:</span>
+                <div class="info text-b"> {{card.backText | CorrectSpace}}</div>
+            </div>
+            <div class="m-b-sm">
+                <span class="main cell-title">Revisões:</span>
+                <span class="cell-info info-cell"> {{card.revisions}}</span>
+            </div>
+            <div class="m-b-sm">
+                <span class="main cell-title">Acertos:</span>
+                <span class="cell-info info-cell"> {{card.successes}}</span>
+            </div>
+            <div>
+                <span class="main cell-title">Erros:</span>
+                <span class="cell-info info-cell"> {{card.mistakes}}</span>
+            </div>
+        </div>
+
+        <div class="flex align">
+            <div class="circle relative">
+                <app-circle [currentPorcentage]="currentPorcentage" [absolute]="true"></app-circle>
+                <div>{{currentPorcentage[0]}} % </div>
+            </div>
+        </div>
+    </div>
 </div>
 <app-footer></app-footer>

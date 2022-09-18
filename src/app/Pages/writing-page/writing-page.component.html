@@ -3,7 +3,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
 
 <app-header></app-header>
-<div class="full-width">
+<div class="full-width" *ngIf="!breakpoint.mobileBreakpoint">
     <div class="mainPage m-lg flex">
 
         <!-- Text Entries -->
@@ -43,5 +43,41 @@
     </div>
     <div class="footerContainer">
         <app-footer></app-footer>
+    </div>
+</div>
+
+<div *ngIf="breakpoint.mobileBreakpoint">
+    <!-- Text Entries -->
+    <div class="m-t-xd">
+
+        <!-- Search Bar-->
+        <div class="full-width flex align-inverse">
+            <app-b-input icon="fa fa-search" [bordas]="true" (onChange)="checkInput"></app-b-input>
+        </div>
+
+        <!-- Text Entries List -->
+        <div class="h-50 scroll">
+            <div *ngFor="let entry of textEntries; let i = index">
+                <div class="card-cell flex flex space-between" (click)="selecionarEntradaDeTexto(i)">
+                    <div>
+                        <span class="m-r-md m-l-md">Entrada {{i}}</span>
+                    </div>
+                    <div>
+                        <button class="m-l-md btn-void green fa fa-arrow-up-right-from-square"></button>
+                        <button class="m-l-md m-r-md btn-void red fa fa-trash-alt"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex full-width justify-center">
+            <button class="btn-secundary blue-bg w-80" (click)="createNewEntry()"><i class="fa fa-arrow-down m-r-sm"></i>New Entry</button>
+        </div>
+
+        <!-- Text Editor -->
+        <div class="m-t-md full-width p-1">
+            <app-text-editor [text]="getEntryText()"></app-text-editor>
+        </div>
     </div>
 </div>

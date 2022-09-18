@@ -2,13 +2,13 @@
 <div class="containter">
     <div class="mainPage">
         <div class="currentDeck">
-            <div class="frontCard">
+            <div class="front-card">
                 <div class="textBox">
                     <p class="textCard">{{currentFrontText}}</p>
                 </div>
             </div>
 
-            <div [style.backgroundColor]="backCardColor" class="backCard">
+            <div [style.backgroundColor]="backCardColor" class="back-card">
                 <input type="text" #thisinput class="inputTextBox" id="wanakana-input" name="backCardInput" [(ngModel)]="textInput" (input)="checkInput()" (keydown.enter)="turnCard()">
             </div>
         </div>

@@ -9,7 +9,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap');
 @font-face {
     font-family: "KTEGAKI";
     src: local("KTEGAKI"), url(./assets/fonts/KTEGAKI.ttf) format("truetype");
@@ -238,6 +238,10 @@
     font-weight: bold;
 }
 
+.fit-heigth {
+    height: fit-content;
+}
+
 
 /* Position */
 
@@ -372,8 +376,8 @@
 }
 
 .ms-super {
-    margin-left: 220px;
-    margin-right: 220px;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .w-20 {
@@ -794,4 +798,5 @@ a {
 .big-result {
     color: var(--a-result);
     font-size: 96px;
+    font-weight: 900;
 }

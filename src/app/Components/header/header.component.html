@@ -36,9 +36,8 @@
             <span class="fa fa-search text-md"></span>
         </button>
         <div class="secondary-menu-mobile" *ngIf="mobileSecondaryMenuActive">
-            <a>Decks</a>
-            <a>Revision</a>
-            <a>Writing</a>
+            <a [routerLink]="['']">Decks</a>
+            <a routerLink="/Writing" routerLinkActive="activeLink">Writing</a>
         </div>
         <button class="box-small" (click)="mobileSecondaryMenuActive = !mobileSecondaryMenuActive">
             <span class="fas fa-angles-right text-md"></span>

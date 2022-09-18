@@ -32,6 +32,7 @@ import { DayChartComponent } from './day-chart/day-chart.component';
 import { UserMenuComponent } from './user-menu/user-menu.component';
 import { DefaultPaginationComponent } from './default-pagination/default-pagination.component';
 import { TextEditorComponent } from './text-editor/text-editor.component';
+import { CorrectSpace } from './Pipes/correct-space.pipe';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { TextEditorComponent } from './text-editor/text-editor.component';
     DayChartComponent,
     UserMenuComponent,
     DefaultPaginationComponent,
-    TextEditorComponent
+    TextEditorComponent,
+    CorrectSpace
   ],
   imports: [
     BrowserModule,
