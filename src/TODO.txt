@@ -1,6 +1,3 @@
-// Mobile
-// Autosuggest
+// Deletar contas e todos os decks
+// Revisão estilo Anki
 // Revisão Total
-// Tabulacao
-// SubMenu usuario
-// Paginacao

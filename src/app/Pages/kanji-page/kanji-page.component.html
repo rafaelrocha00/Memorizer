@@ -5,26 +5,26 @@
             {{card.frontText}}
         </div>
         <div class="left-side full-width full-height flex column">
-            <div class="full-width m-b-md title h-50p">
-                {{card.meaning}}
+            <div class="full-width m-b-md title h-50p text">
+                {{card.meaning | CorrectSpace}}
             </div>
             <div class="info-box full-width flex align-all space-between full-height">
                 <div class="ms-1 mt-2 flex column">
                     <div class="m-b-md">
-                        <span class="main">Readings:</span>
-                        <div class="info"> {{card.backText}}</div>
+                        <span class="main cell-title">Readings:</span>
+                        <div class="cell-info info-cell full-width"> {{card.backText | CorrectSpace}}</div>
                     </div>
                     <div class="m-b-sm">
-                        <span class="main">Revisões:</span>
-                        <span class="info"> {{card.revisions}}</span>
+                        <span class="main cell-title">Revisões:</span>
+                        <span class="cell-info info-cell"> {{card.revisions}}</span>
                     </div>
                     <div class="m-b-sm">
-                        <span class="main">Acertos:</span>
-                        <span class="info"> {{card.successes}}</span>
+                        <span class="main cell-title">Acertos:</span>
+                        <span class="cell-info info-cell"> {{card.successes}}</span>
                     </div>
                     <div>
-                        <span class="main">Erros:</span>
-                        <span class="info"> {{card.mistakes}}</span>
+                        <span class="main cell-title">Erros:</span>
+                        <span class="cell-info info-cell"> {{card.mistakes}}</span>
                     </div>
                 </div>
 
